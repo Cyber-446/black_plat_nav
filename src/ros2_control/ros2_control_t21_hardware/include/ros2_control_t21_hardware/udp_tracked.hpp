@@ -28,7 +28,7 @@ namespace tracked_platform_udp
 struct Packet128
 {
   uint8_t  addr    = 0x23;   // [0]  адрес платы
-  uint8_t  geoMode = 0x00;   // [1]  режим геометрии (0-PWM / 1-Controller)
+  uint8_t  geoMode = 0x01;   // [1]  режим геометрии (0-PWM / 1-Controller)
   uint8_t  chMode  = 0x01;   // [2]  режим шасси   (0-PWM / 1-Controller)
   uint8_t  devId   = 0x00;   // [3]  номер устройства
   uint8_t  rsv1[6]{};        // [4-9]  резерв
@@ -58,7 +58,7 @@ class EthTrackedSocket
 {
 public:
   EthTrackedSocket(const char *listen_ip  = "0.0.0.0",
-                   uint16_t     listen_prt = 4002,
+                   uint16_t     listen_prt = 4001,
 /*                    const char *remote_ip  = "192.168.3.5",
                    uint16_t     remote_prt = 4001); */
                    const char *remote_ip  = "127.0.0.1",
