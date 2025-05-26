@@ -1,0 +1,18 @@
+joint_state_broadcaster:
+  ros__parameters:
+    publish_rate: 50
+
+lin_vel_controller:
+  ros__parameters:
+    joints:          [lin_vel_joint]
+    interface_name:  velocity
+
+ang_vel_controller:
+  ros__parameters:
+    joints:          [ang_vel_joint]
+    interface_name:  velocity
+
+geom_position_controller:
+  ros__parameters:
+    joints:          [geom_joint]
+    interface_name:  position

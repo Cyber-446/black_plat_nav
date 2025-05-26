@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<robot name="t21" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ──────────────── CONSTANTS ──────────────── -->
+  <xacro:property name="scale_small" value="1"/>
+  <xacro:property name="color_grey"  value="0.6 0.6 0.6 1.0"/>
+
+  <!-- ──────────────── MACROS ──────────────── -->
+  <xacro:macro name="add_link" params="name mesh scale color rpy xyz">
+    <link name="${name}">
+      <collision>
+        <origin rpy="${rpy}" xyz="${xyz}"/>
+        <geometry>
+          <mesh filename="package://tracked_description/mesh/${mesh}"
+                scale="${scale} ${scale} ${scale}"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin rpy="${rpy}" xyz="${xyz}"/>
+        <geometry>
+          <mesh filename="package://tracked_description/mesh/${mesh}"
+                scale="${scale} ${scale} ${scale}"/>
+        </geometry>
+        <material name="Grey">
+          <color rgba="${color}"/>
+        </material>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <link name="world"/>
+
+  <!-- ──────────────── BASE ──────────────── -->
+  <xacro:add_link  name="base_link"
+                   mesh="base.stl"
+                   scale="${scale_small}"
+                   color="${color_grey}"
+                   rpy="1.57 0 0"
+                   xyz="0 0 0"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="world"/>
+    <child  link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ──────────────── FLIPPER / GEOMETRY ──────────────── -->
+  <xacro:add_link  name="geom_link"
+                   mesh="fliper.stl"
+                   scale="${scale_small}"
+                   color="${color_grey}"
+                   rpy="-1.57 0 0"
+                   xyz="0 0 0"/>
+
+  <joint name="geom_joint" type="revolute">
+    <parent link="base_link"/>
+    <child  link="geom_link"/>
+    <origin xyz="-0.22513 0.1925 0.07335" rpy="0 0 0"/>
+    <axis   xyz="0 1 0"/>
+    <limit lower="-1.57" upper="3.14" effort="1000" velocity="1"/>
+  </joint>
+
+  <!-- ──────────────── VIRTUAL JOINTS FOR SPEEDS ──────────────── -->
+  <!-- линейная скорость -->
+  <link name="lin_vel_link">
+    <inertial><mass value="1e-6"/><origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="lin_vel_joint" type="continuous">
+    <parent link="base_link"/><child link="lin_vel_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/><axis xyz="1 0 0"/>
+  </joint>
+
+  <!-- угловая скорость -->
+  <link name="ang_vel_link">
+    <inertial><mass value="1e-6"/><origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="ang_vel_joint" type="continuous">
+    <parent link="base_link"/><child link="ang_vel_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/><axis xyz="0 0 1"/>
+  </joint>
+
+</robot>

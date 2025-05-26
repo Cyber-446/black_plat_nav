@@ -1,0 +1,8 @@
+<library path="t21_tracked">
+  <class
+    name="t21_hardware/T21TrackedHardware"
+    type="t21_hardware::T21TrackedHardware"
+    base_class_type="hardware_interface::SystemInterface">
+    <description>Плагин аппаратного интерфейса T21Tracked</description>
+  </class>
+</library>
