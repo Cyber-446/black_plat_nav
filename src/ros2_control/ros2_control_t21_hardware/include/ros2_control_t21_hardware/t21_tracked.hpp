@@ -62,6 +62,8 @@ private:
   std::array<double,3> cmd_{0.0, 0.0, 0.0};
   std::array<double,3> state_{0.0, 0.0, 0.0};
 
+  bool geom_latched_{false};
+
   // локально интегрируемые позиции виртуальных суставов
   double lin_pos_{0.0};
   double ang_pos_{0.0};

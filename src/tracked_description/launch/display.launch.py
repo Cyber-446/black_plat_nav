@@ -10,7 +10,7 @@ def generate_launch_description():
     # Set the path to different files and folders.
     pkg_share = FindPackageShare(package='tracked_description').find('tracked_description')
     default_model_path = os.path.join(pkg_share, 'urdf/tracked_robot.urdf.xacro')
-    default_rviz_config_path = os.path.join(pkg_share, 'config', 'rviz.rviz')
+    default_rviz_config_path = os.path.join(pkg_share, 'config', 't21.rviz')
 
     # Launch configuration variables specific to simulation
     gui = LaunchConfiguration('gui')

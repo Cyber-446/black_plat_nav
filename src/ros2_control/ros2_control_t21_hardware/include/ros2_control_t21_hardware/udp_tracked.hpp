@@ -59,14 +59,14 @@ class EthTrackedSocket
 public:
   EthTrackedSocket(const char *listen_ip  = "0.0.0.0",
                    uint16_t     listen_prt = 4001,
-/*                    const char *remote_ip  = "192.168.3.5",
-                   uint16_t     remote_prt = 4001); */
-                   const char *remote_ip  = "127.0.0.1",
-                   uint16_t     remote_prt = 8888);
+                   const char *remote_ip  = "192.168.3.5",
+                   uint16_t     remote_prt = 4001);
+/*                    const char *remote_ip  = "127.0.0.1",
+                   uint16_t     remote_prt = 8888); */
   ~EthTrackedSocket();
 
   void sendCommand(float lin_vel, float ang_vel,
-                   float geom, bool geom_pos_mode);
+                   float geom_deg, bool geom_pos_mode);
 
   bool receiveState(Packet128 &state);   // true, если получен полный пакет
 

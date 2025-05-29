@@ -55,32 +55,33 @@
   <joint name="geom_joint" type="revolute">
     <parent link="base_link"/>
     <child  link="geom_link"/>
-    <origin xyz="-0.22513 -0.1925 0.07335" rpy="1.57 3.14 0"/>
+    <origin xyz="-0.22513 -0.1925 0.07335" rpy="1.57 1.0472 0"/>
     <axis   xyz="0 0 1"/>
-    <limit lower="0" upper="3.14" effort="1000" velocity="1"/>
+    <limit lower="0" upper="6.25" effort="1000" velocity="1"/>
   </joint>
 
   <!-- ──────────────── VIRTUAL JOINTS FOR SPEEDS ──────────────── -->
-  <!-- линейная скорость -->
-  <link name="lin_vel_link">
+  <link name="wheel_left_link">
     <inertial><mass value="1e-6"/><origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
     </inertial>
   </link>
-  <joint name="lin_vel_joint" type="continuous">
-    <parent link="base_link"/><child link="lin_vel_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/><axis xyz="1 0 0"/>
+  <joint name="wheel_left_joint" type="continuous">
+    <parent link="base_link"/><child link="wheel_left_link"/>
+    <origin xyz="0 0.19 0.07335" rpy="0 0 0"/>
+    <axis   xyz="0 1 0"/>
   </joint>
 
-  <!-- угловая скорость -->
-  <link name="ang_vel_link">
+
+  <link name="wheel_right_link">
     <inertial><mass value="1e-6"/><origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
     </inertial>
   </link>
-  <joint name="ang_vel_joint" type="continuous">
-    <parent link="base_link"/><child link="ang_vel_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/><axis xyz="0 0 1"/>
+  <joint name="wheel_right_joint" type="continuous">
+    <parent link="base_link"/><child link="wheel_right_link"/>
+    <origin xyz="0 -0.19 0.07335" rpy="0 0 0"/>
+    <axis   xyz="0 1 0"/>
   </joint>
 
 </robot>

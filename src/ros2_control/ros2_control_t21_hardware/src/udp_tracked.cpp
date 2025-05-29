@@ -76,12 +76,9 @@ EthTrackedSocket::~EthTrackedSocket()
 
 /* ─────────────────────── отправка пакета ────────────────────────── */
 void EthTrackedSocket::sendCommand(float lin_vel, float ang_vel,
-                                   float geom_rad, bool geom_pos_mode)
+                                  float geom_deg,  bool geom_pos_mode)
 {
   if (sock_ == -1) return;
-
-  // 1) конвертируем радианы → градусы
-  float geom_deg = geom_rad * 180.0f / static_cast<float>(M_PI);
 
   // 2) формируем пакет
   Packet128 pkt{};                    // вся структура зануляется
@@ -99,13 +96,13 @@ void EthTrackedSocket::sendCommand(float lin_vel, float ang_vel,
   if (n < 0) { perror("sendto"); return; }
 
   // 4) лог
-  std::cout << "[UDP-TX] lin="   << lin_vel
+/*   std::cout << "[UDP-TX] lin="   << lin_vel
             << "  ang="          << ang_vel
             << "  geom(deg)="    << geom_deg
             << "  geoMode="      << int(pkt.geoMode)
             << "  ctrlMode="     << int(pkt.ctrlMode)
             << "  autoPos="      << int(pkt.autoPos)
-            << '\n';
+            << '\n'; */
   //dump_hex(&pkt, sizeof(pkt));
 }
 
@@ -119,10 +116,10 @@ bool EthTrackedSocket::receiveState(Packet128 &state)
   if (n != sizeof(state)) return false;
 
   /* —— лог приёма —— */
-  std::cout << "[UDP-RX] lin="  << state.linVel
+/*   std::cout << "[UDP-RX] lin="  << state.linVel
             << "  ang="         << state.angVel
             << "  geom="        << state.geomPos
-            << "  geoMode="     << int(state.geoMode) << '\n';
+            << "  geoMode="     << int(state.geoMode) << '\n'; */
   //dump_hex(&state, sizeof(state));
 
   return true;

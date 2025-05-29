@@ -94,15 +94,21 @@ ros2 launch tracked_description display.launch.py
 
 # [Система управления на ros2_control](#оглавление)
 
+Для запуска визуализации и системы управления выполняем в терминале:
 ```bash
 ros2 launch tracked_description bringup_t21.launch.py
-
-ros2 launch t21_teleop joy_flipper_teleop.launch.py
 ```
 
+Для управления с джойстика запускаем в новом терминале:
+```bash
+ros2 launch t21_teleop joy_full_teleop.launch.py
+```
+
+При работе с реальным роботом строчки ip-адреса и порта должны быть такими:
 ```cpp
   EthTrackedSocket(const char *listen_ip  = "0.0.0.0",
                    uint16_t     listen_prt = 4001,
                    const char *remote_ip  = "192.168.3.5",
                    uint16_t     remote_prt = 4001);
 ```
+
