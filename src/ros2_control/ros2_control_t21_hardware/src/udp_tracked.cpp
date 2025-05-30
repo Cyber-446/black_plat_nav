@@ -1,10 +1,5 @@
 /**
- *  udp_tracked.cpp   (версия с логированием TX / RX)
- *  --------------------------------------------------
- *  Реализация EthTrackedSocket:
- *    • создание / закрытие UDP-сокета
- *    • отправка команд платформе Т-21 с выводом пакета в консоль
- *    • неблокирующий приём 128-байтных пакетов состояния с выводом
+ *  udp_tracked.cpp   (лог TX / RX в см/с и град/с)
  *  --------------------------------------------------
  */
 
@@ -14,7 +9,7 @@
 #include <iomanip>
 #include <unistd.h>
 #include <cstring>
-#include <cmath> 
+#include <cmath>
 
 using namespace tracked_platform_udp;
 
@@ -75,19 +70,17 @@ EthTrackedSocket::~EthTrackedSocket()
 }
 
 /* ─────────────────────── отправка пакета ────────────────────────── */
-void EthTrackedSocket::sendCommand(float lin_vel, float ang_vel,
-                                  float geom_deg,  bool geom_pos_mode)
+void EthTrackedSocket::sendCommand(float lin_vel_cm_s, float ang_vel_deg_s,
+                                   float geom_deg,  bool geom_pos_mode)
 {
   if (sock_ == -1) return;
 
   // 2) формируем пакет
   Packet128 pkt{};                    // вся структура зануляется
-  pkt.geoMode   = geom_pos_mode ? 0x01 : 0x00;
-  pkt.ctrlMode  = 0x01;    // автопозиционный режим
-  pkt.autoPos   = 0x01;
-  pkt.linVel    = lin_vel;
-  pkt.angVel    = ang_vel;
-  pkt.geomPos   = geom_deg;  // ставим градусы
+  pkt.geoMode = geom_pos_mode ? 0x01 : 0x00;
+  pkt.linVel  = lin_vel_cm_s;     // см/с
+  pkt.angVel  = ang_vel_deg_s;    // град/с
+  pkt.geomPos = geom_deg;         // градусы
 
   // 3) шлём по UDP
   ssize_t n = sendto(sock_, &pkt, sizeof(pkt), MSG_CONFIRM,
@@ -96,14 +89,12 @@ void EthTrackedSocket::sendCommand(float lin_vel, float ang_vel,
   if (n < 0) { perror("sendto"); return; }
 
   // 4) лог
-/*   std::cout << "[UDP-TX] lin="   << lin_vel
-            << "  ang="          << ang_vel
-            << "  geom(deg)="    << geom_deg
-            << "  geoMode="      << int(pkt.geoMode)
-            << "  ctrlMode="     << int(pkt.ctrlMode)
-            << "  autoPos="      << int(pkt.autoPos)
-            << '\n'; */
-  //dump_hex(&pkt, sizeof(pkt));
+  std::cout << "[UDP-TX] lin="   << lin_vel_cm_s  << " см/с"
+/*             << "  ang="          << ang_vel_deg_s << " °/с" */
+            << "  geom="         << geom_deg      << "°"
+/*             << "  geoMode="      << int(pkt.geoMode) */
+            << '\n';
+  dump_hex(&pkt, sizeof(pkt));
 }
 
 /* ─────────────────────── приём пакета ───────────────────────────── */
@@ -116,11 +107,11 @@ bool EthTrackedSocket::receiveState(Packet128 &state)
   if (n != sizeof(state)) return false;
 
   /* —— лог приёма —— */
-/*   std::cout << "[UDP-RX] lin="  << state.linVel
-            << "  ang="         << state.angVel
-            << "  geom="        << state.geomPos
-            << "  geoMode="     << int(state.geoMode) << '\n'; */
-  //dump_hex(&state, sizeof(state));
+/*   std::cout << "[UDP-RX] lin="  << state.linVel  << " см/с"
+            << "  ang="         << state.angVel  << " °/с"
+            << "  geom="        << state.geomPos << "°"
+            << "  geoMode="     << int(state.geoMode) << '\n';
+  dump_hex(&state, sizeof(state)); */
 
   return true;
 }

@@ -24,6 +24,7 @@ setup(
         'console_scripts': [
             'joy_flipper_teleop = t21_teleop.joy_flipper_teleop:main',
             'joy_full_teleop    = t21_teleop.joy_full_teleop:main',
+            'drive_test    = t21_teleop.drive_test:main',
         ],
     },
 )

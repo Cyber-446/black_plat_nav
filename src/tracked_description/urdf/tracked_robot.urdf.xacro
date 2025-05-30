@@ -57,7 +57,7 @@
     <child  link="geom_link"/>
     <origin xyz="-0.22513 -0.1925 0.07335" rpy="1.57 1.0472 0"/>
     <axis   xyz="0 0 1"/>
-    <limit lower="0" upper="6.25" effort="1000" velocity="1"/>
+    <limit lower="0" upper="3.14" effort="1000" velocity="1"/>
   </joint>
 
   <!-- ──────────────── VIRTUAL JOINTS FOR SPEEDS ──────────────── -->
