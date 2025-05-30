@@ -75,9 +75,9 @@ void dump_hex(const void* data, size_t len)
 int main(int argc, char* argv[])
 {
   /* ------------------- параметры запуска ------------------- */
-  const char* listen_ip  = (argc > 1) ? argv[1] : "0.0.0.0";
-  int         listen_prt = (argc > 2) ? std::stoi(argv[2]) : 4001;
-  const char* remote_ip  = (argc > 3) ? argv[3] : "192.168.3.5";
+  const char* listen_ip  = (argc > 1) ? argv[1] : "127.0.0.1";
+  int         listen_prt = (argc > 2) ? std::stoi(argv[2]) : 8888;
+  const char* remote_ip  = (argc > 3) ? argv[3] : "0.0.0.0";
   int         remote_prt = (argc > 4) ? std::stoi(argv[4]) : 4001;
 
   /* -------------------- сокет ------------------------------ */

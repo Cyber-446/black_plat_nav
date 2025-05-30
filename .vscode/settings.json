@@ -4,6 +4,7 @@
         "vector": "cpp",
         "__split_buffer": "cpp",
         "list": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "condition_variable": "cpp"
     }
 }
