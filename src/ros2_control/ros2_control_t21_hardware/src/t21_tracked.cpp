@@ -15,8 +15,6 @@ namespace t21_hardware
 {
 
 /* ───── константы шасси ───── */
-constexpr double SIGN_L =  1.0;      // направление «+» для левой гусеницы
-constexpr double SIGN_R =  1.0;      // направление «+» для правой
 constexpr double G       = 30.75;    // редукция мотор-звезда
 constexpr double R       = 0.065;    // м, физический радиус звезды
 constexpr double L       = 0.33;     // м, база между траками
@@ -126,8 +124,8 @@ T21TrackedHardware::read(const rclcpp::Time&, const rclcpp::Duration &period)
   const double rpm2rad = 2.0 * M_PI / 60.0;
 
   /* мотор-RPM → рад/с звезды (делим на редукцию) */
-  const double omega_l = SIGN_L * pkt.linVel * rpm2rad / G;
-  const double omega_r = SIGN_R * pkt.angVel * rpm2rad / G;
+  const double omega_l = pkt.linVel * rpm2rad / G;
+  const double omega_r = pkt.angVel * rpm2rad / G;
   const double geom_rad = pkt.geomPos * M_PI / 180.0;
 
   if (got) {
@@ -150,8 +148,8 @@ hardware_interface::return_type
 T21TrackedHardware::write(const rclcpp::Time&, const rclcpp::Duration&)
 {
   /* cmd_[] задаёт ω звезды (рад/с) */
-  const double omega_l = SIGN_L * cmd_[0];
-  const double omega_r = SIGN_R * cmd_[1];
+  const double omega_l = cmd_[0];
+  const double omega_r = cmd_[1];
 
   /* звёзды → скорость корпуса */
   const double lin_si = 0.5 * R * (omega_r + omega_l);      // м/с

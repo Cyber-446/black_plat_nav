@@ -23,8 +23,6 @@
 /* ─────────── геометрия шасси ─────────── */
 constexpr double R = 0.07;   // м  ─ радиус «колеса»
 constexpr double L = 0.38;   // м  ─ база
-constexpr double SIGN_L = -1.0;
-constexpr double SIGN_R = -1.0;
 
 /* ─────────── общий 128-байтный пакет ─────────── */
 #pragma pack(push, 1)
@@ -122,8 +120,8 @@ int main(int argc, char* argv[])
     double ang_si  = M_PI/180.0 * rx.angVel;             // рад/с
 
     /* 2. обратная дифф-кинематика → ωL/ωR (рад/с) */
-    double omega_l = SIGN_L * ((lin_si - 0.5 * ang_si * L) / R);
-    double omega_r = SIGN_R * ((lin_si + 0.5 * ang_si * L) / R);
+    double omega_l = ((lin_si - 0.5 * ang_si * L) / R);
+    double omega_r = ((lin_si + 0.5 * ang_si * L) / R);
 
     /* 3. рад/с → об/мин */
     double rad2rpm = 60.0 / (2.0 * M_PI);

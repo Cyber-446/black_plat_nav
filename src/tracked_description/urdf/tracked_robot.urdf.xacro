@@ -35,7 +35,7 @@
                    mesh="base.stl"
                    scale="${scale_small}"
                    color="${color_grey}"
-                   rpy="1.57 0 0"
+                   rpy="0 0 0"
                    xyz="0 0 0"/>
 
   <joint name="base_joint" type="fixed">
@@ -55,9 +55,9 @@
   <joint name="geom_joint" type="revolute">
     <parent link="base_link"/>
     <child  link="geom_link"/>
-    <origin xyz="-0.22513 -0.1925 0.07335" rpy="1.57 1.0472 0"/>
+    <origin xyz="0.22513 0.1925 0.07335" rpy="-1.57 2.0944 0"/>
     <axis   xyz="0 0 1"/>
-    <limit lower="0" upper="3.14" effort="1000" velocity="1"/>
+    <limit lower="0.174533" upper="5.93412" effort="1000" velocity="1"/>
   </joint>
 
   <!-- ──────────────── VIRTUAL JOINTS FOR SPEEDS ──────────────── -->
