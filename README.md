@@ -67,7 +67,7 @@ mkdir -p ~/t21_ws/src
 cd ~/t21_ws
 
 # клонируем пакет в src/
-git clone <your‑fork‑url> 
+git clone git@github.com:dakolzin/black_plat.git 
 
 # сборка
 source /opt/ros/humble/setup.bash
@@ -89,8 +89,8 @@ ros2 launch tracked_description display.launch.py
 
 1. base_link — основное гусеничное шасси (серое);
 
-2. flip — меш флиппера, соединённый вращательным flip_joint вокруг оси Y
-(пределы: −90° … +180°). Перемещайте слайдер GUI, чтобы проверить движение.
+2. flip — меш флиппера, соединённый вращательным geom_joint вокруг оси Y
+(пределы: 10° … 340°). Перемещайте слайдер GUI, чтобы проверить движение.
 
 # [Система управления на ros2_control](#оглавление)
 
