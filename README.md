@@ -54,7 +54,8 @@ sudo apt update && \
   sudo apt install ros-humble-xacro \
                        ros-humble-robot-state-publisher \
                        ros-humble-joint-state-publisher-gui \
-                       ros-humble-rviz2
+                       ros-humble-rviz2 \
+                       sudo apt install ros-humble-rtabmap-ros
 ```
 
 ---
@@ -112,3 +113,7 @@ ros2 launch t21_teleop joy_full_teleop.launch.py
                    uint16_t     remote_prt = 4001);
 ```
 
+Для работы с пакетом без робота, необходимо запустить эхо-сервер:
+```bash
+ros2 run tracked_description dummy
+```

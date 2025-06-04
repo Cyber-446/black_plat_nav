@@ -4,12 +4,14 @@
  *  ROS 2 Control SystemInterface для гусеничной платформы Т-21.
  *  ВНИМАНИЕ: в пакете UDP линейная скорость передаётся в см/с,
  *            угловая — в град/с, положение геометрии — в градусах.
+ *  Добавлено логирование вызовов read() в текстовый файл для отладки.
  *  ------------------------------------------------------------------
  */
 #pragma once
 
 #include <array>
 #include <vector>
+#include <fstream>
 
 #include "hardware_interface/system_interface.hpp"
 #include "hardware_interface/types/hardware_interface_return_values.hpp"
@@ -61,8 +63,8 @@ private:
   tracked_platform_udp::EthTrackedSocket socket_{};
 
   // индексы: 0-linVel, 1-angVel, 2-geomPos
-  std::array<double,3> cmd_{0.0, 0.0, 0.0};
-  std::array<double,3> state_{0.0, 0.0, 0.0};
+  std::array<double, 3> cmd_{0.0, 0.0, 0.0};
+  std::array<double, 3> state_{0.0, 0.0, 0.0};
 
   bool geom_latched_{false};
 
@@ -71,7 +73,11 @@ private:
   double right_pos_{0.0};
 
   rclcpp::Time last_time_;
+  rclcpp::Time last_receive_time_;
   bool first_read_{true};
+
+  // лог-файл для отладки
+  std::ofstream log_file_;
 };
 
 }  // namespace t21_hardware

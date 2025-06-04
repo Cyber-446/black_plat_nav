@@ -49,10 +49,10 @@ class EthTrackedSocket
 public:
   EthTrackedSocket(const char *listen_ip  = "0.0.0.0",
                    uint16_t     listen_prt = 4001,
-                   const char *remote_ip  = "192.168.3.5",
-                   uint16_t     remote_prt = 4001);
-/*                    const char *remote_ip  = "127.0.0.1",
-                   uint16_t     remote_prt = 8888); */
+/*                    const char *remote_ip  = "192.168.3.5",
+                   uint16_t     remote_prt = 4001); */
+                   const char *remote_ip  = "127.0.0.1",
+                   uint16_t     remote_prt = 8888);
   ~EthTrackedSocket();
 
   // lin_vel — см/с, ang_vel — град/с, geom_deg — градусы
