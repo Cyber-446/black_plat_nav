@@ -21,8 +21,8 @@
 #include <iostream>
 
 /* ─────────── геометрия шасси ─────────── */
-constexpr double R = 0.07;   // м  ─ радиус «колеса»
-constexpr double L = 0.38;   // м  ─ база
+constexpr double R = 0.065;   // м  ─ радиус «колеса»
+constexpr double L = 0.37;   // м  ─ база
 
 /* ─────────── общий 128-байтный пакет ─────────── */
 #pragma pack(push, 1)

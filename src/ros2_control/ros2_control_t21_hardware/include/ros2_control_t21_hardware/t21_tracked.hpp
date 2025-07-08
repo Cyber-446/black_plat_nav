@@ -29,6 +29,7 @@ namespace t21_hardware
 class T21TrackedHardware final : public hardware_interface::SystemInterface
 {
 public:
+  T21TrackedHardware();
   RCLCPP_SHARED_PTR_DEFINITIONS(T21TrackedHardware)
 
   ROS2_CONTROL_T21_HARDWARE_PUBLIC
@@ -59,12 +60,16 @@ public:
       const rclcpp::Time & /*time*/,
       const rclcpp::Duration & /*period*/) override;
 
+
 private:
   tracked_platform_udp::EthTrackedSocket socket_{};
 
   // индексы: 0-linVel, 1-angVel, 2-geomPos
   std::array<double, 3> cmd_{0.0, 0.0, 0.0};
   std::array<double, 3> state_{0.0, 0.0, 0.0};
+
+  void send_stop_packet();
+  double state_prev_geom_{0.0};
 
   bool geom_latched_{false};
 
@@ -75,7 +80,12 @@ private:
   rclcpp::Time last_time_;
   rclcpp::Time last_receive_time_;
   bool first_read_{true};
-
+  bool           is_connected_ = false;
+  float          last_good_deg_ = 180.0f;
+  rclcpp::Time   last_cmd_ts_{0,0,RCL_SYSTEM_TIME};
+  rclcpp::Time   last_stop_ts_{0,0,RCL_SYSTEM_TIME};
+  float          last_feedback_deg_ = 180.0f;
+  rclcpp::Time   write_blocked_until_{0,0,RCL_SYSTEM_TIME};
   // лог-файл для отладки
   std::ofstream log_file_;
 };

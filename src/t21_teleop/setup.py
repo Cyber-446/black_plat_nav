@@ -12,6 +12,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/joy_flipper_teleop.launch.py']),
         ('share/' + package_name + '/launch', ['launch/joy_full_teleop.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/joy_platform_teleop.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -25,6 +26,7 @@ setup(
             'joy_flipper_teleop = t21_teleop.joy_flipper_teleop:main',
             'joy_full_teleop    = t21_teleop.joy_full_teleop:main',
             'drive_test    = t21_teleop.drive_test:main',
+            'joy_platform_teleop    = t21_teleop.joy_platform_teleop:main',
         ],
     },
 )
