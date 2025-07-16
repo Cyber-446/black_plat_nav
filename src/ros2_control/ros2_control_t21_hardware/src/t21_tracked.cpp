@@ -259,8 +259,8 @@ T21TrackedHardware::write(const rclcpp::Time &, const rclcpp::Duration &)
   }
 
   // ——— Обычная отправка ———
-  const float lin_cm  = static_cast<float>(0.5 * R * (omega_r + omega_l) * 100.0);
-  const float ang_deg = static_cast<float>((R/L) * (omega_r - omega_l) * 180.0 / M_PI);
+  const float lin_cm  = htons(static_cast<float>(0.5 * R * (omega_r + omega_l) * 100.0));
+  const float ang_deg = htons(static_cast<float>((R/L) * (omega_r - omega_l) * 180.0 / M_PI));
 
   socket_.sendCommand(lin_cm, ang_deg, geom_deg, true);
 
