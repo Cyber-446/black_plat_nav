@@ -1,12 +1,14 @@
 # bringup_t21_with_diff_drive.launch.py
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.conditions import IfCondition
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch.substitutions import (
     Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 )
 from launch_ros.substitutions import FindPackageShare
+
 
 PKG = FindPackageShare("tracked_description")
 
@@ -16,12 +18,29 @@ def generate_launch_description() -> LaunchDescription:
         "rviz", default_value="true",
         description="Запускать RViz (true/false)"
     )
+    use_lidar_arg  = DeclareLaunchArgument(
+        name = "use_lidar",
+        default_value = "true",
+        description = "Use VLP-16" 
+    )
+    sim_lidar_arg = DeclareLaunchArgument(
+        name = "sim_lidar",
+        default_value = "false",
+        description = "Use VLP-16 in URDF for Gazebo"
+    )
+    start_lidar = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource([
+        PathJoinSubstitution([FindPackageShare("t21_lidar"), "launch", "t21_lidar.launch.py"])
+    ]),
+    condition=IfCondition(LaunchConfiguration("use_lidar"))
+    )
 
     robot_description = {
         "robot_description": Command([
             FindExecutable(name="xacro"), " ",
             PathJoinSubstitution([PKG, "urdf", "t21.urdf.xacro"]), " ",
-            "prefix:=", LaunchConfiguration("prefix")
+            "prefix:=", LaunchConfiguration("prefix"), " ",
+            "use_lidar:=", LaunchConfiguration("sim_lidar")
         ])
     }
 
@@ -77,7 +96,7 @@ def generate_launch_description() -> LaunchDescription:
                 "--param-file", yaml_file
             ],
             output="screen"),
-
+        
         # RViz
         Node(
             package="rviz2",
@@ -89,4 +108,10 @@ def generate_launch_description() -> LaunchDescription:
         ),
     ]
 
-    return LaunchDescription([prefix_arg, rviz_arg] + nodes)
+    return LaunchDescription([prefix_arg, 
+                              rviz_arg, 
+                              use_lidar_arg,
+                              sim_lidar_arg, 
+                              start_lidar,
+                              ] 
+                              + nodes)
