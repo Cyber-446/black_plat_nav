@@ -78,9 +78,9 @@ void EthTrackedSocket::sendCommand(float lin_vel_cm_s, float ang_vel_deg_s,
   // 2) формируем пакет
   Packet128 pkt{};                    // вся структура зануляется
   pkt.geoMode = geom_pos_mode ? 0x01 : 0x00;
-  pkt.linVel  = htons(lin_vel_cm_s);     // см/с
-  pkt.angVel  = htons(ang_vel_deg_s);    // град/с
-  pkt.geomPos = htons(geom_deg);         // градусы
+  pkt.linVel  = lin_vel_cm_s;     // см/с
+  pkt.angVel  = ang_vel_deg_s;    // град/с
+  pkt.geomPos = geom_deg;         // градусы
 
   // 3) шлём по UDP
   ssize_t n = sendto(sock_, &pkt, sizeof(pkt), MSG_CONFIRM,

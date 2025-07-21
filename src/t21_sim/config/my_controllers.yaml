@@ -1,16 +1,16 @@
 controller_manager:
   ros__parameters:
     update_rate: 100  # Обязательно!
-    diff_drive:
+    diff_cont:
       type: diff_drive_controller/DiffDriveController
-    joints_broad:
+    joint_broad:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-joints_broad:
+joint_broad:
   ros__parameters:
     publish_rate: 50.0
     
-diff_drive:
+diff_cont:
   ros__parameters:
     odom_frame_id: odom
     base_frame_id: world

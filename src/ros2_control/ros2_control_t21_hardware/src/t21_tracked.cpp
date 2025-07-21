@@ -179,8 +179,8 @@ T21TrackedHardware::read(const rclcpp::Time &, const rclcpp::Duration &period)
   omega_r  = raw_angVel  * rpm2rad / G;
   geom_rad = raw_geomDeg * M_PI / 180.0;
 
-  state_[0] = omega_l;
-  state_[1] = omega_r;
+  state_[1] = omega_l;//изменение индексов для левой и правой частей для исправления инвертированного поворота
+  state_[0] = omega_r;
   state_[2] = geom_rad;
 
   // Интеграция позиций
