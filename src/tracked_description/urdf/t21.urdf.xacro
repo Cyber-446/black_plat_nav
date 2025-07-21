@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="t21">
+<robot name="t21" xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- Объявляем аргументы -->
   <xacro:arg name="prefix" default=""/>
+  <!-- Использовать симуляцию лидара\камеры -->
   <xacro:arg name="sim_lidar" default="false"/>
-  
-  <!-- Создаем свойство на основе аргумента -->
-  <xacro:property name="sim_lidar_flag" value="$(arg sim_lidar)"/>
-  
+  <xacro:arg name="sim_cam" default="true"/>
   <!-- геометрия -->
   <xacro:include filename="$(find tracked_description)/urdf/tracked_robot.urdf.xacro"/>
 
@@ -15,12 +13,11 @@
 
   <!-- вызываем макрос, передавая имя и префикс -->
   <xacro:t21_ros2_control name="t21" prefix="$(arg prefix)"/>
-
-  <!-- блок симуляции VLP-16-->
-  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
   
   <!-- Используем свойство вместо прямого аргумента -->
-  <xacro:if value="${sim_lidar_flag == 'true'}">
+  <xacro:if value="${'$(arg sim_lidar)' == 'true'}">
+    <!-- блок симуляции VLP-16-->
+    <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
     <xacro:VLP-16 parent="lidar_link" 
                 name="velodyne" 
                 topic="/velodyne_points" 
@@ -35,5 +32,15 @@
                 gpu="false">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:VLP-16>
+  </xacro:if>
+  <xacro:if value="${'$(arg sim_cam)' == 'true'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+    <!-- Аргументы realsense -->
+    <xacro:arg name="use_nominal_extrinsics" default="false"/>
+    <xacro:arg name="add_plug" default="false" />
+    <xacro:arg name="use_mesh" default="true" />
+      <xacro:sensor_d435 parent="big_box_link" use_nominal_extrinsics="$(arg use_nominal_extrinsics)" add_plug="$(arg add_plug)" use_mesh="$(arg use_mesh)">
+      <origin xyz="0.06 0.09 0.018" rpy="0 0.01 0"/>
+      </xacro:sensor_d435>
   </xacro:if>
 </robot>
