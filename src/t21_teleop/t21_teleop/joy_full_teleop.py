@@ -17,7 +17,7 @@ class JoyFullTeleop(Node):
         self.declare_parameter('btn_flip_up',     5)    # RB
         self.declare_parameter('btn_flip_down',   4)    # LB
 
-        self.declare_parameter('scale_lin',       0.5)  # м/с
+        self.declare_parameter('scale_lin',       1.5)  # м/с
         self.declare_parameter('scale_ang',       1.0)  # рад/с
         self.declare_parameter('flip_step_deg',   5.0)  # приращение, °
         self.declare_parameter('deadzone',        0.05)
