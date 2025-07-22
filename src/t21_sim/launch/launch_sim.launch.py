@@ -103,23 +103,23 @@ def generate_launch_description():
     diff_drive_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["diff_cont"]
+        arguments=["diff_drive_controller"]
     )
 
     geom_pos_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["fliper_position_controller"]
+        arguments=["geom_position_controller"]
     )
 
     #odometry_fus_config = os.path.join(get_package_share_directory(package_name), 'config', 'odometry_fus.yaml')
-    #odometry_fus_node = Node(
-    #        package='odometry_fus',
-    #        executable='odometry_fus_node',
-    #        name='odometry_fus_node',        
-    #        output='screen',
-    #        parameters=[odometry_fus_config],
-    #)
+    odometry_fus_node = Node(
+            package='odometry_fus',
+            executable='odometry_fus_node',
+            name='odometry_fus_node',        
+            output='screen',
+            #parameters=[odometry_fus_config],
+    )
 
     # Initializing LIDAR - set here for debugging cause there is no nedd to drive robot
 
@@ -160,7 +160,7 @@ def generate_launch_description():
         diff_drive_spawner,
         joint_broad_spawner,
         geom_pos_spawner,
-        #odometry_fus_node,
+        odometry_fus_node,
         #robot_localization_node,
         start_rviz_cmd,
         #joystick,

@@ -5,7 +5,7 @@
   <!-- геометрия -->
   <xacro:include filename="$(find t21_sim)/urdf/tracked_robot.urdf.xacro"/>
 
-  <!-- блок ros2_control -->
   <xacro:include filename="$(find t21_sim)/config/t21.ros2_control.xacro"/>
+  <xacro:include filename="$(find t21_sim)/urdf/imu.xacro"/>
 
 </robot>

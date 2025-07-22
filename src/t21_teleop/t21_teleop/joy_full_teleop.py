@@ -40,11 +40,9 @@ class JoyFullTeleop(Node):
 
         # ───────── паблишеры ─────────
         self.pub_cmd = self.create_publisher(
-            Twist, '/diff_cont/cmd_vel_unstamped', 10)
-            #Twist, '/diff_drive_controller/cmd_vel_unstamped', 10)
+            Twist, '/diff_drive_controller/cmd_vel_unstamped', 10)
         self.pub_flip = self.create_publisher(
-            Float64MultiArray, '/fliper_position_controller/commands', 10)
-            #Float64MultiArray, '/geom_position_controller/commands', 10)
+            Float64MultiArray, '/geom_position_controller/commands', 10)
 
         # ───────── подписка на джой ─────────
         self.create_subscription(Joy, '/joy', self.cb_joy, 10)
