@@ -1,7 +1,7 @@
 /**:
   ros__parameters:
     # realsense_params.yaml
-    camera_name: "realsense_D435"
+    camera_name: "camera"
     camera_namespace: ""
     serial_no: '' # choose device by serial number
     usb_port_id: '' # choose device by usb port id
@@ -15,18 +15,19 @@
   
     # Color stream parameters
     enable_color: true # enable color stream
-    rgb_camera.color_profile: "0,0,0" # color stream profile
+    rgb_camera.color_profile: "640x480x30" # color stream profile
     rgb_camera.color_format: "RGB8" # color stream format
     rgb_camera.enable_auto_exposure: true # enable/disable auto exposure for color image
+    rgb_camera.profile: "640x480x30"
   
     # Depth and infrared parameters
     enable_depth: true # enable depth stream
     enable_infra: false # enable infra0 stream
     enable_infra1: false # enable infra1 stream
     enable_infra2: false # enable infra2 stream
-    depth_module.depth_profile: "0,0,0" # depth stream profile
+    depth_module.depth_profile: "640x480x30" # depth stream profile
     depth_module.depth_format: "Z16" # depth stream format
-    depth_module.infra_profile: "0,0,0" # infra streams (0/1/2) profile
+    depth_module.infra_profile: "640x480x30" # infra streams (0/1/2) profile
     depth_module.infra_format: "RGB8" # infra0 stream format
     depth_module.infra1_format: "Y8" # infra1 stream format
     depth_module.infra2_format: "Y8" # infra2 stream format
@@ -57,7 +58,7 @@
     tf_publish_rate: 0.0 # [double] rate in Hz for publishing dynamic TF
   
     # Pointcloud parameters
-    pointcloud.enable: false # 
+    pointcloud.enable: true # 
     pointcloud.stream_filter: 2 # texture stream for pointcloud
     pointcloud.stream_index_filter: 0 # texture stream index for pointcloud
     pointcloud.ordered_pc: false # 

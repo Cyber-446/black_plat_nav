@@ -36,6 +36,7 @@
   <xacro:if value="${'$(arg sim_cam)' == 'true'}">
     <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
     <!-- Аргументы realsense -->
+    <!-- TODO change camera pith to match real one -->
     <xacro:arg name="use_nominal_extrinsics" default="false"/>
     <xacro:arg name="add_plug" default="false" />
     <xacro:arg name="use_mesh" default="true" />

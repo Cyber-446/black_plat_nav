@@ -16,7 +16,7 @@ def generate_launch_description():
     return LaunchDescription([
         # Аргументы для переопределения
         DeclareLaunchArgument('camera_name', default_value='camera'),
-        DeclareLaunchArgument('camera_namespace', default_value='camera'),
+        DeclareLaunchArgument('camera_namespace', default_value=''),
         DeclareLaunchArgument('config_file', default_value=default_params_file),
         
         # Нода камеры
