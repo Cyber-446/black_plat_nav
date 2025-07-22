@@ -13,24 +13,24 @@
       </hardware>
 
       <!-- виртуальный сустав линейной скорости -->
-      <joint name="wheel_left_joint">
+      <joint name="left_wheel_joint">
         <command_interface name="velocity"/>
         <state_interface   name="velocity"/>
         <state_interface name="position"/>
       </joint>
 
       <!-- виртуальный сустав угловой скорости -->
-      <joint name="wheel_right_joint">
+      <joint name="right_wheel_joint">
         <command_interface name="velocity"/>
         <state_interface   name="velocity"/>
         <state_interface name="position"/>
       </joint>
 
-      <!-- реальный сустав флиппера / стрелы -->
-      <!--joint name="${prefix}geom_joint">
+      <!--реальный сустав флиппера / стрелы -->
+      <joint name="fliper_joint">
         <command_interface name="position"/>
         <state_interface   name="position"/>
-      </joint-->
+      </joint>
     </ros2_control>
 
     <gazebo>
