@@ -133,7 +133,7 @@
     <parent link="base_link"/>
     <child link="fliper_link"/>
     <axis xyz="0 -1 0"/>
-    <limit lower="0" upper="0" effort="10" velocity="10"/>
+    <limit lower="0.174533" upper="5.93412" effort="1000" velocity="1"/>
   </joint>
 
   <link name="big_box_link">

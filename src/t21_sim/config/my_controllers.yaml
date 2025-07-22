@@ -5,8 +5,8 @@ controller_manager:
       type: diff_drive_controller/DiffDriveController
     joint_broad:
       type: joint_state_broadcaster/JointStateBroadcaster
-    geom_position_controller:
-      type: position_controllers/JointPositionController
+    fliper_position_controller:
+      type: position_controllers/JointGroupPositionController
 
 joint_broad:
   ros__parameters:
@@ -26,8 +26,10 @@ diff_cont:
     publish_rate:      10.0
     use_stamped_vel:   false
 
-geom_position_controller:
+fliper_position_controller:
   ros__parameters:
-    joints:          [fliper_joint]
-    interface_name:  position
-    publish_rate:    10.0        # добавьте, если не было
+    joints: [fliper_joint]
+    interface_name: position
+    state_publish_rate: 50.0
+    command_interfaces: [position]
+    allow_partial_joints_goal: true
