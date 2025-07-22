@@ -3,7 +3,7 @@
 <package format="3">
   <name>t21_rtabmap</name>
   <version>0.0.0</version>
-    <description>rover RTABMap localisation package</description>
+    <description>t21 RTABMap localisation package</description>
   <maintainer email="timofeenko@ms-17.ru">TMS</maintainer>
   <license>Apache 2.0</license>
 

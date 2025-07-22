@@ -25,18 +25,7 @@ def launch_setup(context, *args, **kwargs):
     localization = LaunchConfiguration('localization')
 
     navigation_package = 't21_navigation'
-    
-    navigation_launch_path = PathJoinSubstitution(
-        [FindPackageShare('nav2_bringup'), 'launch', 'navigation_launch.py']
-    )
-    
-    nav2_params_file_sim = PathJoinSubstitution(
-        [FindPackageShare(navigation_package), 'config', 'navigation_sim.yaml']
-    )
-
-    nav2_params_file = PathJoinSubstitution(
-        [FindPackageShare(navigation_package), 'config', 'navigation.yaml']
-    )
+    rtabmap_package='t21_rtabmap'
     
     use_sim_time = LaunchConfiguration("use_sim_time")
     
@@ -45,7 +34,7 @@ def launch_setup(context, *args, **kwargs):
     use_imu = use_sim_time.perform(context) in ["false", "False"]
 
     vslam_params = os.path.join(
-        get_package_share_directory('rover_rtabmap'),
+        get_package_share_directory(rtabmap_package),
         'config',
         'rtabmap.yaml'
     )
@@ -72,6 +61,12 @@ def launch_setup(context, *args, **kwargs):
     vslam_remappings=[('imu', 'imu'),
                       ('odom', 'vo')]
     
+    rgbd_remappings = [
+        ('rgb/image', '/camera/color/image_raw'),
+        ('rgb/camera_info', '/camera/color/camera_info'),
+        ('depth/image', '/camera/depth/image_rect_raw')
+    ]
+    
     return [
     #     IncludeLaunchDescription(
     #         PythonLaunchDescriptionSource(navigation_launch_path),
@@ -95,15 +90,28 @@ def launch_setup(context, *args, **kwargs):
         
         # VSLAM nodes:
         Node(
-            package='rtabmap_sync', executable='rgbd_sync', output='screen',
-            parameters=[vslam_params],
-            remappings=[('rgb/image', '/camera/image_raw'),
-                        ('rgb/camera_info', '/camera/camera_info'),
-                        ('depth/image', '/camera/depth/image_raw')]),
+            package='rtabmap_sync', executable='rgbd_sync', 
+            parameters=[{
+                'approx_sync': True,
+                'queue_size': 10,
+                'qos': 1,  # Reliable QoS
+                'qos_image': 1,
+                'qos_info': 1,
+                'depth_scale': 1.0
+            }],
+            remappings=rgbd_remappings
+        ),
 
         Node(
             package='rtabmap_odom', executable='rgbd_odometry', output='screen',
-            parameters=[vslam_params, {'odom_frame_id': 'vo'}],
+            parameters=[vslam_params, {
+                'odom_frame_id': 'vo',
+                'subscribe_rgbd': True,
+                'rgbd_cameras': 1,
+                'frame_id': 'base_link',
+                'publish_tf_odom': True,
+                'wait_for_transform': 0.2
+            }],
             remappings=vslam_remappings,
             arguments=["--ros-args", "--log-level", 'info']),
 
@@ -138,18 +146,27 @@ def launch_setup(context, *args, **kwargs):
             parameters=[{'decimation': 2,
                          'max_depth': 3.0,
                          'voxel_size': 0.02}],
-            remappings=[('depth/image', '/camera/depth/image_raw'),
-                        ('depth/camera_info', '/camera/depth/camera_info'),
-                        ('cloud', '/camera/points')]),
+               remappings=[('depth/image', '/camera/depth/image_rect_raw'),
+                ('depth/camera_info', '/camera/depth/camera_info'),
+                ('cloud', '/camera/points')]
+        ),
         
         Node(
             package='rtabmap_util', executable='obstacles_detection', output='screen',
-            parameters=[vslam_params],
-            remappings=[('cloud', '/camera/points'),
-                        ('obstacles', '/camera/obstacles'),
-                        ('ground', '/camera/ground')]),
-    ]
-
+            parameters=[{
+                'frame_id': 'base_link',
+                'map_frame_id': 'map',
+                'min_cluster_size': 20,
+                'max_obstacle_height': 2.0,
+                'wait_for_transform': 0.2
+            }],
+            remappings=[
+                ('cloud', '/camera/points'),
+                ('obstacles', '/camera/obstacles'),
+                ('ground', '/camera/ground')
+            ]
+        ),
+    ]        
 def generate_launch_description():
     
     return LaunchDescription([
@@ -167,7 +184,7 @@ def generate_launch_description():
         
         DeclareLaunchArgument(
             name='rtabmap_viz', 
-            default_value='false',
+            default_value='true',
             description='Run rtabmap_viz'
         ),
 
