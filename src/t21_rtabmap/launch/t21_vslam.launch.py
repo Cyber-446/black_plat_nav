@@ -24,7 +24,6 @@ def launch_setup(context, *args, **kwargs):
     
     localization = LaunchConfiguration('localization')
 
-    navigation_package = 't21_navigation'
     rtabmap_package='t21_rtabmap'
     
     use_sim_time = LaunchConfiguration("use_sim_time")
@@ -39,6 +38,20 @@ def launch_setup(context, *args, **kwargs):
         'rtabmap.yaml'
     )
 
+    icp_params = {
+    'Reg/Strategy': '1',
+    'Reg/Force3DoF': 'true',
+    'Mem/NotLinkedNodesKept': 'false',
+    'Icp/VoxelSize': '0.3',
+    'Icp/MaxCorrespondenceDistance': '3',
+    'Icp/PointToPlaneGroundNormalsUp': '0.9',
+    'Icp/RangeMin': '0.5',
+    'Icp/MaxTranslation': '1',
+    # Add synchronization parameters:
+    'approx_sync': True,
+    'approx_sync_max_interval': 0.1,
+    'queue_size': 20
+    }
     # vslam_params ={
     #     'frame_id':'root_link',
     #     'guess_frame_id':'odom',
@@ -59,12 +72,14 @@ def launch_setup(context, *args, **kwargs):
     #     'Kp/RoiRatios': '0.0 0.0 0.0 0.4' # ignore ground for loop closure detection (sim uses a very repetitive texture)
     # }
     vslam_remappings=[('imu', 'imu'),
-                      ('odom', 'vo')]
+                      ('odom', 'odom'),
+                      ('scan_cloud', '/velodyne_points'),]
     
     rgbd_remappings = [
         ('rgb/image', '/camera/color/image_raw'),
         ('rgb/camera_info', '/camera/color/camera_info'),
-        ('depth/image', '/camera/depth/image_rect_raw')
+        ('depth/image', '/camera/depth/image_rect_raw'),
+        ('scan_cloud', '/velodyne_points'),
     ]
     
     return [
@@ -93,7 +108,7 @@ def launch_setup(context, *args, **kwargs):
             package='rtabmap_sync', executable='rgbd_sync', 
             parameters=[{
                 'approx_sync': True,
-                'queue_size': 10,
+                'topic_queue_size': 20,
                 'qos': 1,  # Reliable QoS
                 'qos_image': 1,
                 'qos_info': 1,
@@ -105,7 +120,7 @@ def launch_setup(context, *args, **kwargs):
         Node(
             package='rtabmap_odom', executable='rgbd_odometry', output='screen',
             parameters=[vslam_params, {
-                'odom_frame_id': 'vo',
+                'odom_frame_id': 'odom',
                 'subscribe_rgbd': True,
                 'rgbd_cameras': 1,
                 'frame_id': 'base_link',
@@ -114,8 +129,13 @@ def launch_setup(context, *args, **kwargs):
             }],
             remappings=vslam_remappings,
             arguments=["--ros-args", "--log-level", 'info']),
-
-        # # SLAM Mode:
+        Node(
+            package='rtabmap_odom', executable='icp_odometry', output='screen',
+            parameters=[vslam_params, icp_params],
+            remappings=[('/scan_cloud',   '/velodyne_points')],
+            arguments=["--ros-args", "--log-level", 'info']
+        ),
+        # SLAM Mode:
         Node(
             condition=UnlessCondition(localization),
             package='rtabmap_slam', executable='rtabmap', output='screen',
@@ -128,8 +148,8 @@ def launch_setup(context, *args, **kwargs):
             condition=IfCondition(localization),
             package='rtabmap_slam', executable='rtabmap', output='screen',
             parameters=[vslam_params, 
-              {'Mem/IncrementalMemory':'False',
-               'Mem/InitWMWithAllNodes':'True'}],
+              {'Mem/IncrementalMemory': 'False',
+               'Mem/InitWMWithAllNodes': 'True'}],
             remappings=vslam_remappings
         ),
 
@@ -137,36 +157,42 @@ def launch_setup(context, *args, **kwargs):
             package='rtabmap_viz', executable='rtabmap_viz', output='screen',
             condition=IfCondition(LaunchConfiguration("rtabmap_viz")),
             parameters=[vslam_params],
-            remappings= vslam_remappings
+            remappings=vslam_remappings,
+            arguments=["--ros-args", "--log-level", 'info']
         ),
-        
-        # Compute ground/obstacle clouds for nav2 voxel layers
         Node(
-            package='rtabmap_util', executable='point_cloud_xyz', output='screen',
-            parameters=[{'decimation': 2,
-                         'max_depth': 3.0,
-                         'voxel_size': 0.02}],
-               remappings=[('depth/image', '/camera/depth/image_rect_raw'),
-                ('depth/camera_info', '/camera/depth/camera_info'),
-                ('cloud', '/camera/points')]
+            package='rqt_topic', executable='rqt_topic', name='topic_monitor'
         ),
-        
         Node(
-            package='rtabmap_util', executable='obstacles_detection', output='screen',
-            parameters=[{
-                'frame_id': 'base_link',
-                'map_frame_id': 'map',
-                'min_cluster_size': 20,
-                'max_obstacle_height': 2.0,
-                'wait_for_transform': 0.2
-            }],
-            remappings=[
-                ('cloud', '/camera/points'),
-                ('obstacles', '/camera/obstacles'),
-                ('ground', '/camera/ground')
-            ]
+            package='rqt_graph', executable='rqt_graph', name='graph_monitor'
         ),
-    ]        
+    #     # Compute ground/obstacle clouds for nav2 voxel layers
+    #     Node(
+    #         package='rtabmap_util', executable='point_cloud_xyz', output='screen',
+    #         parameters=[{'decimation': 2,
+    #                      'max_depth': 3.0,
+    #                      'voxel_size': 0.02}],
+    #            remappings=[('depth/image', '/camera/depth/image_rect_raw'),
+    #             ('depth/camera_info', '/camera/depth/camera_info'),
+    #             ('cloud', '/camera/depth/color/points')]
+    #     ),
+        
+    #     Node(
+    #         package='rtabmap_util', executable='obstacles_detection', output='screen',
+    #         parameters=[{
+    #             'frame_id': 'base_link',
+    #             'map_frame_id': 'map',
+    #             'min_cluster_size': 20,
+    #             'max_obstacle_height': 2.0,
+    #             'wait_for_transform': 0.2
+    #         }],
+    #         remappings=[
+    #             ('cloud', '/camera/depth/color/points'),
+    #             ('obstacles', '/camera/obstacles'),
+    #             ('ground', '/camera/ground')
+    #         ]
+    #     ),
+     ]        
 def generate_launch_description():
     
     return LaunchDescription([

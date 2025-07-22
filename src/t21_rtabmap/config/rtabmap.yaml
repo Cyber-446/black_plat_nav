@@ -13,11 +13,11 @@
     #If set, TF is used to get odometry instead of the topic.
     odom_frame_id: "odom" #default_value=''
     #Output map frame id (TF).
-    map_frame_id: "map" #default_value='map'
+    map_frame_id: "rtabmap_map" #default_value='map'
     #Map topic name.
-    map_topic: "/map" #default_value='map'
+    map_topic: "/rtabmap/map" #default_value='map'
     #Publish TF between map and odomerty. Used in RtabMap-SLAM
-    publish_tf_map: True #default_value='true'
+    publish_tf_map: true #default_value='true'
     #namespace prefix
     namespace: "rtabmap"     #default_value='rtabmap'
     #Where is the map saved/loaded.
@@ -48,8 +48,8 @@
     #e.g., "tracker", a fake frame matching the frame "frame_id" (but on different TF tree)
     ground_truth_base_frame_id: ""  #default_value=''
     # Time synchronization
-    use_sim_time: True  # Set to true if using simulation
-    approx_sync: True
+    use_sim_time: False  # Set to true if using simulation
+    approx_sync: true
     approx_sync_max_interval: 0.0  #default_value='0.0'(sec) 0 means infinite interval duration (used with approx_sync=true)'),
 
     # RGB-D related topics
@@ -95,26 +95,26 @@
     # LiDAR
     
     #Recieve Lidar data
-    subscribe_scan: False           #default_value='false'
+    subscribe_scan: false           #default_value='false'
     #Laserscan topic
     scan_topic: "/scan"               #default_value='/scan'
     #I guess recieve LIDAR msg/pointcloud
-    subscribe_scan_cloud: False     #default_value='false'
+    subscribe_scan_cloud: true     #default_value='false'
     #LIDAR pointcloud topic 
     scan_cloud_topic: "/velodyne_points"   #default_value='/scan_cloud'
     #No idea
-    scan_normal_k: 0                #default_value='0'                  
-        
+    scan_normal_k: 0                #default_value='0'                     
+  
     # Odometry
     
     #Launch rtabmap visual odometry node.
     visual_odometry: True           #default_value='true'
     #Launch rtabmap icp odometry node.
-    icp_odometry: False             #default_value='false'
+    icp_odometry: true             #default_value='false'
     #Odometry topic name.
     odom_topic: "/odom"              #default_value='odom'
     #Visual/Icp odometry frame ID for TF.
-    vo_frame_id: "vo"              #default_value=LaunchConfiguration('odom_topic')
+    vo_frame_id: odom"              #default_value=LaunchConfiguration('odom_topic')
     #Publish TF between visual odometry (vo) and odometry. Used in RtabMap-Odom
     publish_tf_odom: True #default_value='true'
     #If TF is used to get odometry, this is the default angular variance.
@@ -124,7 +124,7 @@
     #More arguments for odometry (overwrite same parameters in rtabmap_args). 
     odom_args: ""                     #default_value=''
     #Sync odometry data from different sensors
-    odom_sensor_sync: False         #default_value='false'
+    odom_sensor_sync: True         #default_value='false'
     #In champ set as odom
     odom_guess_frame_id: "odom"          #default_value=''
     #Tolearnce for odom frame imho
@@ -182,8 +182,15 @@
     Grid/MaxObstacleHeight: "2"
     Odom/ResetCountdown: "2"
     Kp/RoiRatios: "0.0 0.0 0.0 0.4"
-    
-    
+    OdomF2M/ScanSubtractRadius: "0.3" # match voxel size
+    OdomF2M/ScanMaxSize': "10000"
+    Mem/NotLinkedNodesKept: "false"
+    Grid/RangeMin: 0.5" # ignore laser scan points on the robot itself
+    Grid/NormalsSegmentation: "false" # Use passthrough filter to detect obstacles
+    Grid/MaxGroundHeight: "0.05" # All points above 5 cm are obstacles
+    Grid/RayTracing: "true" # Fill empty space
+    RGBD/OptimizeMaxError: "0.3" # There are a lot of repetitive patterns, be more strict in accepting loop closures
+    OdomF2M/ScanMaxSize: "10000"
     # Quality of Service
     qos_image: 1       # 0=system default, 1=Reliable, 2=Best Effort
     qos_scan: 1

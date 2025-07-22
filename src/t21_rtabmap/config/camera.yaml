@@ -62,7 +62,7 @@
     pointcloud.stream_filter: 2 # texture stream for pointcloud
     pointcloud.stream_index_filter: 0 # texture stream index for pointcloud
     pointcloud.ordered_pc: false # 
-    pointcloud.allow_no_texture_points: false # 
+    pointcloud.allow_no_texture_points: true # 
   
     # Filter enablement parameters
     align_depth.enable: false # enable align depth filter
