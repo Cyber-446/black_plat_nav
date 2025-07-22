@@ -9,8 +9,8 @@
 namespace t21_hardware
 {
 constexpr double G = 30.75;
-constexpr double R = 0.065;
-constexpr double L = 0.37;
+constexpr double R = 0.072;
+constexpr double L = 0.374;
 constexpr double MIN_G_DEG = 180.0;
 constexpr double MAX_G_DEG = 300.0;
 constexpr double MIN_G_RAD = MIN_G_DEG * M_PI / 180.0;
@@ -179,8 +179,8 @@ T21TrackedHardware::read(const rclcpp::Time &, const rclcpp::Duration &period)
   omega_r  = raw_angVel  * rpm2rad / G;
   geom_rad = raw_geomDeg * M_PI / 180.0;
 
-  state_[0] = omega_l;
-  state_[1] = omega_r;
+  state_[1] = omega_l;//изменение индексов для левой и правой частей для исправления инвертированного поворота
+  state_[0] = omega_r;
   state_[2] = geom_rad;
 
   // Интеграция позиций
@@ -258,9 +258,9 @@ T21TrackedHardware::write(const rclcpp::Time &, const rclcpp::Duration &)
     return hardware_interface::return_type::OK;
   }
 
-  // ——— Обычная отправка ———
-  const float lin_cm  = htons(static_cast<float>(0.5 * R * (omega_r + omega_l) * 100.0));
-  const float ang_deg = htons(static_cast<float>((R/L) * (omega_r - omega_l) * 180.0 / M_PI));
+  // ——— Обычная отправка ——— //должно ли тут быть ntohs?
+  const float lin_cm  = static_cast<float>(0.5 * R * (omega_r + omega_l) * 100.0);
+  const float ang_deg = static_cast<float>((R/L) * (omega_r - omega_l) * 180.0 / M_PI);
 
   socket_.sendCommand(lin_cm, ang_deg, geom_deg, true);
 

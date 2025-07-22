@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="t21">
+  <xacro:arg name="prefix" default=""/>
+
+  <!-- геометрия -->
+  <xacro:include filename="$(find t21_sim)/urdf/tracked_robot.urdf.xacro"/>
+
+  <!-- блок ros2_control -->
+  <xacro:include filename="$(find t21_sim)/config/t21.ros2_control.xacro"/>
+
+</robot>

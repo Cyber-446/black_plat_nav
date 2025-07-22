@@ -8,8 +8,8 @@ diff_drive_controller:
   ros__parameters:
     left_wheel_names:  ["wheel_left_joint"]
     right_wheel_names: ["wheel_right_joint"]
-    wheel_separation:  0.34       # float
-    wheel_radius:      0.07       # float
+    wheel_separation:  0.374       # float
+    wheel_radius:      0.072       # float
     cmd_vel_timeout:   0.25       # float
     publish_rate:      10.0       # was 50
     use_stamped_vel:   false
