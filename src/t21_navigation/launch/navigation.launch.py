@@ -5,16 +5,16 @@ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.substitutions import FindPackageShare
-
+from launch.conditions import IfCondition, UnlessCondition
 package_name = 't21_navigation'
 
 def generate_launch_description():
    
     # Declare launch arguments
-    use_sim_time = LaunchConfiguration('use_sim_time')
+    use_sim_time = LaunchConfiguration('sim')
     declare_use_sim_time = DeclareLaunchArgument(
-        'use_sim_time',
-        default_value='false',
+        'sim',
+        default_value='true',
         description='Use simulation/Gazebo clock'
     )
     
@@ -25,6 +25,7 @@ def generate_launch_description():
     )
     
     nav2_params=os.path.join(get_package_share_directory(package_name), 'config', 'navigation.yaml')
+    nav2_sim_params=os.path.join(get_package_share_directory(package_name), 'config', 'navigation_sim.yaml')
     
     # Nav2 launch
     nav2_launch = IncludeLaunchDescription(
@@ -38,11 +39,29 @@ def generate_launch_description():
         launch_arguments={
             'use_sim_time': use_sim_time,
             'params_file': nav2_params
-        }.items()
+        }.items(),
+       # arguments=["--ros-args", "--log-level", 'info'],
+        condition=UnlessCondition(LaunchConfiguration('sim')), 
+    )
+    nav2_sim_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution([
+                FindPackageShare('nav2_bringup'),
+                'launch',
+                'navigation_launch.py'
+            ])
+        ),
+        launch_arguments={
+            'use_sim_time': use_sim_time,
+            'params_file': nav2_sim_params
+        }.items(),
+        #arguments=["--ros-args", "--log-level", 'info'],
+        condition=IfCondition(LaunchConfiguration('sim'))
     )
     
     return LaunchDescription([
         declare_use_sim_time,
         declare_rviz,
-        nav2_launch
+        nav2_launch,
+        nav2_sim_launch
     ])

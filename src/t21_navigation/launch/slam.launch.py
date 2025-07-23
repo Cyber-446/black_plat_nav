@@ -30,11 +30,11 @@ package_name = 't21_navigation'
 
 def generate_launch_description():
 
-    use_sim_time = LaunchConfiguration('use_sim_time')
+    use_sim_time = LaunchConfiguration('sim')
     slam_params_file = LaunchConfiguration('slam_params_file')
 
     declare_use_sim_time_argument = DeclareLaunchArgument(
-        name='use_sim_time',
+        name='sim',
         default_value='false',
         description='Use simulation/Gazebo clock')
     declare_slam_params_file_cmd = DeclareLaunchArgument(
@@ -50,8 +50,9 @@ def generate_launch_description():
         package='slam_toolbox',
         executable='async_slam_toolbox_node',
         name='slam_toolbox',
-        output='screen')
-
+        output='screen',
+        #arguments=["--ros-args", "--log-level", 'info']
+    )
     return LaunchDescription([
         DeclareLaunchArgument(
             name='rviz', 

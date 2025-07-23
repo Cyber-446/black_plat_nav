@@ -9,6 +9,7 @@ from launch.event_handlers import OnProcessStart
 from launch.substitutions import Command
 from launch_ros.actions import Node
 
+M_PI=3.14159265359
 package_name = 't21_navigation'
 def generate_launch_description():
     
@@ -30,13 +31,13 @@ def generate_launch_description():
                 'allow_undeclared_parameters': False,
                 #'target_frame': 'laserscan',
                 #'transform_tolerance': 0.01,
-                'min_height': -0.45,  # Lowered to detect ground obstacles
+                'min_height': -0.1,  # Lowered to detect ground obstacles
                 'max_height': 2.0,
-                'angle_min': -1.5708,  # -M_PI/2
-                'angle_max': 1.5708,  # M_PI/2
+                'angle_min': -M_PI,  # -M_PI/2
+                'angle_max': M_PI,  # M_PI/2
                 'angle_increment': 0.0087,  # 0.5° resolution //0.01545,  # ~1 degree resolution
-                'scan_time': 0.005,
-                'range_min': 0.1,
+                'scan_time': 0.05,
+                'range_min': 0.5,
                 'range_max': 25.0,
                 'use_inf': True,
                 'inf_epsilon': 0.1
@@ -69,6 +70,6 @@ def generate_launch_description():
             description='Enable use_sime_time to true'
         ),
         translate,
-        ground_filter,
+        #ground_filter,
 
     ])
