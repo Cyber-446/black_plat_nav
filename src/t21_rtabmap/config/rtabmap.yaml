@@ -48,18 +48,18 @@
     #e.g., "tracker", a fake frame matching the frame "frame_id" (but on different TF tree)
     ground_truth_base_frame_id: ""  #default_value=''
     # Time synchronization
-    use_sim_time: False  # Set to true if using simulation
+    use_sim_time: true  # Set to true if using simulation
     approx_sync: true
     approx_sync_max_interval: 0.0  #default_value='0.0'(sec) 0 means infinite interval duration (used with approx_sync=true)'),
 
     # RGB-D related topics
 
     #Camera image topic
-    rgb_topic: "/camera/color/image_raw"             #default_value='/camera/rgb/image_rect_color'
+    rgb_topic: "/camera/image_raw"             #default_value='/camera/rgb/image_rect_color'
     #Camera depth image topic
-    depth_topic: "/camera/depth/image_rect_raw"     #default_value='/camera/depth_registered/image_raw'
+    depth_topic: "/camera/depth/image_raw"     #default_value='/camera/depth_registered/image_raw'
     #Camera info topic
-    camera_info_topic: "/camera/color/camera_info"          #default_value='/camera/rgb/camera_info'
+    camera_info_topic: "/camera/camera_info"          #default_value='/camera/rgb/camera_info'
  
     # Stereo related topics
     
@@ -118,7 +118,7 @@
     #Publish TF between visual odometry (vo) and odometry. Used in RtabMap-Odom
     publish_tf_odom: True #default_value='true'
     #If TF is used to get odometry, this is the default angular variance.
-    odom_tf_angular_variance: 0.01  #default_value='0.01'
+    odom_tf_angular_variance: 0.001  #default_value='0.01'
     #If TF is used to get odometry, this is the default linear variance.
     odom_tf_linear_variance: 0.001  #default_value='0.001'
     #More arguments for odometry (overwrite same parameters in rtabmap_args). 
@@ -183,14 +183,14 @@
     Odom/ResetCountdown: "2"
     Kp/RoiRatios: "0.0 0.0 0.0 0.4"
     OdomF2M/ScanSubtractRadius: "0.3" # match voxel size
-    OdomF2M/ScanMaxSize': "10000"
+    OdomF2M/ScanMaxSize: "1000"
     Mem/NotLinkedNodesKept: "false"
-    Grid/RangeMin: 0.5" # ignore laser scan points on the robot itself
+    Grid/RangeMin: "0.9" # ignore laser scan points on the robot itself
     Grid/NormalsSegmentation: "false" # Use passthrough filter to detect obstacles
     Grid/MaxGroundHeight: "0.05" # All points above 5 cm are obstacles
     Grid/RayTracing: "true" # Fill empty space
     RGBD/OptimizeMaxError: "0.3" # There are a lot of repetitive patterns, be more strict in accepting loop closures
-    OdomF2M/ScanMaxSize: "10000"
+
     # Quality of Service
     qos_image: 1       # 0=system default, 1=Reliable, 2=Best Effort
     qos_scan: 1

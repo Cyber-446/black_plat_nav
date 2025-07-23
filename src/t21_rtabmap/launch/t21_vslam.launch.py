@@ -1,15 +1,3 @@
-
-# Similar to gazebo example on https://github.com/chvmp/champ/tree/ros2, we can do:
-#
-#   Run the Gazebo environment:
-#     $ ros2 launch champ_config gazebo.launch.py 
-#
-#   Run Nav2's navigation and rtabmap:
-#     $ ros2 launch rtabmap_demos champ_vslam.launch.py use_sim_time:=true rviz:=true rtabmap_viz:=true
-#
-#   When a map is already created using command above, we can re-launch in localization-only mode with:
-#     $ ros2 launch rtabmap_demos champ_vslam.launch.py use_sim_time:=true rviz:=true rtabmap_viz:=true localization:=true
-#
 import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction
@@ -42,55 +30,30 @@ def launch_setup(context, *args, **kwargs):
     'Reg/Strategy': '1',
     'Reg/Force3DoF': 'true',
     'Mem/NotLinkedNodesKept': 'false',
-    'Icp/VoxelSize': '0.3',
-    'Icp/MaxCorrespondenceDistance': '3',
+    'Icp/VoxelSize': '0.1',
+    'Icp/MaxCorrespondenceDistance': '1',
     'Icp/PointToPlaneGroundNormalsUp': '0.9',
-    'Icp/RangeMin': '0.5',
+    'Icp/RangeMin': '0.7',
     'Icp/MaxTranslation': '1',
     # Add synchronization parameters:
-    'approx_sync': True,
-    'approx_sync_max_interval': 0.1,
-    'queue_size': 20
+    'approx_sync': False,
+    'approx_sync_max_interval': 0.2,
+    'queue_size': 10,
+    'use_sim_time': LaunchConfiguration('use_sim_time')
     }
-    # vslam_params ={
-    #     'frame_id':'root_link',
-    #     'guess_frame_id':'odom',
-    #     'approx_sync': True,
-    #     'use_sim_time':use_sim_time,
-    #     'subscribe_rgbd':True,
-    #     'subscribe_odom_info':True,
-    #     'use_action_for_goal':True,
-    #     'wait_imu_to_init': False, #use_imu,
-    #     'wait_for_transform': 0.1,
-    #     # RTAB-Map's parameters should be strings
-    #     'Grid/DepthDecimation': '1',
-    #     'Grid/RangeMax': '2',
-    #     'GridGlobal/MinSize': '20',
-    #     'Grid/MinClusterSize': '20',
-    #     'Grid/MaxObstacleHeight': '2',
-    #     'Odom/ResetCountdown': '2', # sim is very flaky
-    #     'Kp/RoiRatios': '0.0 0.0 0.0 0.4' # ignore ground for loop closure detection (sim uses a very repetitive texture)
-    # }
     vslam_remappings=[('imu', 'imu'),
                       ('odom', 'odom'),
                       ('scan_cloud', '/velodyne_points'),]
-    
+  
     rgbd_remappings = [
-        ('rgb/image', '/camera/color/image_raw'),
-        ('rgb/camera_info', '/camera/color/camera_info'),
-        ('depth/image', '/camera/depth/image_rect_raw'),
-        ('scan_cloud', '/velodyne_points'),
+        ('rgb/image', '/camera/image_raw'),
+        ('rgb/camera_info', '/camera/camera_info'),
+        ('depth/image', '/camera/depth/image_raw'),
     ]
     
-    return [
-    #     IncludeLaunchDescription(
-    #         PythonLaunchDescriptionSource(navigation_launch_path),
-    #         launch_arguments={
-    #             'use_sim_time': use_sim_time,
-    #             'params_file': nav2_params_file_sim
-    #         }.items()
-    #     ),
-        
+    lidar_remappings=[('scan_cloud', '/velodyne_points'),]
+    
+    return [        
         # compute imu orientation
         # Node(
         #     package='imu_filter_madgwick', executable='imu_filter_madgwick_node', output='screen',
@@ -107,12 +70,13 @@ def launch_setup(context, *args, **kwargs):
         Node(
             package='rtabmap_sync', executable='rgbd_sync', 
             parameters=[{
-                'approx_sync': True,
-                'topic_queue_size': 20,
+                'approx_sync': False,
+                'topic_queue_size': 10,
                 'qos': 1,  # Reliable QoS
                 'qos_image': 1,
                 'qos_info': 1,
-                'depth_scale': 1.0
+                'depth_scale': 1.0,
+                'use_sim_time': LaunchConfiguration('use_sim_time')
             }],
             remappings=rgbd_remappings
         ),
@@ -125,21 +89,24 @@ def launch_setup(context, *args, **kwargs):
                 'rgbd_cameras': 1,
                 'frame_id': 'base_link',
                 'publish_tf_odom': True,
-                'wait_for_transform': 0.2
+                'wait_for_transform': 0.1,
+                'use_sim_time': LaunchConfiguration('use_sim_time')
             }],
             remappings=vslam_remappings,
             arguments=["--ros-args", "--log-level", 'info']),
+
         Node(
             package='rtabmap_odom', executable='icp_odometry', output='screen',
             parameters=[vslam_params, icp_params],
             remappings=[('/scan_cloud',   '/velodyne_points')],
             arguments=["--ros-args", "--log-level", 'info']
         ),
+
         # SLAM Mode:
         Node(
             condition=UnlessCondition(localization),
             package='rtabmap_slam', executable='rtabmap', output='screen',
-            parameters=[vslam_params],
+            parameters=[vslam_params,use_sim_time],
             remappings=vslam_remappings,
             arguments=['-d']), # This will delete the previous database (~/.ros/rtabmap.db)
             
@@ -149,22 +116,27 @@ def launch_setup(context, *args, **kwargs):
             package='rtabmap_slam', executable='rtabmap', output='screen',
             parameters=[vslam_params, 
               {'Mem/IncrementalMemory': 'False',
-               'Mem/InitWMWithAllNodes': 'True'}],
-            remappings=vslam_remappings
+               'Mem/InitWMWithAllNodes': 'True'},
+               use_sim_time],
+            remappings=vslam_remappings,
         ),
 
         Node(
             package='rtabmap_viz', executable='rtabmap_viz', output='screen',
             condition=IfCondition(LaunchConfiguration("rtabmap_viz")),
-            parameters=[vslam_params],
+            parameters=[vslam_params,use_sim_time],
             remappings=vslam_remappings,
             arguments=["--ros-args", "--log-level", 'info']
         ),
+
+        # Debug
         Node(
-            package='rqt_topic', executable='rqt_topic', name='topic_monitor'
+            package='rqt_topic', executable='rqt_topic', name='topic_monitor',
+            condition=IfCondition(LaunchConfiguration("debug"))
         ),
         Node(
-            package='rqt_graph', executable='rqt_graph', name='graph_monitor'
+            package='rqt_graph', executable='rqt_graph', name='graph_monitor',
+            condition=IfCondition(LaunchConfiguration("debug"))
         ),
     #     # Compute ground/obstacle clouds for nav2 voxel layers
     #     Node(
@@ -174,7 +146,7 @@ def launch_setup(context, *args, **kwargs):
     #                      'voxel_size': 0.02}],
     #            remappings=[('depth/image', '/camera/depth/image_rect_raw'),
     #             ('depth/camera_info', '/camera/depth/camera_info'),
-    #             ('cloud', '/camera/depth/color/points')]
+    #             ('cloud', '/camera/depth/points')]
     #     ),
         
     #     Node(
@@ -187,7 +159,7 @@ def launch_setup(context, *args, **kwargs):
     #             'wait_for_transform': 0.2
     #         }],
     #         remappings=[
-    #             ('cloud', '/camera/depth/color/points'),
+    #             ('cloud', '/camera/points'),
     #             ('obstacles', '/camera/obstacles'),
     #             ('ground', '/camera/ground')
     #         ]
@@ -198,7 +170,7 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument(
             name='use_sim_time', 
-            default_value='true',
+            default_value='false',
             description='Enable use_sime_time to true'
         ),
 
@@ -218,5 +190,10 @@ def generate_launch_description():
             'localization', default_value='false', choices=['true', 'false'],
             description='Launch rtabmap in localization mode (a map should have been already created).'),
         
+        DeclareLaunchArgument(
+            name="debug",
+            default_value="false",
+            description="Show rqt_graph and topic monitor"
+        ),
         OpaqueFunction(function=launch_setup)
     ])
