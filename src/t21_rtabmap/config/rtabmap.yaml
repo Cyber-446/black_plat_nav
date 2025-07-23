@@ -185,7 +185,7 @@
     OdomF2M/ScanSubtractRadius: "0.3" # match voxel size
     OdomF2M/ScanMaxSize: "1000"
     Mem/NotLinkedNodesKept: "false"
-    Grid/RangeMin: "0.9" # ignore laser scan points on the robot itself
+    Grid/RangeMin: "0.5" # ignore laser scan points on the robot itself
     Grid/NormalsSegmentation: "false" # Use passthrough filter to detect obstacles
     Grid/MaxGroundHeight: "0.05" # All points above 5 cm are obstacles
     Grid/RayTracing: "true" # Fill empty space
