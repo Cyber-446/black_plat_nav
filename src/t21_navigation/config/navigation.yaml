@@ -20,8 +20,8 @@ amcl:
     laser_min_range: 0.2
     laser_model_type: "likelihood_field"
     max_beams: 60
-    min_particles: 500  # Increase from 500
-    max_particles: 2000  # Increase from 2000
+    min_particles: 500  
+    max_particles: 2000  
     odom_frame_id: "odom"
     pf_err: 0.05
     pf_z: 0.99
@@ -59,8 +59,8 @@ bt_navigator:
     global_frame: map
     robot_base_frame: base_link
     odom_topic: /odom
-    default_nav_to_pose_bt_xml: "/home/tms/Projects/rover_ws/src/rover/rover_navigation/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml"
-    default_nav_through_poses_bt_xml: "/home/tms/Projects/rover_ws/src/rover/rover_navigation/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml"
+    default_nav_to_pose_bt_xml: "/home/tms/Projects/black_plat/src/t21_navigation/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml"
+    default_nav_through_poses_bt_xml: "/home/tms/Projects/black_plat/src/t21_navigation/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml"
     bt_loop_duration: 10
     default_server_timeout: 10
     wait_for_service_timeout: 1000
@@ -187,11 +187,11 @@ controller_server:
       debug_trajectory_details: True
       min_vel_x: 0.0
       min_vel_y: 0.0
-      max_vel_x: 10.0
-      max_vel_y: 10.0
+      max_vel_x: 2.0
+      max_vel_y: 2.0
       max_vel_theta: 1.00
       min_speed_xy: 0.0
-      max_speed_xy: 10.0
+      max_speed_xy: 2.0
       min_speed_theta: 0.0
       # Add high threshold velocity for turtlebot 3 issue.
       # https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/75
@@ -202,7 +202,7 @@ controller_server:
       decel_lim_y: -2.5
       decel_lim_theta: -1.5
       vx_samples: 10
-      vy_samples: 5
+      vy_samples: 10
       vtheta_samples: 20
       linear_granularity: 0.1
       angular_granularity: 0.05
@@ -240,7 +240,7 @@ global_costmap:
       height: 50
       resolution: 0.05
       #TODO adapt base on altering lenght of chassis
-      footprint: "[ [0.26, 0.50], [0.26, -0.50], [-0.26, -0.50], [-0.26, 0.50] ]"       
+      robot_radius: 0.22 #footprint: "[ [0.26, 0.50], [0.26, -0.50], [-0.26, -0.50], [-0.26, 0.50] ]"       
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "voxel_layer", "inflation_layer"]
       obstacle_layer:
@@ -253,12 +253,12 @@ global_costmap:
         pintcloud:
           topic: /velodyne_points
           qos: "sensor_data"  # BEST_EFFORT + VOLATILE
-          obstacle_max_range: 5.0
-          obstacle_min_range: 0.9
+          obstacle_max_range: 25.0
+          obstacle_min_range: 0.5
           raytrace_max_range: 3.0
-          raytrace_min_range: 0.0
+          raytrace_min_range: 0.5
           max_obstacle_height: 5.0
-          min_obstacle_height: -0.5
+          min_obstacle_height: -0.1
           clearing: True
           marking: True
           data_type: "PointCloud2"
@@ -279,12 +279,12 @@ global_costmap:
         pointcloud:  # no frame set, uses frame from message
           topic: /velodyne_points
           qos: "sensor_data"  # BEST_EFFORT + VOLATILE
-          max_obstacle_height: 5.0
-          min_obstacle_height: -0.5
+          max_obstacle_height: 15.0
+          min_obstacle_height: -0.1
           obstacle_max_range: 5.0
-          obstacle_min_range: 0.9
+          obstacle_min_range: 0.5
           raytrace_max_range: 3.0
-          raytrace_min_range: 0.0
+          raytrace_min_range: 0.5
           clearing: True
           marking: True
           data_type: "PointCloud2"
@@ -322,7 +322,7 @@ local_costmap:
       height: 3
       resolution: 0.05
       robot_radius: 0.22 # radius set and used, so no footprint points
-      plugins: [ "voxel_layer", "inflation_layer"] #, "rgbd_obstacle_layer"]
+      plugins: [ "voxel_layer", "inflation_layer", "obstacle_layer"] #, "rgbd_obstacle_layer"]
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: False
@@ -354,7 +354,27 @@ local_costmap:
         inflation_radius: 1.20
         cost_scaling_factor: 3.0
         inflate_unknown: False
-        inflate_around_unknown: False     
+        inflate_around_unknown: False
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: false
+        observation_sources: pointcloud
+        footprint_clearing_enabled: False
+        max_obstacle_height: 5.0
+        combination_method: 1
+        pintcloud:
+          topic: /velodyne_points
+          qos: "sensor_data"  # BEST_EFFORT + VOLATILE
+          obstacle_max_range: 25.0
+          obstacle_min_range: 0.5
+          raytrace_max_range: 3.0
+          raytrace_min_range: 0.5
+          max_obstacle_height: 5.0
+          min_obstacle_height: -0.1
+          clearing: True
+          marking: True
+          data_type: "PointCloud2"
+          inf_is_valid: False     
       # rgbd_obstacle_layer:
       #   plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"
       #   enabled:                  true
@@ -462,8 +482,9 @@ smoother_server:
 
 behavior_server:
   ros__parameters:
-    costmap_topic: local_costmap/costmap_raw
-    footprint_topic: local_costmap/published_footprint
+    global_costmap_topic: global_costmap/costmap_raw
+    local_footprint_topic: local_costmap/published_footprint
+    global_footprint_topic: global_costmap/published_footprint
     cycle_frequency: 10.0
     behavior_plugins: ["spin", "backup", "drive_on_heading", "assisted_teleop", "wait"]
     spin:
@@ -481,8 +502,8 @@ behavior_server:
     robot_base_frame: base_link
     transform_tolerance: 0.5
     simulate_ahead_time: 2.0
-    max_rotational_vel: 1.0
-    min_rotational_vel: 0.4
+    max_rotational_vel: 2.5
+    min_rotational_vel: 0.0
     rotational_acc_lim: 3.2
     use_sim_time: false
 
