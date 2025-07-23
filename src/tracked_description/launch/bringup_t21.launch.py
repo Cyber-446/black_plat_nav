@@ -28,6 +28,22 @@ def generate_launch_description() -> LaunchDescription:
         default_value = "false",
         description = "Use VLP-16 in URDF for Gazebo"
     )
+    use_camera_arg = DeclareLaunchArgument(
+        name="use_camera",
+        default_value="false",
+        description="Run RGBD camera nodes and enable URDF description"
+    )
+    use_rtabmap_arg = DeclareLaunchArgument(
+        name="use_rtabmap",
+        default_value="false",
+        description="Use rtabmap SLAM approach"
+    )
+    use_sim_time = DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='false',
+            description='Use simulation (Gazebo) clock'
+    )
+
     start_lidar = IncludeLaunchDescription(
     PythonLaunchDescriptionSource([
         PathJoinSubstitution([FindPackageShare("t21_lidar"), "launch", "t21_lidar.launch.py"])
@@ -35,6 +51,26 @@ def generate_launch_description() -> LaunchDescription:
     condition=IfCondition(LaunchConfiguration("use_lidar"))
     )
 
+    start_lidar = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource([
+        PathJoinSubstitution([FindPackageShare("t21_lidar"), "launch", "t21_lidar.launch.py"])
+    ]),
+    condition=IfCondition(LaunchConfiguration("use_lidar"))
+    )
+    
+    start_camera = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource([
+        PathJoinSubstitution([FindPackageShare("t21_rtabmap"), "launch", "camera.launch.py"])
+    ]),
+    condition=IfCondition(LaunchConfiguration("use_camera"))
+    )
+    start_rtabmap = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource([
+        PathJoinSubstitution([FindPackageShare("t21_rtabmap"), "launch", "t21_vslam.launch.py"])
+    ]),
+    condition=IfCondition(LaunchConfiguration("use_rtabmap"))
+    )
+    
     robot_description = {
         "robot_description": Command([
             FindExecutable(name="xacro"), " ",
@@ -111,7 +147,11 @@ def generate_launch_description() -> LaunchDescription:
     return LaunchDescription([prefix_arg, 
                               rviz_arg, 
                               use_lidar_arg,
-                              sim_lidar_arg, 
+                              sim_lidar_arg,
+                              use_camera_arg,
+                              use_rtabmap_arg,
                               start_lidar,
+                              start_camera,
+                              start_rtabmap,
                               ] 
                               + nodes)
