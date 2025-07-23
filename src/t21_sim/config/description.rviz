@@ -112,7 +112,24 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /diff_cont/odom
+        Value: /odom
+      Value: true
+    # Добавленный дисплей для трансформаций (TF)
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+      Marker Alpha: 1
+      Marker Scale: 0.3
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        All Enabled: false
+        Expand Tree: false
+        Link Tree Style: ""
       Value: true
   Enabled: true
   Global Options:

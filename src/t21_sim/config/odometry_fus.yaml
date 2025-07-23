@@ -1,5 +1,4 @@
 /**:
-odom_fusion:
   ros__parameters:
     odom_topic: "/diff_drive_controller/odom"  # Топик одометрии
     imu_topic: "/imu/data"              # Топик IMU

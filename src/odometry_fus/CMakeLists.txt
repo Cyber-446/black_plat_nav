@@ -35,8 +35,21 @@ ament_target_dependencies(odometry_fus_node
   std_msgs
 )
 
+add_executable(motion_emulator
+  src/motion_emulator.cpp
+)
+
+ament_target_dependencies(motion_emulator
+  rclcpp
+  geometry_msgs
+  nav_msgs
+  tf2
+  tf2_ros
+)
+
 install(TARGETS 
   odometry_fus_node
+  motion_emulator
   DESTINATION lib/${PROJECT_NAME}
 )
 
