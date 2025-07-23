@@ -14,7 +14,7 @@ public:
     declare_parameter("odom_topic", "/diff_drive_controller/odom");
     declare_parameter("imu_topic", "/imu/data");
     declare_parameter("output_topic", "/odom");
-    declare_parameter("child_frame", "base_link");
+    declare_parameter("child_frame", "world");
     declare_parameter("world_frame", "odom");
     declare_parameter("publish_tf", true);
     declare_parameter("min_speed", 0.001);
