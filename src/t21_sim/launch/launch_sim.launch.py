@@ -5,7 +5,10 @@ from launch.actions import IncludeLaunchDescription, TimerAction, RegisterEventH
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.event_handlers import OnProcessExit
 from launch_ros.actions import Node
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import (
+    Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
+)
+from launch_ros.substitutions import FindPackageShare
 from launch.actions import DeclareLaunchArgument
 from launch.conditions import IfCondition, UnlessCondition
 
@@ -19,7 +22,7 @@ def generate_launch_description():
     rsp = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory(package_name), 'launch', 'rsp.launch.py'
-        )]), launch_arguments={'use_sim_time': LaunchConfiguration("use_sim_time"), 'use_ros2_control': 'true'}.items()
+        )]), launch_arguments={'use_sim_time': LaunchConfiguration("sim"), 'use_ros2_control': 'true'}.items()
     )
     
     #joystick = IncludeLaunchDescription(
@@ -47,7 +50,7 @@ def generate_launch_description():
         executable='rviz2',
         arguments=['-d', rviz_config_file],
         output='screen',
-        parameters=[{'use_sim_time': LaunchConfiguration("use_sim_time")}]
+        parameters=[{'use_sim_time': LaunchConfiguration("sim")}]
     )
 
     #twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','twist_mux.yaml')
@@ -87,7 +90,7 @@ def generate_launch_description():
                 get_package_share_directory(package_name),
                 "config", "my_controllers.yaml"
             ),
-           {"use_sim_time": LaunchConfiguration("use_sim_time")}  # Использование симуляционного времени
+           {"use_sim_time": LaunchConfiguration("sim")}  # Использование симуляционного времени
         ],
         output="screen",
     )
@@ -121,35 +124,36 @@ def generate_launch_description():
             parameters=[odometry_fus_config],
     )
 
-    # Initializing LIDAR - set here for debugging cause there is no nedd to drive robot
+    start_translate = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource([
+        PathJoinSubstitution([FindPackageShare("t21_navigation"), "launch", "translate.launch.py"])
+    ]),
+    launch_arguments={'sim': LaunchConfiguration('sim')}.items()
+    )
 
-    # Firstly point config file and start driver 
-    #lidar_parameters_file= os.path.join(get_package_share_directory("real_rover"), 'config', 'VLP16-velodyne_driver_node-params.yaml')
-    #VLP_driver= Node(
-    #    condition=UnlessCondition(LaunchConfiguration("use_sim_time")),
-    #    package='velodyne_driver',
-    #    executable='velodyne_driver_node',
-    #    output='both',
-    #    parameters=[lidar_parameters_file]
-    #)
-    # Secondly start trasform node using original launch file of veodyne project
-    #convert_share_dir = get_package_share_path('velodyne_pointcloud')
-    #convert_params_file = os.path.join(get_package_share_directory('velodyne_pointcloud'), 'config', 'VLP16-velodyne_transform_node-params.yaml')
-    #with open(str(convert_params_file), 'r') as f:
-    #    convert_params = yaml.safe_load(f)['velodyne_transform_node']['ros__parameters']
-    #convert_params['calibration'] = str(convert_share_dir / 'params' / 'VLP16db.yaml')
-    #VLP_pointcloud = Node(
-    #    condition=UnlessCondition(LaunchConfiguration("use_sim_time")),
-    #    package='velodyne_pointcloud',
-    #    executable='velodyne_transform_node',
-    #    output='both',
-    #    parameters=[convert_params]
-    #)
+    start_slam = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource([
+        PathJoinSubstitution([FindPackageShare("t21_navigation"), "launch", "slam.launch.py"])
+    ]),
+    launch_arguments={'sim': LaunchConfiguration('sim')}.items()
+    )
+    start_nav = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource([
+        PathJoinSubstitution([FindPackageShare("t21_navigation"), "launch", "navigation.launch.py"])
+    ]),
+    launch_arguments={'sim': LaunchConfiguration('sim')}.items()
+    )
+    start_rtabmap = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource([
+        PathJoinSubstitution([FindPackageShare("t21_rtabmap"), "launch", "t21_sim_vslam.launch.py"])
+    ]),
+    launch_arguments={'sim': LaunchConfiguration('sim')}.items()
+    )
 
     return LaunchDescription([
 
         DeclareLaunchArgument(
-            'use_sim_time',
+            'sim',
             default_value='true',
             description='Use simulation (Gazebo) clock if true'
         ),
@@ -165,6 +169,8 @@ def generate_launch_description():
         start_rviz_cmd,
         #joystick,
         #twist_mux,
-        #VLP_driver,
-        #VLP_pointcloud,
+        # start_translate,
+        # start_slam,
+        # start_nav,
+        # start_rtabmap,
     ])
