@@ -106,17 +106,23 @@ def generate_launch_description():
     diff_drive_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["diff_cont"]
+        arguments=["diff_drive_controller"]
     )
 
-    #odometry_fus_config = os.path.join(get_package_share_directory(package_name), 'config', 'odometry_fus.yaml')
-    #odometry_fus_node = Node(
-    #        package='odometry_fus',
-    #        executable='odometry_fus_node',
-    #        name='odometry_fus_node',        
-    #        output='screen',
-    #        parameters=[odometry_fus_config],
-    #)
+    geom_pos_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["geom_position_controller"]
+    )
+
+    odometry_fus_config = os.path.join(get_package_share_directory(package_name), 'config', 'odometry_fus.yaml')
+    odometry_fus_node = Node(
+            package='odometry_fus',
+            executable='odometry_fus_node',
+            name='odometry_fus_node',        
+            output='screen',
+            parameters=[odometry_fus_config],
+    )
 
     start_translate = IncludeLaunchDescription(
     PythonLaunchDescriptionSource([
@@ -157,7 +163,8 @@ def generate_launch_description():
         spawn_entity,
         diff_drive_spawner,
         joint_broad_spawner,
-        #odometry_fus_node,
+        geom_pos_spawner,
+        odometry_fus_node,
         #robot_localization_node,
         start_rviz_cmd,
         #joystick,

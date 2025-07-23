@@ -18,15 +18,16 @@ setup(
     zip_safe=True,
     maintainer='danil',
     maintainer_email='podkolzindanil@yandex.ru',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Teleoperation package for T21 robot',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'joy_flipper_teleop = t21_teleop.joy_flipper_teleop:main',
-            'joy_full_teleop    = t21_teleop.joy_full_teleop:main',
-            'drive_test    = t21_teleop.drive_test:main',
-            'joy_platform_teleop    = t21_teleop.joy_platform_teleop:main',
+            'joy_full_teleop = t21_teleop.joy_full_teleop:main',
+            'drive_test = t21_teleop.drive_test:main',
+            'joy_platform_teleop = t21_teleop.joy_platform_teleop:main',
+            'flipper_teleop = t21_teleop.flipper_teleop:main',  # Добавлен новый узел
         ],
     },
 )
