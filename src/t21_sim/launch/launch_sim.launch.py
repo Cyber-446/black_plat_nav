@@ -31,15 +31,15 @@ def generate_launch_description():
     #           )]), launch_arguments={'use_sim_time': 'true'}.items()
     #)
 
-    #ekf_config = os.path.join(get_package_share_directory(package_name), 'config', 'ekf.yaml')
-    #robot_localization_node = Node(
-    #    package='robot_localization',
-    #    executable='ekf_node',
-    #    name='ekf_filter_node',
-    #    output='screen',
-    #    parameters=[ekf_config, {'use_sim_time': LaunchConfiguration("use_sim_time")}],
-    #    remappings=[('odometry/filtered', 'odom')],
-    #)
+    ekf_config = os.path.join(get_package_share_directory(package_name), 'config', 'ekf.yaml')
+    robot_localization_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[ekf_config, {'use_sim_time': LaunchConfiguration("use_sim_time")}],
+        remappings=[('odometry/filtered', 'odom')],
+    )
 
 
     # Пути к файлам запуска
@@ -164,8 +164,8 @@ def generate_launch_description():
         diff_drive_spawner,
         joint_broad_spawner,
         geom_pos_spawner,
-        odometry_fus_node,
-        #robot_localization_node,
+        #odometry_fus_node,
+        robot_localization_node,
         start_rviz_cmd,
         #joystick,
         #twist_mux,

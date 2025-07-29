@@ -25,7 +25,7 @@ public:
     {
         cmd_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/diff_drive_controller/cmd_vel_unstamped", 10);
         odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
-            "/odom", 10, std::bind(&MotionEmulator::odom_callback, this, std::placeholders::_1));
+            "diff_drive_controller/odom", 10, std::bind(&MotionEmulator::odom_callback, this, std::placeholders::_1));
 
         RCLCPP_INFO(this->get_logger(), "Starting motion emulator");
         if (do_forward_) {

@@ -23,8 +23,8 @@ find_package(Eigen3               REQUIRED)
 find_package(Boost                REQUIRED COMPONENTS system)
 find_package(geometry_msgs        REQUIRED)
 find_package(graph_msgs           REQUIRED)
-#find_package(moveit_core          REQUIRED)
-#find_package(moveit_ros_planning  REQUIRED)
+find_package(moveit_core          REQUIRED)
+find_package(moveit_ros_planning  REQUIRED)
 find_package(rclcpp_components    REQUIRED)
 find_package(rviz_visual_tools    REQUIRED)
 find_package(std_msgs             REQUIRED)
@@ -54,8 +54,8 @@ ament_target_dependencies(${PROJECT_NAME}
   Boost
   geometry_msgs
   graph_msgs
-  #moveit_core
-  #moveit_ros_planning
+  moveit_core
+  moveit_ros_planning
   rclcpp_components
   rviz_visual_tools
   std_msgs

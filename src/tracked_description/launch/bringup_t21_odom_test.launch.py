@@ -119,8 +119,8 @@ def generate_launch_description() -> LaunchDescription:
         ),
 
         # Добавленные ноды
-        xsens_launch,
-        odometry_fus_node,
+        #xsens_launch,
+        #odometry_fus_node,
     ]
 
     return LaunchDescription([prefix_arg, rviz_arg] + nodes)

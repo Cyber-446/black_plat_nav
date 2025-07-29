@@ -9,8 +9,8 @@
 namespace t21_hardware
 {
 constexpr double G = 30.75;
-constexpr double R = 0.068;
-constexpr double L = 0.374;
+constexpr double R = 0.124;
+constexpr double L = 0.37;
 constexpr double MIN_G_DEG = 180.0;
 constexpr double MAX_G_DEG = 300.0;
 constexpr double MIN_G_RAD = MIN_G_DEG * M_PI / 180.0;
@@ -100,22 +100,21 @@ T21TrackedHardware::on_activate(const rclcpp_lifecycle::State &)
 
   log_file_.open("t21_debug_log.txt", std::ios::out | std::ios::trunc);
   if (log_file_.is_open()) {
-      log_file_ << "-----------------------------\n";
-      log_file_ << "SEND/RECV, timestamp[ns], omega_l, omega_r, mode, geo_deg\n";
+      log_file_ << "SEND,geo_mode,geo_cmd_deg,lin_cm,ang_deg,geo_deg\n";
+      log_file_ << "RECV,geo_mode,omega_l,omega_r,geo_deg\n";
   }
   return CallbackReturn::SUCCESS;
 }
 
 void T21TrackedHardware::send_stop_packet()
 {
-  const float geom_deg = last_feedback_deg_;
+  const float geom_deg = last_feedback_deg_; // держим последнее известное положение
   socket_.sendCommand(0.0f, 0.0f, geom_deg, false);
   if (log_file_.is_open()) {
-    auto now = rclcpp::Clock{RCL_SYSTEM_TIME}.now();
-    log_file_ << "-----------------------------\n"
-              << "SEND, " << now.nanoseconds() << ", "
-              << 0.0 << ", " << 0.0 << ", "
-              << "STOP, " << geom_deg << "\n";
+    log_file_ << "SEND, PWM, "
+              << geom_deg << ", "
+              << 0.0 << ", "
+              << 0.0 << "\n";
   }
 }
 
@@ -127,6 +126,7 @@ T21TrackedHardware::on_deactivate(const rclcpp_lifecycle::State &)
   return CallbackReturn::SUCCESS;
 }
 
+/* ———————————— read ———————————— */
 hardware_interface::return_type
 T21TrackedHardware::read(const rclcpp::Time &, const rclcpp::Duration &period)
 {
@@ -148,10 +148,7 @@ T21TrackedHardware::read(const rclcpp::Time &, const rclcpp::Duration &period)
       is_connected_ = false;
     }
     if (log_file_.is_open()) {
-      auto now = rclcpp::Clock{RCL_SYSTEM_TIME}.now();
-      log_file_ << "-----------------------------\n"
-                << "RECV, " << now.nanoseconds() << ", "
-                << "ERROR, UDP_LOST\n";
+      log_file_ << "RECV, ERROR, UDP_LOST\n";
     }
     return hardware_interface::return_type::OK;
   }
@@ -160,43 +157,47 @@ T21TrackedHardware::read(const rclcpp::Time &, const rclcpp::Duration &period)
   raw_angVel  = pkt.angVel;
   raw_geomDeg = pkt.geomPos;
 
+  // ——— Фильтр выпадения положения geom_joint = 0 ———
   if (std::abs(raw_geomDeg) < 1.0 && std::abs(last_feedback_deg_) > 100.0) {
     RCLCPP_WARN_THROTTLE(rclcpp::get_logger("T21TrackedHardware"), throttle_clock,
       1000, "Dropout geom_joint: geomPos=%.2f° заменено на предыдущее %.2f°", raw_geomDeg, last_feedback_deg_);
-    raw_geomDeg = last_feedback_deg_;
+    raw_geomDeg = last_feedback_deg_; // пропуск аномалии
   }
 
+  // Clamp RX geom
   if (raw_geomDeg < MIN_G_DEG || raw_geomDeg > MAX_G_DEG) {
     RCLCPP_WARN_THROTTLE(rclcpp::get_logger("T21TrackedHardware"), throttle_clock,
       1000, "Получена geomPos=%.2f° вне диапазона [%.0f;%.0f] — ограничено", raw_geomDeg, MIN_G_DEG, MAX_G_DEG);
+    //raw_geomDeg = std::clamp(raw_geomDeg, MIN_G_DEG, MAX_G_DEG);
   }
 
   is_connected_ = true;
-  last_feedback_deg_ = raw_geomDeg;
+  last_feedback_deg_ = raw_geomDeg; // всегда сохраняем последнее валидное
 
   const double rpm2rad = 2.0 * M_PI / 60.0;
   omega_l  = raw_linVel  * rpm2rad / G;
   omega_r  = raw_angVel  * rpm2rad / G;
   geom_rad = raw_geomDeg * M_PI / 180.0;
 
-  state_[1] = omega_l;
-  state_[0] = omega_r;
+  state_[0] = omega_l;
+  state_[1] = omega_r;
   state_[2] = geom_rad;
 
+  // Интеграция позиций
   const double dt = std::min(period.seconds(), 0.1);
   left_pos_  += state_[0] * dt;
   right_pos_ += state_[1] * dt;
 
   if (log_file_.is_open()) {
-    auto now = rclcpp::Clock{RCL_SYSTEM_TIME}.now();
-    log_file_ << "-----------------------------\n"
-              << "RECV, " << now.nanoseconds() << ", "
-              << omega_l << ", " << omega_r << ", "
-              << "n/a, " << raw_geomDeg << "\n";
+    log_file_ << "RECV, n/a, "
+              << omega_l << ", "
+              << omega_r << ", "
+              << raw_geomDeg << "\n";
   }
   return hardware_interface::return_type::OK;
 }
 
+/* ———————————— write ———————————— */
 hardware_interface::return_type
 T21TrackedHardware::write(const rclcpp::Time &, const rclcpp::Duration &)
 {
@@ -206,11 +207,10 @@ T21TrackedHardware::write(const rclcpp::Time &, const rclcpp::Duration &)
 
   const rclcpp::Time now = rclcpp::Clock{RCL_SYSTEM_TIME}.now();
 
+  // ——— Защита: блокировка write после STOP ———
   if (write_blocked_until_ > now) {
     if (log_file_.is_open()) {
-      log_file_ << "-----------------------------\n"
-                << "SEND, " << now.nanoseconds() << ", "
-                << "BLOCKED, STOP_SAFETY\n";
+      log_file_ << "SEND, BLOCKED, STOP_SAFETY\n";
     }
     return hardware_interface::return_type::OK;
   }
@@ -238,6 +238,7 @@ T21TrackedHardware::write(const rclcpp::Time &, const rclcpp::Duration &)
   const bool big_jump = abs_err > MAX_JUMP;
   const bool runaway  = abs_err > TOL_DEG && diverging && (now - last_cmd_ts_).seconds() > OBSERVE_S;
 
+  // ——— STOP и блокировка на 1с ———
   if ((big_jump || runaway) && (now - last_stop_ts_).seconds() > 0.10) {
     socket_.sendCommand(0.0f, 0.0f, cur_deg, false);
     socket_.sendCommand(0.0f, 0.0f, last_good_deg_, true);
@@ -250,24 +251,25 @@ T21TrackedHardware::write(const rclcpp::Time &, const rclcpp::Duration &)
     write_blocked_until_ = now + rclcpp::Duration::from_seconds(1.0);
 
     if (log_file_.is_open()) {
-      log_file_ << "-----------------------------\n"
-                << "SEND, " << now.nanoseconds() << ", "
-                << 0.0 << ", " << 0.0 << ", "
-                << "STOP, " << cur_deg << "\n";
+      log_file_ << "SEND, STOP, "
+                << cur_deg << ", "
+                << "0.0, 0.0\n";
     }
     return hardware_interface::return_type::OK;
   }
 
+  // ——— Обычная отправка ———
   const float lin_cm  = static_cast<float>(0.5 * R * (omega_r + omega_l) * 100.0);
   const float ang_deg = static_cast<float>((R/L) * (omega_r - omega_l) * 180.0 / M_PI);
 
   socket_.sendCommand(lin_cm, ang_deg, geom_deg, true);
 
   if (log_file_.is_open()) {
-    log_file_ << "-----------------------------\n"
-              << "SEND, " << now.nanoseconds() << ", "
-              << omega_l << ", " << omega_r << ", "
-              << "POS, " << geom_deg << "\n";
+    log_file_ << "SEND, POS, "
+              << std::fixed << std::setprecision(2)
+              << geom_deg << ", "
+              << lin_cm << ", "
+              << ang_deg << "\n";
   }
   last_good_deg_ = geom_deg;
   last_cmd_ts_   = now;
