@@ -62,7 +62,7 @@ def generate_launch_description():
     #)
     
     # Запуск Gazebo
-    gazebo_world_file = os.path.join(get_package_share_directory(package_name), 'worlds', 'cafe.world')
+    gazebo_world_file = os.path.join(get_package_share_directory(package_name), 'worlds', 'playground.world')
     gazebo_params_file = os.path.join(get_package_share_directory(package_name), 'config', 'gazebo_params.yaml')
 
     gazebo = IncludeLaunchDescription(

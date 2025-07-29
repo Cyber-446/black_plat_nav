@@ -56,7 +56,7 @@
 
       <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
         <ros>
-          <remapping>~/out:=/imu/data</remapping>
+          <remapping>~/out:=/imu/data_raw</remapping>
         </ros>
         <!--topicName>imu/data_raw</topicName>
         <bodyName>xsens_link</bodyName>
