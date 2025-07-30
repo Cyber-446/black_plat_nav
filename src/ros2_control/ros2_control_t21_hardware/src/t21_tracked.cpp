@@ -9,7 +9,7 @@
 namespace t21_hardware
 {
 constexpr double G = 30.75;
-constexpr double R = 0.124;
+constexpr double R = 0.124; //пока что такой радиус для соответсвия в проезжаемом расстоянии. Позже введу коэффициент, чтобы не путаться
 constexpr double L = 0.37;
 constexpr double MIN_G_DEG = 180.0;
 constexpr double MAX_G_DEG = 300.0;

@@ -14,6 +14,8 @@
     <color rgba="0.79216 0.81961 0.93333 1"/>
   </material>
 
+  <link name="root_link"/>
+
   <!-- Base Link -->
   <link name="base_link">
     <inertial>
@@ -37,6 +39,12 @@
       </geometry>
     </collision>
   </link>
+
+  <joint name="root_joint" type="fixed">
+    <parent link="root_link"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
 
   <!-- Left Wheel -->
   <link name="left_wheel_link">

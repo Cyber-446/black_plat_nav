@@ -7,7 +7,7 @@ joint_state_broadcaster:
 diff_drive_controller:
   ros__parameters:
     odom_frame_id: odom
-    base_frame_id: world
+    base_frame_id: root_link
     enable_odom_tf: true
     publish_odom_tf: true
     left_wheel_names:  ["wheel_left_joint"]
