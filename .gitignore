@@ -1,5 +1,12 @@
 robot_localization_debug.txt
-.gitignore
-/log
-/build
-/install
+t21_debug_log.txt
+build/
+install/
+log/
+.vscode
+src/.vscode
+frames_*
+rosbag2_*
+rosgraph.png
+rtabmap_nomap.png
+
