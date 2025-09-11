@@ -1,0 +1,39 @@
+[0.030s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap -- -j8 -l8
+[0.082s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap -- -j8 -l8
+[0.086s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap
+[0.108s] -- Install configuration: ""
+[0.108s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/launch
+[0.108s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/launch/t21_sim_vslam.launch.py
+[0.108s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/launch/t21_vslam.launch.py
+[0.109s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/launch/camera.launch.py
+[0.110s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config
+[0.110s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/icp_odom_params.yaml
+[0.114s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/real_rtabmap.yaml
+[0.114s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rgbd_odom_params.yaml
+[0.114s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/camera.yaml
+[0.114s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rtabmap.yaml
+[0.114s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rtabmap_params.yaml
+[0.114s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rtabmap_nav2_params.yaml
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rtabmap_viz.yaml
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rgbd_sync_params.yaml
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/champ
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/champ/rgbd_odom_champ.yaml
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/champ/pcl_champ.yaml
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/champ/obstacle_champ.yaml
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/champ/rtabmap_champ.yaml
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/ament_index/resource_index/package_run_dependencies/t21_rtabmap
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/ament_index/resource_index/parent_prefix_path/t21_rtabmap
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/environment/ament_prefix_path.sh
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/environment/ament_prefix_path.dsv
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/environment/path.sh
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/environment/path.dsv
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/local_setup.bash
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/local_setup.sh
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/local_setup.zsh
+[0.115s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/local_setup.dsv
+[0.116s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.dsv
+[0.116s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/ament_index/resource_index/packages/t21_rtabmap
+[0.116s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/cmake/t21_rtabmapConfig.cmake
+[0.116s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/cmake/t21_rtabmapConfig-version.cmake
+[0.116s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.xml
+[0.160s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap

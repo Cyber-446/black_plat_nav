@@ -1,0 +1,965 @@
+[0.078s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.078s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7a5dcdf6bc40>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7a5dce0c0ac0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7a5dce0c0ac0>>, mixin_verb=('build',))
+[0.199s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.199s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.199s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.199s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.199s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.199s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.199s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/kirill/VNIIA/Projects/black_plat'
+[0.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.200s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extensions ['ignore', 'ignore_ament_install']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extension 'ignore'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extension 'ignore_ament_install'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extensions ['colcon_pkg']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extension 'colcon_pkg'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extensions ['colcon_meta']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extension 'colcon_meta'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extensions ['ros']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extension 'ros'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extensions ['cmake', 'python']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extension 'cmake'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extension 'python'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extensions ['python_setup_py']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(materials) by extension 'python_setup_py'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src/LIO-SAM) by extensions ['ignore', 'ignore_ament_install']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src/LIO-SAM) by extension 'ignore'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src/LIO-SAM) by extension 'ignore_ament_install'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src/LIO-SAM) by extensions ['colcon_pkg']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src/LIO-SAM) by extension 'colcon_pkg'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src/LIO-SAM) by extensions ['colcon_meta']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src/LIO-SAM) by extension 'colcon_meta'
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src/LIO-SAM) by extensions ['ros']
+[0.215s] Level 1:colcon.colcon_core.package_identification:_identify(src/LIO-SAM) by extension 'ros'
+[0.217s] DEBUG:colcon.colcon_core.package_identification:Package 'src/LIO-SAM' with type 'ros.ament_cmake' and name 'lio_sam'
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(src/bluespace_ai_xsens_ros_mti_driver) by extensions ['ignore', 'ignore_ament_install']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/bluespace_ai_xsens_ros_mti_driver) by extension 'ignore'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/bluespace_ai_xsens_ros_mti_driver) by extension 'ignore_ament_install'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/bluespace_ai_xsens_ros_mti_driver) by extensions ['colcon_pkg']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/bluespace_ai_xsens_ros_mti_driver) by extension 'colcon_pkg'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/bluespace_ai_xsens_ros_mti_driver) by extensions ['colcon_meta']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/bluespace_ai_xsens_ros_mti_driver) by extension 'colcon_meta'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/bluespace_ai_xsens_ros_mti_driver) by extensions ['ros']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/bluespace_ai_xsens_ros_mti_driver) by extension 'ros'
+[0.218s] DEBUG:colcon.colcon_core.package_identification:Package 'src/bluespace_ai_xsens_ros_mti_driver' with type 'ros.ament_cmake' and name 'bluespace_ai_xsens_mti_driver'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/odometry_fus) by extensions ['ignore', 'ignore_ament_install']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/odometry_fus) by extension 'ignore'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/odometry_fus) by extension 'ignore_ament_install'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/odometry_fus) by extensions ['colcon_pkg']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/odometry_fus) by extension 'colcon_pkg'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/odometry_fus) by extensions ['colcon_meta']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/odometry_fus) by extension 'colcon_meta'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/odometry_fus) by extensions ['ros']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(src/odometry_fus) by extension 'ros'
+[0.219s] DEBUG:colcon.colcon_core.package_identification:Package 'src/odometry_fus' with type 'ros.ament_cmake' and name 'odometry_fus'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extensions ['ignore', 'ignore_ament_install']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extension 'ignore'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extension 'ignore_ament_install'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extensions ['colcon_pkg']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extension 'colcon_pkg'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extensions ['colcon_meta']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extension 'colcon_meta'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extensions ['ros']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extension 'ros'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extensions ['cmake', 'python']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extension 'cmake'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extension 'python'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extensions ['python_setup_py']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control) by extension 'python_setup_py'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control/ros2_control_t21_hardware) by extensions ['ignore', 'ignore_ament_install']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control/ros2_control_t21_hardware) by extension 'ignore'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control/ros2_control_t21_hardware) by extension 'ignore_ament_install'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control/ros2_control_t21_hardware) by extensions ['colcon_pkg']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control/ros2_control_t21_hardware) by extension 'colcon_pkg'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control/ros2_control_t21_hardware) by extensions ['colcon_meta']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control/ros2_control_t21_hardware) by extension 'colcon_meta'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control/ros2_control_t21_hardware) by extensions ['ros']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros2_control/ros2_control_t21_hardware) by extension 'ros'
+[0.220s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ros2_control/ros2_control_t21_hardware' with type 'ros.ament_cmake' and name 't21_tracked'
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_lidar) by extensions ['ignore', 'ignore_ament_install']
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_lidar) by extension 'ignore'
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_lidar) by extension 'ignore_ament_install'
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_lidar) by extensions ['colcon_pkg']
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_lidar) by extension 'colcon_pkg'
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_lidar) by extensions ['colcon_meta']
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_lidar) by extension 'colcon_meta'
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_lidar) by extensions ['ros']
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_lidar) by extension 'ros'
+[0.221s] DEBUG:colcon.colcon_core.package_identification:Package 'src/t21_lidar' with type 'ros.ament_cmake' and name 't21_lidar'
+[0.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_navigation) by extensions ['ignore', 'ignore_ament_install']
+[0.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_navigation) by extension 'ignore'
+[0.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_navigation) by extension 'ignore_ament_install'
+[0.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_navigation) by extensions ['colcon_pkg']
+[0.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_navigation) by extension 'colcon_pkg'
+[0.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_navigation) by extensions ['colcon_meta']
+[0.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_navigation) by extension 'colcon_meta'
+[0.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_navigation) by extensions ['ros']
+[0.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_navigation) by extension 'ros'
+[0.222s] DEBUG:colcon.colcon_core.package_identification:Package 'src/t21_navigation' with type 'ros.ament_cmake' and name 't21_navigation'
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_rtabmap) by extensions ['ignore', 'ignore_ament_install']
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_rtabmap) by extension 'ignore'
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_rtabmap) by extension 'ignore_ament_install'
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_rtabmap) by extensions ['colcon_pkg']
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_rtabmap) by extension 'colcon_pkg'
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_rtabmap) by extensions ['colcon_meta']
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_rtabmap) by extension 'colcon_meta'
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_rtabmap) by extensions ['ros']
+[0.222s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_rtabmap) by extension 'ros'
+[0.223s] DEBUG:colcon.colcon_core.package_identification:Package 'src/t21_rtabmap' with type 'ros.ament_cmake' and name 't21_rtabmap'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_sim) by extensions ['ignore', 'ignore_ament_install']
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_sim) by extension 'ignore'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_sim) by extension 'ignore_ament_install'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_sim) by extensions ['colcon_pkg']
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_sim) by extension 'colcon_pkg'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_sim) by extensions ['colcon_meta']
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_sim) by extension 'colcon_meta'
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_sim) by extensions ['ros']
+[0.223s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_sim) by extension 'ros'
+[0.224s] DEBUG:colcon.colcon_core.package_identification:Package 'src/t21_sim' with type 'ros.ament_cmake' and name 't21_sim'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_teleop) by extensions ['ignore', 'ignore_ament_install']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_teleop) by extension 'ignore'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_teleop) by extension 'ignore_ament_install'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_teleop) by extensions ['colcon_pkg']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_teleop) by extension 'colcon_pkg'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_teleop) by extensions ['colcon_meta']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_teleop) by extension 'colcon_meta'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_teleop) by extensions ['ros']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/t21_teleop) by extension 'ros'
+[0.224s] DEBUG:colcon.colcon_core.package_identification:Package 'src/t21_teleop' with type 'ros.ament_python' and name 't21_teleop'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/tracked_description) by extensions ['ignore', 'ignore_ament_install']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/tracked_description) by extension 'ignore'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/tracked_description) by extension 'ignore_ament_install'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/tracked_description) by extensions ['colcon_pkg']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/tracked_description) by extension 'colcon_pkg'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/tracked_description) by extensions ['colcon_meta']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/tracked_description) by extension 'colcon_meta'
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/tracked_description) by extensions ['ros']
+[0.224s] Level 1:colcon.colcon_core.package_identification:_identify(src/tracked_description) by extension 'ros'
+[0.225s] DEBUG:colcon.colcon_core.package_identification:Package 'src/tracked_description' with type 'ros.ament_cmake' and name 'tracked_description'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extensions ['ignore', 'ignore_ament_install']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extension 'ignore'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extension 'ignore_ament_install'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extensions ['colcon_pkg']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extension 'colcon_pkg'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extensions ['colcon_meta']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extension 'colcon_meta'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extensions ['ros']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extension 'ros'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extensions ['cmake', 'python']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extension 'cmake'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extension 'python'
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extensions ['python_setup_py']
+[0.225s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator) by extension 'python_setup_py'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extensions ['ignore', 'ignore_ament_install']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extension 'ignore'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extension 'ignore_ament_install'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extensions ['colcon_pkg']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extension 'colcon_pkg'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extensions ['colcon_meta']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extension 'colcon_meta'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extensions ['ros']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extension 'ros'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extensions ['cmake', 'python']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extension 'cmake'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extension 'python'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extensions ['python_setup_py']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/img) by extension 'python_setup_py'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_description) by extensions ['ignore', 'ignore_ament_install']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_description) by extension 'ignore'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_description) by extension 'ignore_ament_install'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_description) by extensions ['colcon_pkg']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_description) by extension 'colcon_pkg'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_description) by extensions ['colcon_meta']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_description) by extension 'colcon_meta'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_description) by extensions ['ros']
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_description) by extension 'ros'
+[0.226s] DEBUG:colcon.colcon_core.package_identification:Package 'src/velodyne_simulator/velodyne_description' with type 'ros.ament_cmake' and name 'velodyne_description'
+[0.226s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_gazebo_plugins) by extensions ['ignore', 'ignore_ament_install']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_gazebo_plugins) by extension 'ignore'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_gazebo_plugins) by extension 'ignore_ament_install'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_gazebo_plugins) by extensions ['colcon_pkg']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_gazebo_plugins) by extension 'colcon_pkg'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_gazebo_plugins) by extensions ['colcon_meta']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_gazebo_plugins) by extension 'colcon_meta'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_gazebo_plugins) by extensions ['ros']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_gazebo_plugins) by extension 'ros'
+[0.227s] DEBUG:colcon.colcon_core.package_identification:Package 'src/velodyne_simulator/velodyne_gazebo_plugins' with type 'ros.ament_cmake' and name 'velodyne_gazebo_plugins'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_simulator) by extensions ['ignore', 'ignore_ament_install']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_simulator) by extension 'ignore'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_simulator) by extension 'ignore_ament_install'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_simulator) by extensions ['colcon_pkg']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_simulator) by extension 'colcon_pkg'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_simulator) by extensions ['colcon_meta']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_simulator) by extension 'colcon_meta'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_simulator) by extensions ['ros']
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(src/velodyne_simulator/velodyne_simulator) by extension 'ros'
+[0.228s] DEBUG:colcon.colcon_core.package_identification:Package 'src/velodyne_simulator/velodyne_simulator' with type 'ros.ament_cmake' and name 'velodyne_simulator'
+[0.228s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.228s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.228s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.228s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.228s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.243s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.243s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.244s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 13 installed packages in /home/kirill/VNIIA/Projects/black_plat/install
+[0.245s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 477 installed packages in /opt/ros/humble
+[0.247s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'bluespace_ai_xsens_mti_driver' build argument 'cmake_args' from command line to 'None'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'bluespace_ai_xsens_mti_driver' build argument 'cmake_target' from command line to 'None'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'bluespace_ai_xsens_mti_driver' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'bluespace_ai_xsens_mti_driver' build argument 'cmake_clean_cache' from command line to 'False'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'bluespace_ai_xsens_mti_driver' build argument 'cmake_clean_first' from command line to 'False'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'bluespace_ai_xsens_mti_driver' build argument 'cmake_force_configure' from command line to 'False'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'bluespace_ai_xsens_mti_driver' build argument 'ament_cmake_args' from command line to 'None'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'bluespace_ai_xsens_mti_driver' build argument 'catkin_cmake_args' from command line to 'None'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'bluespace_ai_xsens_mti_driver' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.282s] DEBUG:colcon.colcon_core.verb:Building package 'bluespace_ai_xsens_mti_driver' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/bluespace_ai_xsens_mti_driver', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/bluespace_ai_xsens_ros_mti_driver', 'symlink_install': False, 'test_result_base': None}
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'lio_sam' build argument 'cmake_args' from command line to 'None'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'lio_sam' build argument 'cmake_target' from command line to 'None'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'lio_sam' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'lio_sam' build argument 'cmake_clean_cache' from command line to 'False'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'lio_sam' build argument 'cmake_clean_first' from command line to 'False'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'lio_sam' build argument 'cmake_force_configure' from command line to 'False'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'lio_sam' build argument 'ament_cmake_args' from command line to 'None'
+[0.282s] Level 5:colcon.colcon_core.verb:set package 'lio_sam' build argument 'catkin_cmake_args' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 'lio_sam' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.283s] DEBUG:colcon.colcon_core.verb:Building package 'lio_sam' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/lio_sam', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/LIO-SAM', 'symlink_install': False, 'test_result_base': None}
+[0.283s] Level 5:colcon.colcon_core.verb:set package 'odometry_fus' build argument 'cmake_args' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 'odometry_fus' build argument 'cmake_target' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 'odometry_fus' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 'odometry_fus' build argument 'cmake_clean_cache' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 'odometry_fus' build argument 'cmake_clean_first' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 'odometry_fus' build argument 'cmake_force_configure' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 'odometry_fus' build argument 'ament_cmake_args' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 'odometry_fus' build argument 'catkin_cmake_args' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 'odometry_fus' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.283s] DEBUG:colcon.colcon_core.verb:Building package 'odometry_fus' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/odometry_fus', 'symlink_install': False, 'test_result_base': None}
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_lidar' build argument 'cmake_args' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_lidar' build argument 'cmake_target' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_lidar' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_lidar' build argument 'cmake_clean_cache' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_lidar' build argument 'cmake_clean_first' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_lidar' build argument 'cmake_force_configure' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_lidar' build argument 'ament_cmake_args' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_lidar' build argument 'catkin_cmake_args' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_lidar' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.283s] DEBUG:colcon.colcon_core.verb:Building package 't21_lidar' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/t21_lidar', 'symlink_install': False, 'test_result_base': None}
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_navigation' build argument 'cmake_args' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_navigation' build argument 'cmake_target' from command line to 'None'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_navigation' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_navigation' build argument 'cmake_clean_cache' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_navigation' build argument 'cmake_clean_first' from command line to 'False'
+[0.283s] Level 5:colcon.colcon_core.verb:set package 't21_navigation' build argument 'cmake_force_configure' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_navigation' build argument 'ament_cmake_args' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_navigation' build argument 'catkin_cmake_args' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_navigation' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.284s] DEBUG:colcon.colcon_core.verb:Building package 't21_navigation' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/t21_navigation', 'symlink_install': False, 'test_result_base': None}
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_rtabmap' build argument 'cmake_args' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_rtabmap' build argument 'cmake_target' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_rtabmap' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_rtabmap' build argument 'cmake_clean_cache' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_rtabmap' build argument 'cmake_clean_first' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_rtabmap' build argument 'cmake_force_configure' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_rtabmap' build argument 'ament_cmake_args' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_rtabmap' build argument 'catkin_cmake_args' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_rtabmap' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.284s] DEBUG:colcon.colcon_core.verb:Building package 't21_rtabmap' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/t21_rtabmap', 'symlink_install': False, 'test_result_base': None}
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_teleop' build argument 'cmake_args' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_teleop' build argument 'cmake_target' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_teleop' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_teleop' build argument 'cmake_clean_cache' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_teleop' build argument 'cmake_clean_first' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_teleop' build argument 'cmake_force_configure' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_teleop' build argument 'ament_cmake_args' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_teleop' build argument 'catkin_cmake_args' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_teleop' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.284s] DEBUG:colcon.colcon_core.verb:Building package 't21_teleop' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/t21_teleop', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/t21_teleop', 'symlink_install': False, 'test_result_base': None}
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_tracked' build argument 'cmake_args' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_tracked' build argument 'cmake_target' from command line to 'None'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_tracked' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_tracked' build argument 'cmake_clean_cache' from command line to 'False'
+[0.284s] Level 5:colcon.colcon_core.verb:set package 't21_tracked' build argument 'cmake_clean_first' from command line to 'False'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 't21_tracked' build argument 'cmake_force_configure' from command line to 'False'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 't21_tracked' build argument 'ament_cmake_args' from command line to 'None'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 't21_tracked' build argument 'catkin_cmake_args' from command line to 'None'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 't21_tracked' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.285s] DEBUG:colcon.colcon_core.verb:Building package 't21_tracked' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/ros2_control/ros2_control_t21_hardware', 'symlink_install': False, 'test_result_base': None}
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_description' build argument 'cmake_args' from command line to 'None'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_description' build argument 'cmake_target' from command line to 'None'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_description' build argument 'cmake_clean_cache' from command line to 'False'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_description' build argument 'cmake_clean_first' from command line to 'False'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_description' build argument 'cmake_force_configure' from command line to 'False'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_description' build argument 'ament_cmake_args' from command line to 'None'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_description' build argument 'catkin_cmake_args' from command line to 'None'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.285s] DEBUG:colcon.colcon_core.verb:Building package 'velodyne_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/velodyne_simulator/velodyne_description', 'symlink_install': False, 'test_result_base': None}
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_gazebo_plugins' build argument 'cmake_args' from command line to 'None'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_gazebo_plugins' build argument 'cmake_target' from command line to 'None'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_gazebo_plugins' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_gazebo_plugins' build argument 'cmake_clean_cache' from command line to 'False'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_gazebo_plugins' build argument 'cmake_clean_first' from command line to 'False'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_gazebo_plugins' build argument 'cmake_force_configure' from command line to 'False'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_gazebo_plugins' build argument 'ament_cmake_args' from command line to 'None'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_gazebo_plugins' build argument 'catkin_cmake_args' from command line to 'None'
+[0.285s] Level 5:colcon.colcon_core.verb:set package 'velodyne_gazebo_plugins' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.285s] DEBUG:colcon.colcon_core.verb:Building package 'velodyne_gazebo_plugins' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_gazebo_plugins', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/velodyne_simulator/velodyne_gazebo_plugins', 'symlink_install': False, 'test_result_base': None}
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'tracked_description' build argument 'cmake_args' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'tracked_description' build argument 'cmake_target' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'tracked_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'tracked_description' build argument 'cmake_clean_cache' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'tracked_description' build argument 'cmake_clean_first' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'tracked_description' build argument 'cmake_force_configure' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'tracked_description' build argument 'ament_cmake_args' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'tracked_description' build argument 'catkin_cmake_args' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'tracked_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.286s] DEBUG:colcon.colcon_core.verb:Building package 'tracked_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/tracked_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/tracked_description', 'symlink_install': False, 'test_result_base': None}
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'velodyne_simulator' build argument 'cmake_args' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'velodyne_simulator' build argument 'cmake_target' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'velodyne_simulator' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'velodyne_simulator' build argument 'cmake_clean_cache' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'velodyne_simulator' build argument 'cmake_clean_first' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'velodyne_simulator' build argument 'cmake_force_configure' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'velodyne_simulator' build argument 'ament_cmake_args' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'velodyne_simulator' build argument 'catkin_cmake_args' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 'velodyne_simulator' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.286s] DEBUG:colcon.colcon_core.verb:Building package 'velodyne_simulator' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_simulator', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/velodyne_simulator/velodyne_simulator', 'symlink_install': False, 'test_result_base': None}
+[0.286s] Level 5:colcon.colcon_core.verb:set package 't21_sim' build argument 'cmake_args' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 't21_sim' build argument 'cmake_target' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 't21_sim' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 't21_sim' build argument 'cmake_clean_cache' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 't21_sim' build argument 'cmake_clean_first' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 't21_sim' build argument 'cmake_force_configure' from command line to 'False'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 't21_sim' build argument 'ament_cmake_args' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 't21_sim' build argument 'catkin_cmake_args' from command line to 'None'
+[0.286s] Level 5:colcon.colcon_core.verb:set package 't21_sim' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.286s] DEBUG:colcon.colcon_core.verb:Building package 't21_sim' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/kirill/VNIIA/Projects/black_plat/build/t21_sim', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim', 'merge_install': False, 'path': '/home/kirill/VNIIA/Projects/black_plat/src/t21_sim', 'symlink_install': False, 'test_result_base': None}
+[0.286s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.287s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.287s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/bluespace_ai_xsens_ros_mti_driver' with build type 'ament_cmake'
+[0.288s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/bluespace_ai_xsens_ros_mti_driver'
+[0.289s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.289s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.289s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.292s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/odometry_fus' with build type 'ament_cmake'
+[0.292s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/odometry_fus'
+[0.292s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.292s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.295s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/velodyne_simulator/velodyne_description' with build type 'ament_cmake'
+[0.295s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/velodyne_simulator/velodyne_description'
+[0.296s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.296s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.298s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/velodyne_simulator/velodyne_gazebo_plugins' with build type 'ament_cmake'
+[0.298s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/velodyne_simulator/velodyne_gazebo_plugins'
+[0.299s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.299s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.304s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/LIO-SAM' with build type 'ament_cmake'
+[0.304s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/LIO-SAM'
+[0.304s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.304s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.308s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/t21_lidar' with build type 'ament_cmake'
+[0.308s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/t21_lidar'
+[0.308s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.308s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.311s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/t21_navigation' with build type 'ament_cmake'
+[0.311s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/t21_navigation'
+[0.311s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.311s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.314s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/t21_rtabmap' with build type 'ament_cmake'
+[0.314s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/t21_rtabmap'
+[0.315s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.315s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.325s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/bluespace_ai_xsens_mti_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/bluespace_ai_xsens_mti_driver -- -j8 -l8
+[0.327s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/odometry_fus -- -j8 -l8
+[0.328s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/velodyne_description -- -j8 -l8
+[0.330s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_gazebo_plugins': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/velodyne_gazebo_plugins -- -j8 -l8
+[0.334s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/lio_sam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/lio_sam -- -j8 -l8
+[0.336s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_lidar -- -j8 -l8
+[0.343s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation -- -j8 -l8
+[0.344s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap -- -j8 -l8
+[0.363s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/velodyne_description -- -j8 -l8
+[0.378s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/velodyne_description
+[0.385s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_lidar -- -j8 -l8
+[0.385s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_lidar
+[0.389s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap -- -j8 -l8
+[0.391s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap
+[0.396s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_lidar)
+[0.398s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_lidar
+[0.403s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar' for CMake module files
+[0.403s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar' for CMake config files
+[0.403s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_lidar', 'cmake_prefix_path')
+[0.404s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/hook/cmake_prefix_path.ps1'
+[0.408s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/hook/cmake_prefix_path.dsv'
+[0.408s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/hook/cmake_prefix_path.sh'
+[0.409s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/bin'
+[0.409s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/lib/pkgconfig/t21_lidar.pc'
+[0.409s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/lib/python3.10/site-packages'
+[0.410s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/bin'
+[0.410s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/package.ps1'
+[0.413s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/package.dsv'
+[0.414s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/package.sh'
+[0.415s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/package.bash'
+[0.416s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/package.zsh'
+[0.417s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/colcon-core/packages/t21_lidar)
+[0.417s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_lidar)
+[0.418s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar' for CMake module files
+[0.418s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar' for CMake config files
+[0.418s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_lidar', 'cmake_prefix_path')
+[0.419s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/hook/cmake_prefix_path.ps1'
+[0.419s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/hook/cmake_prefix_path.dsv'
+[0.420s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/hook/cmake_prefix_path.sh'
+[0.421s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/bin'
+[0.421s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/lib/pkgconfig/t21_lidar.pc'
+[0.421s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/lib/python3.10/site-packages'
+[0.422s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/bin'
+[0.422s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/package.ps1'
+[0.423s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/package.dsv'
+[0.424s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/package.sh'
+[0.425s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/package.bash'
+[0.425s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/t21_lidar/package.zsh'
+[0.426s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar/share/colcon-core/packages/t21_lidar)
+[0.427s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/t21_teleop' with build type 'ament_python'
+[0.427s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_teleop', 'ament_prefix_path')
+[0.428s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/hook/ament_prefix_path.ps1'
+[0.428s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/hook/ament_prefix_path.dsv'
+[0.428s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/hook/ament_prefix_path.sh'
+[0.429s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.429s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.435s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(velodyne_description)
+[0.435s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description' for CMake module files
+[0.436s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description' for CMake config files
+[0.436s] Level 1:colcon.colcon_core.shell:create_environment_hook('velodyne_description', 'cmake_prefix_path')
+[0.436s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/hook/cmake_prefix_path.ps1'
+[0.437s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/hook/cmake_prefix_path.dsv'
+[0.437s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/velodyne_description
+[0.438s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/hook/cmake_prefix_path.sh'
+[0.440s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/bin'
+[0.440s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/lib/pkgconfig/velodyne_description.pc'
+[0.440s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/lib/python3.10/site-packages'
+[0.440s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/bin'
+[0.441s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/package.ps1'
+[0.442s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/package.dsv'
+[0.443s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/package.sh'
+[0.443s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/package.bash'
+[0.445s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/package.zsh'
+[0.446s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/colcon-core/packages/velodyne_description)
+[0.447s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(velodyne_description)
+[0.447s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description' for CMake module files
+[0.448s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description' for CMake config files
+[0.448s] Level 1:colcon.colcon_core.shell:create_environment_hook('velodyne_description', 'cmake_prefix_path')
+[0.448s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/hook/cmake_prefix_path.ps1'
+[0.449s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/hook/cmake_prefix_path.dsv'
+[0.449s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/hook/cmake_prefix_path.sh'
+[0.450s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/bin'
+[0.450s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/lib/pkgconfig/velodyne_description.pc'
+[0.450s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/lib/python3.10/site-packages'
+[0.450s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/bin'
+[0.451s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/package.ps1'
+[0.451s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/package.dsv'
+[0.452s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/package.sh'
+[0.452s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/package.bash'
+[0.453s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/velodyne_description/package.zsh'
+[0.453s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description/share/colcon-core/packages/velodyne_description)
+[0.455s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/ros2_control/ros2_control_t21_hardware' with build type 'ament_cmake'
+[0.455s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/ros2_control/ros2_control_t21_hardware'
+[0.455s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.455s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.463s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_rtabmap)
+[0.464s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap' for CMake module files
+[0.464s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap
+[0.465s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap' for CMake config files
+[0.465s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_rtabmap', 'cmake_prefix_path')
+[0.466s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/hook/cmake_prefix_path.ps1'
+[0.466s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/hook/cmake_prefix_path.dsv'
+[0.467s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/hook/cmake_prefix_path.sh'
+[0.467s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/bin'
+[0.467s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/lib/pkgconfig/t21_rtabmap.pc'
+[0.468s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/lib/python3.10/site-packages'
+[0.468s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/bin'
+[0.468s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.ps1'
+[0.469s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.dsv'
+[0.469s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.sh'
+[0.470s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.bash'
+[0.470s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.zsh'
+[0.470s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/colcon-core/packages/t21_rtabmap)
+[0.471s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_rtabmap)
+[0.471s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap' for CMake module files
+[0.472s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap' for CMake config files
+[0.472s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_rtabmap', 'cmake_prefix_path')
+[0.472s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/hook/cmake_prefix_path.ps1'
+[0.473s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/hook/cmake_prefix_path.dsv'
+[0.473s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/hook/cmake_prefix_path.sh'
+[0.474s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/bin'
+[0.474s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/lib/pkgconfig/t21_rtabmap.pc'
+[0.474s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/lib/python3.10/site-packages'
+[0.475s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/bin'
+[0.475s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.ps1'
+[0.475s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.dsv'
+[0.476s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.sh'
+[0.476s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.bash'
+[0.477s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.zsh'
+[0.477s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/colcon-core/packages/t21_rtabmap)
+[0.478s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/odometry_fus -- -j8 -l8
+[0.484s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/odometry_fus
+[0.485s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/bluespace_ai_xsens_mti_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/bluespace_ai_xsens_mti_driver -- -j8 -l8
+[0.485s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/bluespace_ai_xsens_mti_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/bluespace_ai_xsens_mti_driver
+[0.485s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation -- -j8 -l8
+[0.486s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation
+[0.492s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_gazebo_plugins' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/velodyne_gazebo_plugins -- -j8 -l8
+[0.493s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_gazebo_plugins': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/velodyne_gazebo_plugins
+[0.713s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/kirill/VNIIA/Projects/black_plat/src/t21_teleop'
+[0.713s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.713s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.720s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(odometry_fus)
+[0.720s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_tracked -- -j8 -l8
+[0.720s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus' for CMake module files
+[0.720s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/odometry_fus
+[0.721s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus' for CMake config files
+[0.721s] Level 1:colcon.colcon_core.shell:create_environment_hook('odometry_fus', 'cmake_prefix_path')
+[0.721s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/hook/cmake_prefix_path.ps1'
+[0.722s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/hook/cmake_prefix_path.dsv'
+[0.722s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/hook/cmake_prefix_path.sh'
+[0.723s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib'
+[0.723s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/bin'
+[0.723s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/pkgconfig/odometry_fus.pc'
+[0.723s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/python3.10/site-packages'
+[0.724s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/bin'
+[0.724s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.ps1'
+[0.724s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.dsv'
+[0.725s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.sh'
+[0.725s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.bash'
+[0.725s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.zsh'
+[0.726s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/colcon-core/packages/odometry_fus)
+[0.726s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(odometry_fus)
+[0.726s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus' for CMake module files
+[0.727s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus' for CMake config files
+[0.727s] Level 1:colcon.colcon_core.shell:create_environment_hook('odometry_fus', 'cmake_prefix_path')
+[0.727s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/hook/cmake_prefix_path.ps1'
+[0.727s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/hook/cmake_prefix_path.dsv'
+[0.728s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/hook/cmake_prefix_path.sh'
+[0.728s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib'
+[0.728s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/bin'
+[0.728s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/pkgconfig/odometry_fus.pc'
+[0.728s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/python3.10/site-packages'
+[0.728s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/bin'
+[0.728s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.ps1'
+[0.729s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.dsv'
+[0.729s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.sh'
+[0.729s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.bash'
+[0.729s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.zsh'
+[0.730s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/colcon-core/packages/odometry_fus)
+[0.730s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bluespace_ai_xsens_mti_driver)
+[0.730s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver' for CMake module files
+[0.731s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver' for CMake config files
+[0.731s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/bluespace_ai_xsens_mti_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/bluespace_ai_xsens_mti_driver
+[0.731s] Level 1:colcon.colcon_core.shell:create_environment_hook('bluespace_ai_xsens_mti_driver', 'cmake_prefix_path')
+[0.731s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/hook/cmake_prefix_path.ps1'
+[0.731s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/hook/cmake_prefix_path.dsv'
+[0.732s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/hook/cmake_prefix_path.sh'
+[0.732s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/lib'
+[0.732s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/bin'
+[0.732s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/lib/pkgconfig/bluespace_ai_xsens_mti_driver.pc'
+[0.732s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/lib/python3.10/site-packages'
+[0.732s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/bin'
+[0.732s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/package.ps1'
+[0.733s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/package.dsv'
+[0.733s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/package.sh'
+[0.733s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/package.bash'
+[0.733s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/package.zsh'
+[0.734s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/colcon-core/packages/bluespace_ai_xsens_mti_driver)
+[0.734s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bluespace_ai_xsens_mti_driver)
+[0.734s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver' for CMake module files
+[0.734s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver' for CMake config files
+[0.734s] Level 1:colcon.colcon_core.shell:create_environment_hook('bluespace_ai_xsens_mti_driver', 'cmake_prefix_path')
+[0.735s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/hook/cmake_prefix_path.ps1'
+[0.735s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/hook/cmake_prefix_path.dsv'
+[0.735s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/hook/cmake_prefix_path.sh'
+[0.735s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/lib'
+[0.735s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/bin'
+[0.735s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/lib/pkgconfig/bluespace_ai_xsens_mti_driver.pc'
+[0.736s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/lib/python3.10/site-packages'
+[0.736s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/bin'
+[0.736s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/package.ps1'
+[0.736s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/package.dsv'
+[0.736s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/package.sh'
+[0.737s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/package.bash'
+[0.737s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/bluespace_ai_xsens_mti_driver/package.zsh'
+[0.737s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver/share/colcon-core/packages/bluespace_ai_xsens_mti_driver)
+[0.737s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_navigation)
+[0.737s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation' for CMake module files
+[0.738s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation
+[0.738s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation' for CMake config files
+[0.738s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_navigation', 'cmake_prefix_path')
+[0.738s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/hook/cmake_prefix_path.ps1'
+[0.739s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/hook/cmake_prefix_path.dsv'
+[0.739s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/hook/cmake_prefix_path.sh'
+[0.740s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/lib'
+[0.740s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/bin'
+[0.740s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/lib/pkgconfig/t21_navigation.pc'
+[0.740s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/lib/python3.10/site-packages'
+[0.740s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/bin'
+[0.740s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.ps1'
+[0.740s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.dsv'
+[0.741s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.sh'
+[0.741s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.bash'
+[0.741s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.zsh'
+[0.741s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/colcon-core/packages/t21_navigation)
+[0.742s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_navigation)
+[0.742s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation' for CMake module files
+[0.742s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation' for CMake config files
+[0.742s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_navigation', 'cmake_prefix_path')
+[0.742s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/hook/cmake_prefix_path.ps1'
+[0.743s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/hook/cmake_prefix_path.dsv'
+[0.743s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/hook/cmake_prefix_path.sh'
+[0.743s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/lib'
+[0.743s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/bin'
+[0.743s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/lib/pkgconfig/t21_navigation.pc'
+[0.743s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/lib/python3.10/site-packages'
+[0.743s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/bin'
+[0.744s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.ps1'
+[0.744s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.dsv'
+[0.744s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.sh'
+[0.745s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.bash'
+[0.745s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.zsh'
+[0.745s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/colcon-core/packages/t21_navigation)
+[0.745s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(velodyne_gazebo_plugins)
+[0.746s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins' for CMake module files
+[0.746s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins' for CMake config files
+[0.746s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_gazebo_plugins' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/velodyne_gazebo_plugins
+[0.747s] Level 1:colcon.colcon_core.shell:create_environment_hook('velodyne_gazebo_plugins', 'cmake_prefix_path')
+[0.747s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/cmake_prefix_path.ps1'
+[0.747s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/cmake_prefix_path.dsv'
+[0.747s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/cmake_prefix_path.sh'
+[0.747s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/lib'
+[0.748s] Level 1:colcon.colcon_core.shell:create_environment_hook('velodyne_gazebo_plugins', 'ld_library_path_lib')
+[0.748s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/ld_library_path_lib.ps1'
+[0.748s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/ld_library_path_lib.dsv'
+[0.748s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/ld_library_path_lib.sh'
+[0.748s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/bin'
+[0.748s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/lib/pkgconfig/velodyne_gazebo_plugins.pc'
+[0.748s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/lib/python3.10/site-packages'
+[0.749s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/bin'
+[0.749s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/package.ps1'
+[0.749s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/package.dsv'
+[0.749s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/package.sh'
+[0.750s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/package.bash'
+[0.750s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/package.zsh'
+[0.750s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/colcon-core/packages/velodyne_gazebo_plugins)
+[0.750s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(velodyne_gazebo_plugins)
+[0.751s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins' for CMake module files
+[0.751s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins' for CMake config files
+[0.751s] Level 1:colcon.colcon_core.shell:create_environment_hook('velodyne_gazebo_plugins', 'cmake_prefix_path')
+[0.751s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/cmake_prefix_path.ps1'
+[0.751s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/cmake_prefix_path.dsv'
+[0.752s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/cmake_prefix_path.sh'
+[0.752s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/lib'
+[0.752s] Level 1:colcon.colcon_core.shell:create_environment_hook('velodyne_gazebo_plugins', 'ld_library_path_lib')
+[0.752s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/ld_library_path_lib.ps1'
+[0.752s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/ld_library_path_lib.dsv'
+[0.753s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/hook/ld_library_path_lib.sh'
+[0.753s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/bin'
+[0.753s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/lib/pkgconfig/velodyne_gazebo_plugins.pc'
+[0.753s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/lib/python3.10/site-packages'
+[0.753s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/bin'
+[0.753s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/package.ps1'
+[0.754s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/package.dsv'
+[0.754s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/package.sh'
+[0.754s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/package.bash'
+[0.755s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/package.zsh'
+[0.755s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins/share/colcon-core/packages/velodyne_gazebo_plugins)
+[0.756s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/lio_sam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/lio_sam -- -j8 -l8
+[0.757s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/lio_sam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/lio_sam
+[0.757s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/tracked_description' with build type 'ament_cmake'
+[0.757s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/tracked_description'
+[0.758s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.758s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.761s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/velodyne_simulator/velodyne_simulator' with build type 'ament_cmake'
+[0.761s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/velodyne_simulator/velodyne_simulator'
+[0.761s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.761s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.774s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/tracked_description': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/tracked_description -- -j8 -l8
+[0.777s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_simulator': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/velodyne_simulator -- -j8 -l8
+[0.777s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_tracked -- -j8 -l8
+[0.779s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_tracked
+[0.789s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_tracked)
+[0.789s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked' for CMake module files
+[0.790s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_tracked
+[0.790s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked' for CMake config files
+[0.791s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_tracked', 'cmake_prefix_path')
+[0.791s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/cmake_prefix_path.ps1'
+[0.792s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/cmake_prefix_path.dsv'
+[0.792s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/cmake_prefix_path.sh'
+[0.793s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/lib'
+[0.793s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_tracked', 'ld_library_path_lib')
+[0.794s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/ld_library_path_lib.ps1'
+[0.794s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/ld_library_path_lib.dsv'
+[0.794s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/ld_library_path_lib.sh'
+[0.795s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/bin'
+[0.795s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/lib/pkgconfig/t21_tracked.pc'
+[0.795s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/lib/python3.10/site-packages'
+[0.795s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/bin'
+[0.796s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/package.ps1'
+[0.799s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/package.dsv'
+[0.800s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/package.sh'
+[0.803s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/package.bash'
+[0.803s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/package.zsh'
+[0.804s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/colcon-core/packages/t21_tracked)
+[0.804s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_tracked)
+[0.805s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked' for CMake module files
+[0.805s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked' for CMake config files
+[0.806s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_tracked', 'cmake_prefix_path')
+[0.806s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/cmake_prefix_path.ps1'
+[0.807s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/cmake_prefix_path.dsv'
+[0.807s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/cmake_prefix_path.sh'
+[0.808s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/lib'
+[0.808s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_tracked', 'ld_library_path_lib')
+[0.808s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/ld_library_path_lib.ps1'
+[0.809s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/ld_library_path_lib.dsv'
+[0.809s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/hook/ld_library_path_lib.sh'
+[0.809s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/bin'
+[0.809s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/lib/pkgconfig/t21_tracked.pc'
+[0.810s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/lib/python3.10/site-packages'
+[0.810s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/bin'
+[0.810s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/package.ps1'
+[0.811s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/package.dsv'
+[0.811s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/package.sh'
+[0.812s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/package.bash'
+[0.812s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/t21_tracked/package.zsh'
+[0.813s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked/share/colcon-core/packages/t21_tracked)
+[0.814s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(lio_sam)
+[0.815s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam' for CMake module files
+[0.816s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/lio_sam' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/lio_sam
+[0.816s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam' for CMake config files
+[0.817s] Level 1:colcon.colcon_core.shell:create_environment_hook('lio_sam', 'cmake_prefix_path')
+[0.817s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/cmake_prefix_path.ps1'
+[0.818s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/cmake_prefix_path.dsv'
+[0.818s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/cmake_prefix_path.sh'
+[0.819s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/lib'
+[0.819s] Level 1:colcon.colcon_core.shell:create_environment_hook('lio_sam', 'ld_library_path_lib')
+[0.819s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/ld_library_path_lib.ps1'
+[0.820s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/ld_library_path_lib.dsv'
+[0.820s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/ld_library_path_lib.sh'
+[0.820s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/bin'
+[0.821s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/lib/pkgconfig/lio_sam.pc'
+[0.821s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/lib/python3.10/site-packages'
+[0.821s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/bin'
+[0.821s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/package.ps1'
+[0.822s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/package.dsv'
+[0.823s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/package.sh'
+[0.823s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/package.bash'
+[0.823s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/package.zsh'
+[0.824s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/colcon-core/packages/lio_sam)
+[0.825s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(lio_sam)
+[0.825s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam' for CMake module files
+[0.826s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam' for CMake config files
+[0.827s] Level 1:colcon.colcon_core.shell:create_environment_hook('lio_sam', 'cmake_prefix_path')
+[0.827s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/cmake_prefix_path.ps1'
+[0.827s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/cmake_prefix_path.dsv'
+[0.828s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/cmake_prefix_path.sh'
+[0.828s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/lib'
+[0.828s] Level 1:colcon.colcon_core.shell:create_environment_hook('lio_sam', 'ld_library_path_lib')
+[0.829s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/ld_library_path_lib.ps1'
+[0.829s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/ld_library_path_lib.dsv'
+[0.829s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/hook/ld_library_path_lib.sh'
+[0.830s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/bin'
+[0.830s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/lib/pkgconfig/lio_sam.pc'
+[0.830s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/lib/python3.10/site-packages'
+[0.830s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/bin'
+[0.831s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/package.ps1'
+[0.831s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/package.dsv'
+[0.832s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/package.sh'
+[0.832s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/package.bash'
+[0.833s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/lio_sam/package.zsh'
+[0.833s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/lio_sam/share/colcon-core/packages/lio_sam)
+[0.834s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_simulator' returned '0': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/velodyne_simulator -- -j8 -l8
+[0.835s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_simulator': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/velodyne_simulator
+[0.836s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/tracked_description' returned '0': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/tracked_description -- -j8 -l8
+[0.838s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/tracked_description': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/tracked_description
+[0.842s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(velodyne_simulator)
+[0.843s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator' for CMake module files
+[0.843s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/velodyne_simulator' returned '0': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/velodyne_simulator
+[0.844s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator' for CMake config files
+[0.846s] Level 1:colcon.colcon_core.shell:create_environment_hook('velodyne_simulator', 'cmake_prefix_path')
+[0.846s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/hook/cmake_prefix_path.ps1'
+[0.847s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/hook/cmake_prefix_path.dsv'
+[0.847s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/hook/cmake_prefix_path.sh'
+[0.848s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/bin'
+[0.848s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/lib/pkgconfig/velodyne_simulator.pc'
+[0.848s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/lib/python3.10/site-packages'
+[0.848s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/bin'
+[0.848s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/package.ps1'
+[0.848s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/package.dsv'
+[0.849s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/package.sh'
+[0.849s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/package.bash'
+[0.849s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/package.zsh'
+[0.850s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/colcon-core/packages/velodyne_simulator)
+[0.850s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(velodyne_simulator)
+[0.850s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator' for CMake module files
+[0.851s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator' for CMake config files
+[0.851s] Level 1:colcon.colcon_core.shell:create_environment_hook('velodyne_simulator', 'cmake_prefix_path')
+[0.851s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/hook/cmake_prefix_path.ps1'
+[0.851s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/hook/cmake_prefix_path.dsv'
+[0.851s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/hook/cmake_prefix_path.sh'
+[0.852s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/bin'
+[0.852s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/lib/pkgconfig/velodyne_simulator.pc'
+[0.852s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/lib/python3.10/site-packages'
+[0.852s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/bin'
+[0.852s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/package.ps1'
+[0.853s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/package.dsv'
+[0.853s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/package.sh'
+[0.853s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/package.bash'
+[0.854s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/velodyne_simulator/package.zsh'
+[0.854s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator/share/colcon-core/packages/velodyne_simulator)
+[0.854s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(tracked_description)
+[0.855s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description' for CMake module files
+[0.855s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/tracked_description' returned '0': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/tracked_description
+[0.855s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description' for CMake config files
+[0.855s] Level 1:colcon.colcon_core.shell:create_environment_hook('tracked_description', 'cmake_prefix_path')
+[0.855s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/hook/cmake_prefix_path.ps1'
+[0.856s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/hook/cmake_prefix_path.dsv'
+[0.856s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/hook/cmake_prefix_path.sh'
+[0.856s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/lib'
+[0.856s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/bin'
+[0.856s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/lib/pkgconfig/tracked_description.pc'
+[0.857s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/lib/python3.10/site-packages'
+[0.857s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/bin'
+[0.857s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.ps1'
+[0.858s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.dsv'
+[0.858s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.sh'
+[0.858s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.bash'
+[0.859s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.zsh'
+[0.859s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/colcon-core/packages/tracked_description)
+[0.859s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(tracked_description)
+[0.859s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description' for CMake module files
+[0.860s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description' for CMake config files
+[0.860s] Level 1:colcon.colcon_core.shell:create_environment_hook('tracked_description', 'cmake_prefix_path')
+[0.860s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/hook/cmake_prefix_path.ps1'
+[0.860s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/hook/cmake_prefix_path.dsv'
+[0.860s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/hook/cmake_prefix_path.sh'
+[0.861s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/lib'
+[0.861s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/bin'
+[0.861s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/lib/pkgconfig/tracked_description.pc'
+[0.861s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/lib/python3.10/site-packages'
+[0.861s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/bin'
+[0.861s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.ps1'
+[0.862s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.dsv'
+[0.862s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.sh'
+[0.862s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.bash'
+[0.862s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.zsh'
+[0.863s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/colcon-core/packages/tracked_description)
+[0.863s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/kirill/VNIIA/Projects/black_plat/src/t21_sim' with build type 'ament_cmake'
+[0.863s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/kirill/VNIIA/Projects/black_plat/src/t21_sim'
+[0.863s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.863s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.870s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_sim': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_sim -- -j8 -l8
+[0.898s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_sim' returned '0': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_sim -- -j8 -l8
+[0.899s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_sim': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_sim
+[0.907s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_sim)
+[0.908s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim' for CMake module files
+[0.908s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_sim' returned '0': CMAKE_PREFIX_PATH=/home/kirill/VNIIA/Projects/black_plat/install/tracked_description:/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus:/home/kirill/VNIIA/Projects/black_plat/install/bluespace_ai_xsens_mti_driver:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_simulator:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_gazebo_plugins:/home/kirill/VNIIA/Projects/black_plat/install/velodyne_description:/home/kirill/VNIIA/Projects/black_plat/install/t21_sim:/home/kirill/VNIIA/Projects/black_plat/install/t21_tracked:/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap:/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation:/home/kirill/VNIIA/Projects/black_plat/install/t21_lidar:/home/kirill/VNIIA/Projects/black_plat/install/lio_sam:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_sim
+[0.908s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim' for CMake config files
+[0.908s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_sim', 'cmake_prefix_path')
+[0.909s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/hook/cmake_prefix_path.ps1'
+[0.909s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/hook/cmake_prefix_path.dsv'
+[0.909s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/hook/cmake_prefix_path.sh'
+[0.910s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/bin'
+[0.910s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/lib/pkgconfig/t21_sim.pc'
+[0.910s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/lib/python3.10/site-packages'
+[0.910s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/bin'
+[0.910s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/package.ps1'
+[0.911s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/package.dsv'
+[0.911s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/package.sh'
+[0.911s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/package.bash'
+[0.911s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/package.zsh'
+[0.912s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/colcon-core/packages/t21_sim)
+[0.912s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_sim)
+[0.912s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim' for CMake module files
+[0.912s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim' for CMake config files
+[0.912s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_sim', 'cmake_prefix_path')
+[0.913s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/hook/cmake_prefix_path.ps1'
+[0.913s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/hook/cmake_prefix_path.dsv'
+[0.913s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/hook/cmake_prefix_path.sh'
+[0.913s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/bin'
+[0.913s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/lib/pkgconfig/t21_sim.pc'
+[0.914s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/lib/python3.10/site-packages'
+[0.914s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/bin'
+[0.914s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/package.ps1'
+[0.914s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/package.dsv'
+[0.914s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/package.sh'
+[0.915s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/package.bash'
+[0.915s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/t21_sim/package.zsh'
+[0.915s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_sim/share/colcon-core/packages/t21_sim)
+[1.133s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/kirill/VNIIA/Projects/black_plat/src/t21_teleop': PYTHONPATH=/home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/t21_teleop build --build-base /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build install --record /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/install.log --single-version-externally-managed install_data
+[1.341s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop' for CMake module files
+[1.342s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/kirill/VNIIA/Projects/black_plat/src/t21_teleop' returned '0': PYTHONPATH=/home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/t21_teleop build --build-base /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build install --record /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/install.log --single-version-externally-managed install_data
+[1.342s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop' for CMake config files
+[1.342s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib'
+[1.342s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/bin'
+[1.342s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/pkgconfig/t21_teleop.pc'
+[1.342s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages'
+[1.342s] Level 1:colcon.colcon_core.shell:create_environment_hook('t21_teleop', 'pythonpath')
+[1.343s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/hook/pythonpath.ps1'
+[1.343s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/hook/pythonpath.dsv'
+[1.343s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/hook/pythonpath.sh'
+[1.344s] Level 1:colcon.colcon_core.environment:checking '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/bin'
+[1.344s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(t21_teleop)
+[1.344s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/package.ps1'
+[1.344s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/package.dsv'
+[1.344s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/package.sh'
+[1.345s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/package.bash'
+[1.345s] INFO:colcon.colcon_core.shell:Creating package script '/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/package.zsh'
+[1.345s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/colcon-core/packages/t21_teleop)
+[1.345s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.345s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.345s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.345s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.349s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.349s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.349s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.358s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.359s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/kirill/VNIIA/Projects/black_plat/install/local_setup.ps1'
+[1.360s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/kirill/VNIIA/Projects/black_plat/install/_local_setup_util_ps1.py'
+[1.362s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/kirill/VNIIA/Projects/black_plat/install/setup.ps1'
+[1.363s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/kirill/VNIIA/Projects/black_plat/install/local_setup.sh'
+[1.364s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/kirill/VNIIA/Projects/black_plat/install/_local_setup_util_sh.py'
+[1.364s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/kirill/VNIIA/Projects/black_plat/install/setup.sh'
+[1.365s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/kirill/VNIIA/Projects/black_plat/install/local_setup.bash'
+[1.365s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/kirill/VNIIA/Projects/black_plat/install/setup.bash'
+[1.366s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/kirill/VNIIA/Projects/black_plat/install/local_setup.zsh'
+[1.366s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/kirill/VNIIA/Projects/black_plat/install/setup.zsh'

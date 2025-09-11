@@ -1,0 +1,55 @@
+running egg_info
+creating ../../build/t21_teleop/t21_teleop.egg-info
+writing ../../build/t21_teleop/t21_teleop.egg-info/PKG-INFO
+writing dependency_links to ../../build/t21_teleop/t21_teleop.egg-info/dependency_links.txt
+writing entry points to ../../build/t21_teleop/t21_teleop.egg-info/entry_points.txt
+writing requirements to ../../build/t21_teleop/t21_teleop.egg-info/requires.txt
+writing top-level names to ../../build/t21_teleop/t21_teleop.egg-info/top_level.txt
+writing manifest file '../../build/t21_teleop/t21_teleop.egg-info/SOURCES.txt'
+reading manifest file '../../build/t21_teleop/t21_teleop.egg-info/SOURCES.txt'
+writing manifest file '../../build/t21_teleop/t21_teleop.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build
+creating /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib
+creating /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop
+copying t21_teleop/drive_test.py -> /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop
+copying t21_teleop/joy_platform_teleop.py -> /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop
+copying t21_teleop/joy_flipper_teleop.py -> /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop
+copying t21_teleop/__init__.py -> /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop
+copying t21_teleop/flipper_teleop.py -> /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop
+copying t21_teleop/joy_full_teleop.py -> /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop
+running install
+running install_lib
+creating /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop
+copying /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop/drive_test.py -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop
+copying /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop/joy_platform_teleop.py -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop
+copying /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop/joy_flipper_teleop.py -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop
+copying /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop/__init__.py -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop
+copying /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop/flipper_teleop.py -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop
+copying /home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/build/lib/t21_teleop/joy_full_teleop.py -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop
+byte-compiling /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop/drive_test.py to drive_test.cpython-310.pyc
+byte-compiling /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop/joy_platform_teleop.py to joy_platform_teleop.cpython-310.pyc
+byte-compiling /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop/joy_flipper_teleop.py to joy_flipper_teleop.cpython-310.pyc
+byte-compiling /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop/flipper_teleop.py to flipper_teleop.cpython-310.pyc
+byte-compiling /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop/joy_full_teleop.py to joy_full_teleop.cpython-310.pyc
+running install_data
+creating /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/ament_index
+creating /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/ament_index/resource_index
+creating /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/ament_index/resource_index/packages
+copying resource/t21_teleop -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/ament_index/resource_index/packages
+copying package.xml -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop
+creating /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/launch
+copying launch/joy_flipper_teleop.launch.py -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/launch
+copying launch/joy_full_teleop.launch.py -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/launch
+copying launch/joy_platform_teleop.launch.py -> /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/share/t21_teleop/launch
+running install_egg_info
+Copying ../../build/t21_teleop/t21_teleop.egg-info to /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/python3.10/site-packages/t21_teleop-0.0.0-py3.10.egg-info
+running install_scripts
+Installing drive_test script to /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/t21_teleop
+Installing flipper_teleop script to /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/t21_teleop
+Installing joy_flipper_teleop script to /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/t21_teleop
+Installing joy_full_teleop script to /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/t21_teleop
+Installing joy_platform_teleop script to /home/kirill/VNIIA/Projects/black_plat/install/t21_teleop/lib/t21_teleop
+writing list of installed files to '/home/kirill/VNIIA/Projects/black_plat/build/t21_teleop/install.log'

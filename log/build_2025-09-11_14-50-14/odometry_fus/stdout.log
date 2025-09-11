@@ -1,0 +1,23 @@
+[ 33%] Built target motion_emulator
+[ 66%] Built target odometry_fus_node
+[100%] Built target icp_odometer
+-- Install configuration: ""
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/odometry_fus/odometry_fus_node
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/odometry_fus/motion_emulator
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/odometry_fus/icp_odometer
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/ament_index/resource_index/package_run_dependencies/odometry_fus
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/ament_index/resource_index/parent_prefix_path/odometry_fus
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/environment/ament_prefix_path.sh
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/environment/path.sh
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/environment/path.dsv
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/local_setup.bash
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/local_setup.sh
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/local_setup.zsh
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/local_setup.dsv
+-- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.dsv
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/ament_index/resource_index/packages/odometry_fus
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/cmake/odometry_fusConfig.cmake
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/cmake/odometry_fusConfig-version.cmake
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.xml

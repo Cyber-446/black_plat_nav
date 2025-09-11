@@ -1,0 +1,58 @@
+[0.019s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake /home/kirill/VNIIA/Projects/black_plat/src/t21_rtabmap -DCMAKE_INSTALL_PREFIX=/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap
+[0.842s] -- The C compiler identification is GNU 11.4.0
+[0.842s] -- The CXX compiler identification is GNU 11.4.0
+[0.842s] -- Detecting C compiler ABI info
+[0.842s] -- Detecting C compiler ABI info - done
+[0.842s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.842s] -- Detecting C compile features
+[0.842s] -- Detecting C compile features - done
+[0.842s] -- Detecting CXX compiler ABI info
+[0.842s] -- Detecting CXX compiler ABI info - done
+[0.842s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.842s] -- Detecting CXX compile features
+[0.842s] -- Detecting CXX compile features - done
+[0.842s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.842s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.843s] -- Configuring done
+[0.843s] -- Generating done
+[0.843s] -- Build files have been written to: /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap
+[0.843s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake /home/kirill/VNIIA/Projects/black_plat/src/t21_rtabmap -DCMAKE_INSTALL_PREFIX=/home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap
+[0.844s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap -- -j8 -l8
+[0.885s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap -- -j8 -l8
+[0.894s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap
+[0.902s] -- Install configuration: ""
+[0.903s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/launch
+[0.903s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/launch/t21_sim_vslam.launch.py
+[0.903s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/launch/t21_vslam.launch.py
+[0.903s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/launch/camera.launch.py
+[0.903s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config
+[0.903s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/icp_odom_params.yaml
+[0.903s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/real_rtabmap.yaml
+[0.903s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rgbd_odom_params.yaml
+[0.904s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/camera.yaml
+[0.904s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rtabmap.yaml
+[0.904s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rtabmap_params.yaml
+[0.905s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rtabmap_nav2_params.yaml
+[0.905s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rtabmap_viz.yaml
+[0.906s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/rgbd_sync_params.yaml
+[0.906s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/champ
+[0.906s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/champ/rgbd_odom_champ.yaml
+[0.906s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/champ/pcl_champ.yaml
+[0.907s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/champ/obstacle_champ.yaml
+[0.907s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/config/champ/rtabmap_champ.yaml
+[0.908s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/ament_index/resource_index/package_run_dependencies/t21_rtabmap
+[0.908s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/ament_index/resource_index/parent_prefix_path/t21_rtabmap
+[0.908s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/environment/ament_prefix_path.sh
+[0.908s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/environment/ament_prefix_path.dsv
+[0.908s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/environment/path.sh
+[0.908s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/environment/path.dsv
+[0.908s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/local_setup.bash
+[0.908s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/local_setup.sh
+[0.909s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/local_setup.zsh
+[0.909s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/local_setup.dsv
+[0.909s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.dsv
+[0.909s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/ament_index/resource_index/packages/t21_rtabmap
+[0.909s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/cmake/t21_rtabmapConfig.cmake
+[0.909s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/cmake/t21_rtabmapConfig-version.cmake
+[0.910s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_rtabmap/share/t21_rtabmap/package.xml
+[0.914s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap

@@ -1,0 +1,9 @@
+/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap/CMakeFiles/uninstall.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap/CMakeFiles/t21_rtabmap_uninstall.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap/CMakeFiles/test.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap/CMakeFiles/edit_cache.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap/CMakeFiles/rebuild_cache.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap/CMakeFiles/list_install_components.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap/CMakeFiles/install.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap/CMakeFiles/install/local.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_rtabmap/CMakeFiles/install/strip.dir

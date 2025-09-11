@@ -1,0 +1,134 @@
+[0.020s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake /home/kirill/VNIIA/Projects/black_plat/src/t21_navigation -DCMAKE_INSTALL_PREFIX=/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation
+[0.111s] -- The C compiler identification is GNU 11.4.0
+[0.215s] -- The CXX compiler identification is GNU 11.4.0
+[0.222s] -- Detecting C compiler ABI info
+[0.303s] -- Detecting C compiler ABI info - done
+[0.316s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.317s] -- Detecting C compile features
+[0.317s] -- Detecting C compile features - done
+[0.325s] -- Detecting CXX compiler ABI info
+[0.415s] -- Detecting CXX compiler ABI info - done
+[0.425s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.426s] -- Detecting CXX compile features
+[0.427s] -- Detecting CXX compile features - done
+[0.430s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.626s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.756s] -- Found rclcpp: 16.0.14 (/opt/ros/humble/share/rclcpp/cmake)
+[0.830s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.835s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.858s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.873s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.895s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.969s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.973s] -- Found rmw_fastrtps_cpp: 6.2.8 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[1.078s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[1.114s] -- Found FastRTPS: /opt/ros/humble/include  
+[1.168s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.180s] -- Looking for pthread.h
+[1.255s] -- Looking for pthread.h - found
+[1.256s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.340s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.341s] -- Found Threads: TRUE  
+[1.408s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.454s] -- Found tf2_ros: 0.25.15 (/opt/ros/humble/share/tf2_ros/cmake)
+[1.588s] -- Found tf2_geometry_msgs: 0.25.15 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[1.608s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[1.609s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[1.609s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[1.614s] -- Found pcl_conversions: 2.4.5 (/opt/ros/humble/share/pcl_conversions/cmake)
+[1.649s] -- Checking for module 'eigen3'
+[1.660s] --   Found eigen3, version 3.4.0
+[1.686s] -- Found Eigen: /usr/include/eigen3 (Required is at least version "3.1") 
+[1.686s] -- Eigen found (include: /usr/include/eigen3, version: 3.4.0)
+[1.736s] -- Checking for module 'flann'
+[1.748s] --   Found flann, version 1.9.1
+[1.776s] -- Found FLANN: /usr/lib/x86_64-linux-gnu/libflann_cpp.so  
+[1.776s] -- FLANN found (include: /usr/include, lib: /usr/lib/x86_64-linux-gnu/libflann_cpp.so)
+[2.777s] -- Checking for module 'libusb-1.0'
+[2.792s] --   Found libusb-1.0, version 1.0.25
+[2.828s] -- Found libusb: /usr/lib/x86_64-linux-gnu/libusb-1.0.so  
+[2.831s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[2.892s] -- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb)
+[3.103s] -- Eigen found (include: /usr/include/eigen3, version: 3.4.0)
+[3.110s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[3.117s] -- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb)
+[3.296s] -- Found Qhull version 8.0.2
+[3.491s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[3.664s] -- Found PCL_COMMON: /usr/lib/x86_64-linux-gnu/libpcl_common.so  
+[3.665s] -- Found PCL_KDTREE: /usr/lib/x86_64-linux-gnu/libpcl_kdtree.so  
+[3.666s] -- Found PCL_OCTREE: /usr/lib/x86_64-linux-gnu/libpcl_octree.so  
+[3.667s] -- Found PCL_SEARCH: /usr/lib/x86_64-linux-gnu/libpcl_search.so  
+[3.668s] -- Found PCL_SAMPLE_CONSENSUS: /usr/lib/x86_64-linux-gnu/libpcl_sample_consensus.so  
+[3.669s] -- Found PCL_FILTERS: /usr/lib/x86_64-linux-gnu/libpcl_filters.so  
+[3.669s] -- Found PCL_2D: /usr/include/pcl-1.12  
+[3.669s] -- Found PCL_GEOMETRY: /usr/include/pcl-1.12  
+[3.670s] -- Found PCL_IO: /usr/lib/x86_64-linux-gnu/libpcl_io.so  
+[3.671s] -- Found PCL_FEATURES: /usr/lib/x86_64-linux-gnu/libpcl_features.so  
+[3.672s] -- Found PCL_ML: /usr/lib/x86_64-linux-gnu/libpcl_ml.so  
+[3.673s] -- Found PCL_SEGMENTATION: /usr/lib/x86_64-linux-gnu/libpcl_segmentation.so  
+[3.674s] -- Found PCL_VISUALIZATION: /usr/lib/x86_64-linux-gnu/libpcl_visualization.so  
+[3.675s] -- Found PCL_SURFACE: /usr/lib/x86_64-linux-gnu/libpcl_surface.so  
+[3.676s] -- Found PCL_REGISTRATION: /usr/lib/x86_64-linux-gnu/libpcl_registration.so  
+[3.677s] -- Found PCL_KEYPOINTS: /usr/lib/x86_64-linux-gnu/libpcl_keypoints.so  
+[3.678s] -- Found PCL_TRACKING: /usr/lib/x86_64-linux-gnu/libpcl_tracking.so  
+[3.679s] -- Found PCL_RECOGNITION: /usr/lib/x86_64-linux-gnu/libpcl_recognition.so  
+[3.682s] -- Found PCL_STEREO: /usr/lib/x86_64-linux-gnu/libpcl_stereo.so  
+[3.682s] -- Found PCL_APPS: /usr/lib/x86_64-linux-gnu/libpcl_apps.so  
+[3.684s] -- Found PCL_IN_HAND_SCANNER: /usr/include/pcl-1.12  
+[3.684s] -- Found PCL_MODELER: /usr/include/pcl-1.12  
+[3.684s] -- Found PCL_POINT_CLOUD_EDITOR: /usr/include/pcl-1.12  
+[3.686s] -- Found PCL_OUTOFCORE: /usr/lib/x86_64-linux-gnu/libpcl_outofcore.so  
+[3.687s] -- Found PCL_PEOPLE: /usr/lib/x86_64-linux-gnu/libpcl_people.so  
+[3.692s] -- Found tf2_eigen: 0.25.15 (/opt/ros/humble/share/tf2_eigen/cmake)
+[3.772s] -- Configuring done
+[3.820s] -- Generating done
+[3.835s] -- Build files have been written to: /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation
+[3.862s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake /home/kirill/VNIIA/Projects/black_plat/src/t21_navigation -DCMAKE_INSTALL_PREFIX=/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation
+[3.867s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation -- -j8 -l8
+[3.954s] [ 50%] [32mBuilding CXX object CMakeFiles/ground_filter_node.dir/src/ground_filter_node.cpp.o[0m
+[22.356s] [100%] [32m[1mLinking CXX executable ground_filter_node[0m
+[23.753s] [100%] Built target ground_filter_node
+[23.761s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation -- -j8 -l8
+[23.762s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation
+[23.767s] -- Install configuration: ""
+[23.767s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/lib/t21_navigation/ground_filter_node
+[23.770s] -- Set runtime path of "/home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/lib/t21_navigation/ground_filter_node" to ""
+[23.770s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/launch
+[23.770s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/launch/navigation.launch.py
+[23.770s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/launch/translate.launch.py
+[23.770s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/launch/slam.launch.py
+[23.770s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/config
+[23.770s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/config/navigation.yaml
+[23.770s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/config/slam.yaml
+[23.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/config/navigation_sim.yaml
+[23.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/maps
+[23.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/rviz
+[23.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees
+[23.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_replanning_only_if_goal_is_updated.xml
+[23.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_replanning_speed.xml
+[23.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml
+[23.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_replanning_time.xml
+[23.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/odometry_calibration.xml
+[23.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml
+[23.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/nav_to_pose_with_consistent_replanning_and_if_path_becomes_invalid.xml
+[23.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_replanning_only_if_path_becomes_invalid.xml
+[23.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml
+[23.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/follow_point.xml
+[23.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_to_pose_w_replanning_goal_patience_and_recovery.xml
+[23.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_replanning_distance.xml
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/ament_index/resource_index/package_run_dependencies/t21_navigation
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/ament_index/resource_index/parent_prefix_path/t21_navigation
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/environment/ament_prefix_path.sh
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/environment/ament_prefix_path.dsv
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/environment/path.sh
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/environment/path.dsv
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/local_setup.bash
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/local_setup.sh
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/local_setup.zsh
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/local_setup.dsv
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.dsv
+[23.773s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/ament_index/resource_index/packages/t21_navigation
+[23.774s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/cmake/t21_navigationConfig.cmake
+[23.774s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/cmake/t21_navigationConfig-version.cmake
+[23.774s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.xml
+[23.775s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation

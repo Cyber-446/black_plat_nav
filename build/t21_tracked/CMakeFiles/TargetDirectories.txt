@@ -1,0 +1,10 @@
+/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked/CMakeFiles/uninstall.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked/CMakeFiles/t21_tracked_uninstall.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked/CMakeFiles/t21_tracked.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked/CMakeFiles/test.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked/CMakeFiles/edit_cache.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked/CMakeFiles/rebuild_cache.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked/CMakeFiles/list_install_components.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked/CMakeFiles/install.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked/CMakeFiles/install/local.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_tracked/CMakeFiles/install/strip.dir

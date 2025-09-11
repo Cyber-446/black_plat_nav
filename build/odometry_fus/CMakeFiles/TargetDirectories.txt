@@ -1,0 +1,12 @@
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/uninstall.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/odometry_fus_uninstall.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/odometry_fus_node.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/icp_odometer.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/motion_emulator.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/test.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/edit_cache.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/rebuild_cache.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/list_install_components.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/install.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/install/local.dir
+/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus/CMakeFiles/install/strip.dir

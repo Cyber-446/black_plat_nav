@@ -1,0 +1,9 @@
+/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar/CMakeFiles/uninstall.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar/CMakeFiles/t21_lidar_uninstall.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar/CMakeFiles/test.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar/CMakeFiles/edit_cache.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar/CMakeFiles/rebuild_cache.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar/CMakeFiles/list_install_components.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar/CMakeFiles/install.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar/CMakeFiles/install/local.dir
+/home/kirill/VNIIA/Projects/black_plat/build/t21_lidar/CMakeFiles/install/strip.dir

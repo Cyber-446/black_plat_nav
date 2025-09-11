@@ -1,0 +1,40 @@
+[35m[1mConsolidate compiler generated dependencies of target dummy[0m
+[35m[1mConsolidate compiler generated dependencies of target cmd_vel_to_float[0m
+[ 50%] Built target dummy
+[100%] Built target cmd_vel_to_float
+-- Install configuration: ""
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/lib/tracked_description/dummy
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/lib/tracked_description/cmd_vel_to_float
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/launch
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/launch/bringup_t21.launch.py
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/launch/display.launch.py
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/launch/bringup_t21_odom_test.launch.py
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/urdf
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/urdf/t21.urdf.xacro
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/urdf/tracked_robot.urdf.xacro
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/mesh
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/mesh/base.stl
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/mesh/fliper.stl
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/mesh/big_box.stl
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/config
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/config/odometry_fus.yaml
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/config/t21.ros2_control.xacro
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/config/controllers.yaml
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/config/t21.rviz
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/config/ps4_teleop.yaml
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/config/ekf.yaml
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/ament_index/resource_index/package_run_dependencies/tracked_description
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/ament_index/resource_index/parent_prefix_path/tracked_description
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/environment/ament_prefix_path.sh
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/environment/path.sh
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/environment/path.dsv
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/local_setup.bash
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/local_setup.sh
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/local_setup.zsh
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/local_setup.dsv
+-- Installing: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.dsv
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/ament_index/resource_index/packages/tracked_description
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/cmake/tracked_descriptionConfig.cmake
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/cmake/tracked_descriptionConfig-version.cmake
+-- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/tracked_description/share/tracked_description/package.xml

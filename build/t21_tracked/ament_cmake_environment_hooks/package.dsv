@@ -1,0 +1,4 @@
+source;share/t21_tracked/local_setup.bash
+source;share/t21_tracked/local_setup.dsv
+source;share/t21_tracked/local_setup.sh
+source;share/t21_tracked/local_setup.zsh

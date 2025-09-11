@@ -1,0 +1,45 @@
+[0.026s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation -- -j8 -l8
+[0.133s] [100%] Built target ground_filter_node
+[0.201s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation -- -j8 -l8
+[0.208s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation
+[0.230s] -- Install configuration: ""
+[0.230s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/lib/t21_navigation/ground_filter_node
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/launch
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/launch/navigation.launch.py
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/launch/translate.launch.py
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/launch/slam.launch.py
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/config
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/config/navigation.yaml
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/config/slam.yaml
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/config/navigation_sim.yaml
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/maps
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/rviz
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees
+[0.231s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_replanning_only_if_goal_is_updated.xml
+[0.235s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_replanning_speed.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_replanning_time.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/odometry_calibration.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/nav_to_pose_with_consistent_replanning_and_if_path_becomes_invalid.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_replanning_only_if_path_becomes_invalid.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_recovery_and_replanning_only_if_path_becomes_invalid.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/follow_point.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_to_pose_w_replanning_goal_patience_and_recovery.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/behavior_trees/navigate_w_replanning_distance.xml
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/ament_index/resource_index/package_run_dependencies/t21_navigation
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/ament_index/resource_index/parent_prefix_path/t21_navigation
+[0.236s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/environment/ament_prefix_path.sh
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/environment/ament_prefix_path.dsv
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/environment/path.sh
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/environment/path.dsv
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/local_setup.bash
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/local_setup.sh
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/local_setup.zsh
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/local_setup.dsv
+[0.237s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.dsv
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/ament_index/resource_index/packages/t21_navigation
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/cmake/t21_navigationConfig.cmake
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/cmake/t21_navigationConfig-version.cmake
+[0.237s] -- Up-to-date: /home/kirill/VNIIA/Projects/black_plat/install/t21_navigation/share/t21_navigation/package.xml
+[0.607s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/t21_navigation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/t21_navigation

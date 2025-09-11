@@ -1,0 +1,188 @@
+[0.023s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake /home/kirill/VNIIA/Projects/black_plat/src/odometry_fus -DCMAKE_INSTALL_PREFIX=/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus
+[0.122s] -- The C compiler identification is GNU 11.4.0
+[0.221s] -- The CXX compiler identification is GNU 11.4.0
+[0.232s] -- Detecting C compiler ABI info
+[0.318s] -- Detecting C compiler ABI info - done
+[0.329s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.329s] -- Detecting C compile features
+[0.329s] -- Detecting C compile features - done
+[0.333s] -- Detecting CXX compiler ABI info
+[0.425s] -- Detecting CXX compiler ABI info - done
+[0.437s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.437s] -- Detecting CXX compile features
+[0.437s] -- Detecting CXX compile features - done
+[0.440s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.641s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.770s] -- Found rclcpp: 16.0.14 (/opt/ros/humble/share/rclcpp/cmake)
+[0.841s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.849s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.868s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.883s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.906s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.978s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.983s] -- Found rmw_fastrtps_cpp: 6.2.8 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[1.085s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[1.122s] -- Found FastRTPS: /opt/ros/humble/include  
+[1.178s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.189s] -- Looking for pthread.h
+[1.263s] -- Looking for pthread.h - found
+[1.264s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.344s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.344s] -- Found Threads: TRUE  
+[1.400s] -- Found rclcpp_components: 16.0.14 (/opt/ros/humble/share/rclcpp_components/cmake)
+[1.430s] -- Found nav_msgs: 4.9.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[1.459s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.474s] -- Found tf2_ros: 0.25.15 (/opt/ros/humble/share/tf2_ros/cmake)
+[1.551s] -- Found tf2_geometry_msgs: 0.25.15 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[1.573s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[1.576s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[1.576s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[1.580s] -- Found visualization_msgs: 4.9.0 (/opt/ros/humble/share/visualization_msgs/cmake)
+[1.609s] -- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)
+[1.633s] -- Checking for module 'eigen3'
+[1.644s] --   Found eigen3, version 3.4.0
+[1.668s] -- Found Eigen: /usr/include/eigen3 (Required is at least version "3.1") 
+[1.668s] -- Eigen found (include: /usr/include/eigen3, version: 3.4.0)
+[1.690s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.65.0") found components: system filesystem date_time iostreams serialization 
+[1.704s] -- Checking for module 'flann'
+[1.713s] --   Found flann, version 1.9.1
+[1.745s] -- Found FLANN: /usr/lib/x86_64-linux-gnu/libflann_cpp.so  
+[1.746s] -- FLANN found (include: /usr/include, lib: /usr/lib/x86_64-linux-gnu/libflann_cpp.so)
+[1.802s] -- Found GLEW: /usr/lib/x86_64-linux-gnu/libGLEW.so  
+[1.812s] -- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so  found components: OpenGL GLX 
+[1.967s] -- Found MPI_C: /usr/lib/x86_64-linux-gnu/libmpi.so (found version "3.1") 
+[1.968s] -- Found MPI: TRUE (found version "3.1") found components: C 
+[1.971s] -- Found JsonCpp: /usr/lib/x86_64-linux-gnu/libjsoncpp.so (found suitable version "1.9.5", minimum required is "0.7.0") 
+[1.984s] -- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.11") 
+[2.008s] -- Found PNG: /usr/lib/x86_64-linux-gnu/libpng.so (found version "1.6.37") 
+[2.036s] -- Found Eigen3: /usr/include/eigen3 (found version "3.4.0") 
+[2.133s] -- Found X11: /usr/include   
+[2.134s] -- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so
+[2.200s] -- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so - found
+[2.200s] -- Looking for gethostbyname
+[2.265s] -- Looking for gethostbyname - found
+[2.265s] -- Looking for connect
+[2.331s] -- Looking for connect - found
+[2.332s] -- Looking for remove
+[2.402s] -- Looking for remove - found
+[2.402s] -- Looking for shmat
+[2.473s] -- Looking for shmat - found
+[2.473s] -- Looking for IceConnectionNumber in ICE
+[2.542s] -- Looking for IceConnectionNumber in ICE - found
+[2.633s] -- Found EXPAT: /usr/lib/x86_64-linux-gnu/libexpat.so (found version "2.4.7") 
+[2.637s] -- Found double-conversion: /usr/lib/x86_64-linux-gnu/libdouble-conversion.so  
+[2.642s] -- Found LZ4: /usr/lib/x86_64-linux-gnu/liblz4.so (found version "1.9.3") 
+[2.645s] -- Found LZMA: /usr/lib/x86_64-linux-gnu/liblzma.so (found version "5.2.5") 
+[2.672s] -- Found JPEG: /usr/lib/x86_64-linux-gnu/libjpeg.so (found version "80") 
+[2.682s] -- Found TIFF: /usr/lib/x86_64-linux-gnu/libtiff.so (found version "4.3.0")  
+[2.687s] -- Found Freetype: /usr/lib/x86_64-linux-gnu/libfreetype.so (found version "2.11.1") 
+[2.695s] -- Found utf8cpp: /usr/include/utf8cpp  
+[2.791s] -- Checking for module 'libusb-1.0'
+[2.804s] --   Found libusb-1.0, version 1.0.25
+[2.841s] -- Found libusb: /usr/lib/x86_64-linux-gnu/libusb-1.0.so  
+[2.843s] -- Found OpenNI: /usr/lib/libOpenNI.so;libusb::libusb (found version "1.5.4.0") 
+[2.843s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[2.901s] -- Found OpenNI2: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb (found version "2.2.0.33") 
+[2.901s] -- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb)
+[2.901s] [0m** WARNING ** io features related to pcap will be disabled[0m
+[3.101s] -- Eigen found (include: /usr/include/eigen3, version: 3.4.0)
+[3.109s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[3.117s] -- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb)
+[3.266s] -- Found Qhull version 8.0.2
+[3.438s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[3.573s] -- looking for PCL_COMMON
+[3.574s] -- Found PCL_COMMON: /usr/lib/x86_64-linux-gnu/libpcl_common.so  
+[3.574s] -- looking for PCL_KDTREE
+[3.575s] -- Found PCL_KDTREE: /usr/lib/x86_64-linux-gnu/libpcl_kdtree.so  
+[3.575s] -- looking for PCL_OCTREE
+[3.576s] -- Found PCL_OCTREE: /usr/lib/x86_64-linux-gnu/libpcl_octree.so  
+[3.576s] -- looking for PCL_SEARCH
+[3.577s] -- Found PCL_SEARCH: /usr/lib/x86_64-linux-gnu/libpcl_search.so  
+[3.577s] -- looking for PCL_SAMPLE_CONSENSUS
+[3.578s] -- Found PCL_SAMPLE_CONSENSUS: /usr/lib/x86_64-linux-gnu/libpcl_sample_consensus.so  
+[3.578s] -- looking for PCL_FILTERS
+[3.579s] -- Found PCL_FILTERS: /usr/lib/x86_64-linux-gnu/libpcl_filters.so  
+[3.579s] -- looking for PCL_2D
+[3.579s] -- Found PCL_2D: /usr/include/pcl-1.12  
+[3.580s] -- looking for PCL_GEOMETRY
+[3.580s] -- Found PCL_GEOMETRY: /usr/include/pcl-1.12  
+[3.580s] -- looking for PCL_IO
+[3.581s] -- Found PCL_IO: /usr/lib/x86_64-linux-gnu/libpcl_io.so  
+[3.581s] -- looking for PCL_FEATURES
+[3.582s] -- Found PCL_FEATURES: /usr/lib/x86_64-linux-gnu/libpcl_features.so  
+[3.582s] -- looking for PCL_ML
+[3.583s] -- Found PCL_ML: /usr/lib/x86_64-linux-gnu/libpcl_ml.so  
+[3.583s] -- looking for PCL_SEGMENTATION
+[3.584s] -- Found PCL_SEGMENTATION: /usr/lib/x86_64-linux-gnu/libpcl_segmentation.so  
+[3.584s] -- looking for PCL_VISUALIZATION
+[3.585s] -- Found PCL_VISUALIZATION: /usr/lib/x86_64-linux-gnu/libpcl_visualization.so  
+[3.585s] -- looking for PCL_SURFACE
+[3.586s] -- Found PCL_SURFACE: /usr/lib/x86_64-linux-gnu/libpcl_surface.so  
+[3.586s] -- looking for PCL_REGISTRATION
+[3.587s] -- Found PCL_REGISTRATION: /usr/lib/x86_64-linux-gnu/libpcl_registration.so  
+[3.587s] -- looking for PCL_KEYPOINTS
+[3.588s] -- Found PCL_KEYPOINTS: /usr/lib/x86_64-linux-gnu/libpcl_keypoints.so  
+[3.588s] -- looking for PCL_TRACKING
+[3.589s] -- Found PCL_TRACKING: /usr/lib/x86_64-linux-gnu/libpcl_tracking.so  
+[3.589s] -- looking for PCL_RECOGNITION
+[3.590s] -- Found PCL_RECOGNITION: /usr/lib/x86_64-linux-gnu/libpcl_recognition.so  
+[3.590s] -- looking for PCL_STEREO
+[3.591s] -- Found PCL_STEREO: /usr/lib/x86_64-linux-gnu/libpcl_stereo.so  
+[3.591s] -- looking for PCL_APPS
+[3.592s] -- Found PCL_APPS: /usr/lib/x86_64-linux-gnu/libpcl_apps.so  
+[3.592s] -- looking for PCL_IN_HAND_SCANNER
+[3.593s] -- Found PCL_IN_HAND_SCANNER: /usr/include/pcl-1.12  
+[3.593s] -- looking for PCL_MODELER
+[3.593s] -- Found PCL_MODELER: /usr/include/pcl-1.12  
+[3.593s] -- looking for PCL_POINT_CLOUD_EDITOR
+[3.594s] -- Found PCL_POINT_CLOUD_EDITOR: /usr/include/pcl-1.12  
+[3.594s] -- looking for PCL_OUTOFCORE
+[3.595s] -- Found PCL_OUTOFCORE: /usr/lib/x86_64-linux-gnu/libpcl_outofcore.so  
+[3.595s] -- looking for PCL_PEOPLE
+[3.596s] -- Found PCL_PEOPLE: /usr/lib/x86_64-linux-gnu/libpcl_people.so  
+[3.596s] -- Found PCL: pcl_common;pcl_kdtree;pcl_octree;pcl_search;pcl_sample_consensus;pcl_filters;pcl_io;pcl_features;pcl_ml;pcl_segmentation;pcl_visualization;pcl_surface;pcl_registration;pcl_keypoints;pcl_tracking;pcl_recognition;pcl_stereo;pcl_apps;pcl_outofcore;pcl_people;Boost::system;Boost::filesystem;Boost::date_time;Boost::iostreams;Boost::serialization;/usr/lib/libOpenNI.so;libusb::libusb;/usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb;VTK::ChartsCore;VTK::CommonColor;VTK::CommonComputationalGeometry;VTK::CommonCore;VTK::CommonDataModel;VTK::CommonExecutionModel;VTK::CommonMath;VTK::CommonMisc;VTK::CommonTransforms;VTK::FiltersCore;VTK::FiltersExtraction;VTK::FiltersGeneral;VTK::FiltersGeometry;VTK::FiltersModeling;VTK::FiltersSources;VTK::ImagingCore;VTK::ImagingSources;VTK::InteractionImage;VTK::InteractionStyle;VTK::InteractionWidgets;VTK::IOCore;VTK::IOGeometry;VTK::IOImage;VTK::IOLegacy;VTK::IOPLY;VTK::RenderingAnnotation;VTK::RenderingCore;VTK::RenderingContext2D;VTK::RenderingLOD;VTK::RenderingFreeType;VTK::ViewsCore;VTK::ViewsContext2D;VTK::RenderingOpenGL2;VTK::GUISupportQt;FLANN::FLANN;QHULL::QHULL  
+[3.598s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[3.693s] -- Configuring done
+[3.759s] -- Generating done
+[3.779s] -- Build files have been written to: /home/kirill/VNIIA/Projects/black_plat/build/odometry_fus
+[3.808s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake /home/kirill/VNIIA/Projects/black_plat/src/odometry_fus -DCMAKE_INSTALL_PREFIX=/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus
+[3.811s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/odometry_fus -- -j8 -l8
+[3.872s] [ 16%] [32mBuilding CXX object CMakeFiles/odometry_fus_node.dir/src/odometry_fus.cpp.o[0m
+[3.872s] [ 33%] [32mBuilding CXX object CMakeFiles/motion_emulator.dir/src/motion_emulator.cpp.o[0m
+[3.877s] [ 50%] [32mBuilding CXX object CMakeFiles/icp_odometer.dir/src/icp_odometer.cpp.o[0m
+[4.310s] In file included from [01m[K/home/kirill/VNIIA/Projects/black_plat/src/odometry_fus/src/motion_emulator.cpp:9[m[K:
+[4.310s] [01m[K/opt/ros/humble/include/tf2_geometry_msgs/tf2_geometry_msgs/tf2_geometry_msgs.h:35:2:[m[K [01;35m[Kwarning: [m[K#warning This header is obsolete, please include tf2_geometry_msgs/tf2_geometry_msgs.hpp instead [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wcpp-Wcpp]8;;[m[K]
+[4.310s]    35 | #[01;35m[Kwarning[m[K This header is obsolete, please include tf2_geometry_msgs/tf2_geometry_msgs.hpp instead
+[4.310s]       |  [01;35m[K^~~~~~~[m[K
+[14.866s] [ 66%] [32m[1mLinking CXX executable motion_emulator[0m
+[15.488s] [ 66%] Built target motion_emulator
+[17.155s] [ 83%] [32m[1mLinking CXX executable odometry_fus_node[0m
+[17.964s] [ 83%] Built target odometry_fus_node
+[18.864s] [100%] [32m[1mLinking CXX executable icp_odometer[0m
+[19.744s] [100%] Built target icp_odometer
+[19.754s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/odometry_fus -- -j8 -l8
+[19.756s] Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/odometry_fus
+[19.762s] -- Install configuration: ""
+[19.762s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/odometry_fus/odometry_fus_node
+[19.766s] -- Set runtime path of "/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/odometry_fus/odometry_fus_node" to ""
+[19.766s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/odometry_fus/motion_emulator
+[19.768s] -- Set runtime path of "/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/odometry_fus/motion_emulator" to ""
+[19.768s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/odometry_fus/icp_odometer
+[19.770s] -- Set runtime path of "/home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/lib/odometry_fus/icp_odometer" to ""
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/ament_index/resource_index/package_run_dependencies/odometry_fus
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/ament_index/resource_index/parent_prefix_path/odometry_fus
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/environment/ament_prefix_path.sh
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/environment/ament_prefix_path.dsv
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/environment/path.sh
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/environment/path.dsv
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/local_setup.bash
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/local_setup.sh
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/local_setup.zsh
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/local_setup.dsv
+[19.771s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.dsv
+[19.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/ament_index/resource_index/packages/odometry_fus
+[19.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/cmake/ament_cmake_export_dependencies-extras.cmake
+[19.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/cmake/odometry_fusConfig.cmake
+[19.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/cmake/odometry_fusConfig-version.cmake
+[19.772s] -- Installing: /home/kirill/VNIIA/Projects/black_plat/install/odometry_fus/share/odometry_fus/package.xml
+[19.774s] Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/odometry_fus' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --install /home/kirill/VNIIA/Projects/black_plat/build/odometry_fus

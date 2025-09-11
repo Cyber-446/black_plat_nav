@@ -1,0 +1,6 @@
+source;share/t21_teleop/hook/pythonpath.ps1
+source;share/t21_teleop/hook/pythonpath.dsv
+source;share/t21_teleop/hook/pythonpath.sh
+source;share/t21_teleop/hook/ament_prefix_path.ps1
+source;share/t21_teleop/hook/ament_prefix_path.dsv
+source;share/t21_teleop/hook/ament_prefix_path.sh
