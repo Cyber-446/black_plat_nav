@@ -1,0 +1,16 @@
+digraph G {
+"odom" -> "world"[label=" Broadcaster: default_authority\nAverage rate: 50.196\nBuffer length: 4.901\nMost recent transform: 1756119930.072156\nOldest transform: 1756119925.171409\n"];
+"world" -> "imu_link"[label=" Broadcaster: default_authority\nAverage rate: 100.187\nBuffer length: 4.911\nMost recent transform: 1756119930.092542\nOldest transform: 1756119925.18171\n"];
+"base_link" -> "geom_link"[label=" Broadcaster: default_authority\nAverage rate: 15.922\nBuffer length: 4.836\nMost recent transform: 1756119930.037951\nOldest transform: 1756119925.201903\n"];
+"world" -> "base_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "wheel_left_link"[label=" Broadcaster: default_authority\nAverage rate: 15.922\nBuffer length: 4.836\nMost recent transform: 1756119930.037951\nOldest transform: 1756119925.201903\n"];
+"base_link" -> "wheel_right_link"[label=" Broadcaster: default_authority\nAverage rate: 15.922\nBuffer length: 4.836\nMost recent transform: 1756119930.037951\nOldest transform: 1756119925.201903\n"];
+"base_link" -> "big_box_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"big_box_link" -> "camera_bottom_screw_frame"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"camera_bottom_screw_frame" -> "camera_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"big_box_link" -> "lidar_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1756119930.0959253"[ shape=plaintext ] ;
+}->"odom";
+}

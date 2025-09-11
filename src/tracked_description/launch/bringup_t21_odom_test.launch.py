@@ -30,21 +30,37 @@ def generate_launch_description() -> LaunchDescription:
     cm_ns = "/controller_manager"
 
     # Добавление Xsens launch
+    # Добавление Xsens launch с передачей параметров
     xsens_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
-                FindPackageShare('bluespace_ai_xsens_mti_driver'),
-                'launch',
-                'xsens_mti_node.launch.py'
-            ])
-        ])
+                FindPackageShare('bluespace_ai_xsens_mti_driver'), 'launch', 'xsens_mti_node.launch.py'])
+        ]),
+        launch_arguments={
+            # Основные настройки публикации данных
+            'pub_angular_velocity': 'true',      # Включить угловую скорость
+            'pub_acceleration': 'true',          # Включить линейное ускорение
+            'pub_mag': 'false',                  # Отключить магнитометр (если не нужен)
+            'pub_free_acceleration': 'false',    # Отключить свободное ускорение
+            'pub_gnss': 'false',                 # Отключить GNSS данные
+            'pub_twist': 'false',                # Отключить twist
+            'pub_positionLLA': 'false',          # Отключить координаты LLA
+            'pub_transform': 'false',            # Отключить трансформы
+            'pub_dq': 'false',                   # Отключить delta quaternion
+            'pub_dv': 'false',                   # Отключить delta velocity
+        
+            # Другие настройки (опционально)
+            'frame_id': 'imu_link',              # Задать frame_id
+            'scan_for_devices': 'true',          # Автопоиск устройства
+            'device_id': ''                      # Пустой ID - использовать любое устройство
+        }.items()
     )
 
     ekf_config = PathJoinSubstitution([PKG, 'config', 'ekf.yaml'])
     robot_localization_node = Node(
         package='robot_localization',
-        executable='ekf_node',
-        name='ekf_filter_node',
+        executable='ukf_node',
+        name='ukf_filter_node',
         output='screen',
         parameters=[ekf_config],
         remappings=[('odometry/filtered', 'odom')],

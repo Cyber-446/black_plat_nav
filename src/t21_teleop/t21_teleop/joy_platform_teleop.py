@@ -65,8 +65,8 @@ class JoyFullTeleop(Node):
         # Параметры motion emulator
         self.linear_speed = 0.1
         self.angular_speed = 0.5
-        self.position_tolerance = 0.01
-        self.angle_tolerance = 0.02
+        self.position_tolerance = 0.05
+        self.angle_tolerance = 0.05
 
         # Флаг экстренного торможения
         self.emergency_stop = False
@@ -173,16 +173,23 @@ class JoyFullTeleop(Node):
                 direction = 1.0 if self.target_distance > 0 else -1.0
                 twist.linear.x = direction * self.linear_speed
             else:
+                twist.linear.x = 0.0
                 self.motion_active = False
                 self.get_logger().info("Forward motion completed")
         
         elif self.motion_type == 'turn':
-            angle_diff = self.normalize_angle(current_yaw - self.initial_yaw - self.target_angle)
+            # Вычисляем текущий угол поворота относительно начального
+            angle_turned = self.normalize_angle(current_yaw - self.initial_yaw)
             
-            if abs(angle_diff) > self.angle_tolerance:
-                direction = 1.0 if angle_diff < 0 else -1.0
+            # Проверяем, достигли ли целевого угла (с учетом направления)
+            if (self.target_angle > 0 and angle_turned < self.target_angle - self.angle_tolerance) or \
+               (self.target_angle < 0 and angle_turned > self.target_angle + self.angle_tolerance):
+                # Продолжаем поворот
+                direction = 1.0 if self.target_angle > 0 else -1.0
                 twist.angular.z = direction * self.angular_speed
             else:
+                # Полная остановка
+                twist.angular.z = 0.0
                 self.motion_active = False
                 self.get_logger().info("Turn completed")
 

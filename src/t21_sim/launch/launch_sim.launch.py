@@ -165,12 +165,13 @@ def generate_launch_description():
         joint_broad_spawner,
         geom_pos_spawner,
         #odometry_fus_node,
-        robot_localization_node,
+        #robot_localization_node,
         start_rviz_cmd,
         #joystick,
         #twist_mux,
         # start_translate,
         # start_slam,
         # start_nav,
-        start_rtabmap,
+        
+        #start_rtabmap,
     ])
