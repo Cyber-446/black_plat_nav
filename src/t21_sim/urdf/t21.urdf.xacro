@@ -13,7 +13,7 @@
                 topic="/velodyne_points" 
                 organize_cloud="true" 
                 hz="10" 
-                lasers="8"
+                lasers="16"
                 samples="400" 
                 min_range="0.5" 
                 max_range="25.0"    

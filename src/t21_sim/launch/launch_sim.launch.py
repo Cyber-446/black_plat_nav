@@ -164,7 +164,7 @@ def generate_launch_description():
         diff_drive_spawner,
         joint_broad_spawner,
         geom_pos_spawner,
-        odometry_fus_node,
+        #odometry_fus_node,
         #robot_localization_node,
         start_rviz_cmd,
         #joystick,
