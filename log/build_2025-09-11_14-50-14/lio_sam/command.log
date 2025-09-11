@@ -1,2 +1,0 @@
-Invoking command in '/home/kirill/VNIIA/Projects/black_plat/build/lio_sam': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/lio_sam -- -j8 -l8
-Invoked command in '/home/kirill/VNIIA/Projects/black_plat/build/lio_sam' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/kirill/VNIIA/Projects/black_plat/install/t21_teleop:/opt/ros/humble /usr/bin/cmake --build /home/kirill/VNIIA/Projects/black_plat/build/lio_sam -- -j8 -l8

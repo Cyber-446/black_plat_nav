@@ -1,1 +1,0 @@
-xacro;urdf;robot_state_publisher;ros2_control;controller_interface;diff_drive_controller;bluespace_ai_xsens_mti_driver;ament_lint_auto;ament_lint_common

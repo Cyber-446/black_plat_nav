@@ -1,7 +1,0 @@
-[console_scripts]
-drive_test = t21_teleop.drive_test:main
-flipper_teleop = t21_teleop.flipper_teleop:main
-joy_flipper_teleop = t21_teleop.joy_flipper_teleop:main
-joy_full_teleop = t21_teleop.joy_full_teleop:main
-joy_platform_teleop = t21_teleop.joy_platform_teleop:main
-
