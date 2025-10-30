@@ -187,5 +187,5 @@ def generate_launch_description():
         # start_slam,
         # start_nav,
         # start_rtabmap,
-        start_lio_sam,
+        #start_lio_sam,
     ])
