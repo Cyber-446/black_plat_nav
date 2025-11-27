@@ -24,8 +24,8 @@ def generate_launch_description():
                 # оси движения
                 'axis_lin': 1,
                 'axis_ang': 0,
-                'scale_lin': 0.5,
-                'scale_ang': 1.0,
+                'scale_lin': 0.3,
+                'scale_ang': 0.5,
 
                 'deadzone': 0.05
             }]
