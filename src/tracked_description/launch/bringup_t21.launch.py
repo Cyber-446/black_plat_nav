@@ -70,13 +70,41 @@ def generate_launch_description() -> LaunchDescription:
     ]),
     condition=IfCondition(LaunchConfiguration("use_rtabmap"))
     )
+
+    # Добавление Xsens launch
+    # Добавление Xsens launch с передачей параметров
+    xsens_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('bluespace_ai_xsens_mti_driver'), 'launch', 'xsens_mti_node.launch.py'])
+        ]),
+        launch_arguments={
+            # Основные настройки публикации данных
+            'pub_angular_velocity': 'true',      # Включить угловую скорость
+            'pub_acceleration': 'true',          # Включить линейное ускорение
+            'pub_mag': 'false',                  # Отключить магнитометр (если не нужен)
+            'pub_free_acceleration': 'false',    # Отключить свободное ускорение
+            'pub_gnss': 'false',                 # Отключить GNSS данные
+            'pub_twist': 'false',                # Отключить twist
+            'pub_positionLLA': 'false',          # Отключить координаты LLA
+            'pub_transform': 'false',            # Отключить трансформы
+            'pub_dq': 'false',                   # Отключить delta quaternion
+            'pub_dv': 'false',                   # Отключить delta velocity
+        
+            # Другие настройки (опционально)
+            'frame_id': 'imu_link',              # Задать frame_id
+            'scan_for_devices': 'true',          # Автопоиск устройства
+            'device_id': ''                      # Пустой ID - использовать любое устройство
+        }.items()
+    )
+
     
     robot_description = {
         "robot_description": Command([
             FindExecutable(name="xacro"), " ",
-            PathJoinSubstitution([PKG, "urdf", "t21.urdf.xacro"]), " ",
+            PathJoinSubstitution([PKG, "urdf", "tracked_robot.urdf.xacro"]), " ",
             "prefix:=", LaunchConfiguration("prefix"), " ",
-            "use_lidar:=", LaunchConfiguration("sim_lidar")
+            #"use_lidar:=", LaunchConfiguration("sim_lidar")
         ])
     }
 
@@ -142,6 +170,8 @@ def generate_launch_description() -> LaunchDescription:
             condition=IfCondition(LaunchConfiguration("rviz")),
             output="screen"
         ),
+
+        xsens_launch,
     ]
 
     return LaunchDescription([prefix_arg, 
