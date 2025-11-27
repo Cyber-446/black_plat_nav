@@ -66,6 +66,8 @@
 #include <xstypes/xsdatapacket.h>
 
 const char* DEFAULT_FRAME_ID = "imu_link";
+// delete string below if breaks
+const char* DEFAULT_PARENT_ID = "base_link";
 
 class PacketCallback
 {

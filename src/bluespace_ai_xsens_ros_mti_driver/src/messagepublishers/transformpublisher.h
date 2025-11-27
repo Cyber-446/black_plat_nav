@@ -70,10 +70,20 @@ struct TransformPublisher : public PacketCallback
 {
     tf2_ros::TransformBroadcaster tf_broadcaster;
     std::string frame_id = DEFAULT_FRAME_ID;
+    // delete string below if breaks
+    std::string parent_id = DEFAULT_PARENT_ID;
 
     TransformPublisher(rclcpp::Node &node) : tf_broadcaster(node)
-    {
+    {   // delete string below if breaks
+        double x_translation = 0.0;
+        double y_translation = 0.0;
+        double z_translation = 0.0;
+        node.get_parameter("parent_id", parent_id);
+        node.get_parameter("x_translation", x_translation);
+        node.get_parameter("y_translation", y_translation);
+        node.get_parameter("z_translation", z_translation);
         node.get_parameter("frame_id", frame_id);
+
     }
 
     void operator()(const XsDataPacket &packet, rclcpp::Time timestamp)
@@ -85,11 +95,12 @@ struct TransformPublisher : public PacketCallback
             XsQuaternion q = packet.orientationQuaternion();
 
             tf.header.stamp = timestamp;
-            tf.header.frame_id = "world";
+            // change to "world" or other target frame if breaks
+            tf.header.frame_id = parent_id;
             tf.child_frame_id = frame_id;
-            tf.transform.translation.x = 0.0;
-            tf.transform.translation.y = 0.0;
-            tf.transform.translation.z = 0.0;
+            tf.transform.translation.x = x_translation;
+            tf.transform.translation.y = y_translation;
+            tf.transform.translation.z = z_translation;
             tf.transform.rotation.x = q.x();
             tf.transform.rotation.y = q.y();
             tf.transform.rotation.z = q.z();
