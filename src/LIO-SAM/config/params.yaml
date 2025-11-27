@@ -48,6 +48,7 @@
 
     #extrinsicTrans:  [ 0.154,  -0.001, 0.218]
     extrinsicTrans:  [ -0.154,  0.0, -0.251]
+    #extrinsicTrans:  [ 0.0,  0.0, 0.0]
     extrinsicRot:    [1.0,  0.0,  0.0,
                        0.0,  1.0,  0.0,
                        0.0,  0.0, 1.0 ]
