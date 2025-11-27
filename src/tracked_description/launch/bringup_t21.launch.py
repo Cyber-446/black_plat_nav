@@ -94,7 +94,13 @@ def generate_launch_description() -> LaunchDescription:
             # Другие настройки (опционально)
             'frame_id': 'imu_link',              # Задать frame_id
             'scan_for_devices': 'true',          # Автопоиск устройства
-            'device_id': ''                      # Пустой ID - использовать любое устройство
+            'device_id': '',                      # Пустой ID - использовать любое устройство
+
+            # Настройки tf2 для связи СК IMU с СК родительского звена
+            'parent_id': 'big_box_link', 
+            'x_translation': '0.0',
+            'y_translation': '0.08',
+            'z_translation': '0.01',
         }.items()
     )
 
