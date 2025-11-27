@@ -9,4 +9,15 @@ frames_*
 rosbag2_*
 rosgraph.png
 rtabmap_nomap.png
-
+src/imu_calib/
+src/.vscode
+pkg.txt
+maps/
+maps*
+src/USR-DR134-GUI/
+morning_test_oka_setup/
+morning_test_oka_setup.zip
+results/
+src/bluespace_ai_xsens_ros_mti_driver/
+src/direct_lidar_inertial_odometry.zip
+src/velodyne_simulator/
