@@ -22,7 +22,7 @@ def generate_launch_description():
     rsp = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory(package_name), 'launch', 'rsp.launch.py'
-        )]), launch_arguments={'use_sim_time': LaunchConfiguration("sim"), 'use_ros2_control': 'true'}.items()
+        )]), launch_arguments={'use_sim_time': LaunchConfiguration("use_sim_time"), 'use_ros2_control': 'true'}.items()
     )
     
     #joystick = IncludeLaunchDescription(
@@ -44,14 +44,14 @@ def generate_launch_description():
 
     # Пути к файлам запуска
 
-    rviz_config_file = os.path.join(get_package_share_directory(package_name), 'config', 'description.rviz')
-    start_rviz_cmd = Node(
-        package='rviz2',
-        executable='rviz2',
-        arguments=['-d', rviz_config_file],
-        output='screen',
-        parameters=[{'use_sim_time': LaunchConfiguration("sim")}]
-    )
+    # rviz_config_file = os.path.join(get_package_share_directory(package_name), 'config', 'description.rviz')
+    # start_rviz_cmd = Node(
+    #     package='rviz2',
+    #     executable='rviz2',
+    #     arguments=['-d', rviz_config_file],
+    #     output='screen',
+    #     parameters=[{'use_sim_time': LaunchConfiguration("use_sim_time")}]
+    # )
 
     #twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','twist_mux.yaml')
     #twist_mux = Node(
@@ -90,7 +90,7 @@ def generate_launch_description():
                 get_package_share_directory(package_name),
                 "config", "my_controllers.yaml"
             ),
-           {"use_sim_time": LaunchConfiguration("sim")}  # Использование симуляционного времени
+           {"use_sim_time": LaunchConfiguration("use_sim_time")}  # Использование симуляционного времени
         ],
         output="screen",
     )
@@ -123,37 +123,37 @@ def generate_launch_description():
             output='screen',
             parameters=[odometry_fus_config],
     )
+    #TODO add to root launch
+    # start_translate = IncludeLaunchDescription(
+    # PythonLaunchDescriptionSource([
+    #     PathJoinSubstitution([FindPackageShare("t21_navigation"), "launch", "translate.launch.py"])
+    # ]),
+    # launch_arguments={'use_sim_time': LaunchConfiguration('use_sim_time')}.items()
+    # )
 
-    start_translate = IncludeLaunchDescription(
-    PythonLaunchDescriptionSource([
-        PathJoinSubstitution([FindPackageShare("t21_navigation"), "launch", "translate.launch.py"])
-    ]),
-    launch_arguments={'sim': LaunchConfiguration('sim')}.items()
-    )
-
-    start_slam = IncludeLaunchDescription(
-    PythonLaunchDescriptionSource([
-        PathJoinSubstitution([FindPackageShare("t21_navigation"), "launch", "slam.launch.py"])
-    ]),
-    launch_arguments={'sim': LaunchConfiguration('sim')}.items()
-    )
-    start_nav = IncludeLaunchDescription(
-    PythonLaunchDescriptionSource([
-        PathJoinSubstitution([FindPackageShare("t21_navigation"), "launch", "navigation.launch.py"])
-    ]),
-    launch_arguments={'sim': LaunchConfiguration('sim')}.items()
-    )
-    start_rtabmap = IncludeLaunchDescription(
-    PythonLaunchDescriptionSource([
-        PathJoinSubstitution([FindPackageShare("t21_rtabmap"), "launch", "t21_sim_vslam.launch.py"])
-    ]),
-    launch_arguments={'sim': LaunchConfiguration('sim')}.items()
-    )
+    # start_slam = IncludeLaunchDescription(
+    # PythonLaunchDescriptionSource([
+    #     PathJoinSubstitution([FindPackageShare("t21_navigation"), "launch", "slam.launch.py"])
+    # ]),
+    # launch_arguments={'use_sim_time': LaunchConfiguration('use_sim_time')}.items()
+    # )
+    # start_nav = IncludeLaunchDescription(
+    # PythonLaunchDescriptionSource([
+    #     PathJoinSubstitution([FindPackageShare("t21_navigation"), "launch", "navigation.launch.py"])
+    # ]),
+    # launch_arguments={'sim': LaunchConfiguration('sim')}.items()
+    # )
+    # start_rtabmap = IncludeLaunchDescription(
+    # PythonLaunchDescriptionSource([
+    #     PathJoinSubstitution([FindPackageShare("t21_rtabmap"), "launch", "t21_sim_vslam.launch.py"])
+    # ]),
+    # launch_arguments={'sim': LaunchConfiguration('sim')}.items()
+    # )
 
     return LaunchDescription([
 
         DeclareLaunchArgument(
-            'sim',
+            'use_sim_time',
             default_value='true',
             description='Use simulation (Gazebo) clock if true'
         ),
@@ -166,7 +166,7 @@ def generate_launch_description():
         geom_pos_spawner,
         #odometry_fus_node,
         #robot_localization_node,
-        start_rviz_cmd,
+        #start_rviz_cmd,
         #joystick,
         #twist_mux,
         # start_translate,

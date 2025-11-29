@@ -20,6 +20,6 @@ diff_drive_controller:
 
 geom_position_controller:
   ros__parameters:
-    joints:          [geom_joint]
+    joints:          [flipper_joint]
     interface_name:  position
     publish_rate:    10.0        # добавьте, если не было

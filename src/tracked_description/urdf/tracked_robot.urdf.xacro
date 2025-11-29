@@ -6,24 +6,20 @@
   <xacro:property name="scale_big" value="0.001"/>
   <xacro:property name="color_grey"  value="0.6 0.6 0.6 1.0"/>
 
-  <xacro:arg name="prefix" default=""/>
-  <xacro:include filename="$(find tracked_description)/config/t21.ros2_control.xacro"/>
-  <xacro:t21_ros2_control name="t21" prefix="$(arg prefix)"/>
-
   <!-- ──────────────── MACROS ──────────────── -->
   <xacro:macro name="add_link" params="name mesh scale color rpy xyz">
     <link name="${name}">
       <collision>
         <origin rpy="${rpy}" xyz="${xyz}"/>
         <geometry>
-          <mesh filename="package://tracked_description/mesh/${mesh}"
+          <mesh filename="file://$(find tracked_description)/mesh/${mesh}"
                 scale="${scale} ${scale} ${scale}"/>
         </geometry>
       </collision>
       <visual>
         <origin rpy="${rpy}" xyz="${xyz}"/>
         <geometry>
-          <mesh filename="package://tracked_description/mesh/${mesh}"
+          <mesh filename="file://$(find tracked_description)/mesh/${mesh}"
                 scale="${scale} ${scale} ${scale}"/>
         </geometry>
         <material name="Grey">
@@ -33,8 +29,6 @@
     </link>
   </xacro:macro>
 
-  <link name="world"/>
-
   <!-- ──────────────── BASE ──────────────── -->
   <xacro:add_link  name="base_link"
                    mesh="base.stl"
@@ -43,23 +37,17 @@
                    rpy="0 0 0"
                    xyz="0 0 0"/>
 
-  <joint name="base_joint" type="fixed">
-    <parent link="lidar_link"/>
-    <child  link="world"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
-
   <!-- ──────────────── FLIPPER / GEOMETRY ──────────────── -->
-  <xacro:add_link  name="geom_link"
+  <xacro:add_link  name="flipperlink"
                    mesh="fliper.stl"
                    scale="${scale_small}"
                    color="${color_grey}"
                    rpy="0 0 0"
                    xyz="0 0 0"/>
 
-  <joint name="geom_joint" type="revolute">
+  <joint name="flipper_joint" type="revolute">
     <parent link="base_link"/>
-    <child  link="geom_link"/>
+    <child  link="flipper_link"/>
     <origin xyz="0.22513 0.1925 0.07335" rpy="-1.57 4.71239 0"/>
     <axis   xyz="0 0 1"/>
     <limit lower="0.174533" upper="5.93412" effort="1000" velocity="1"/>
@@ -67,24 +55,31 @@
 
   <!-- ──────────────── VIRTUAL JOINTS FOR SPEEDS ──────────────── -->
   <link name="wheel_left_link">
-    <inertial><mass value="1e-6"/><origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertial>
+      <mass value="1e-6"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
     </inertial>
   </link>
+
   <joint name="wheel_left_joint" type="continuous">
-    <parent link="base_link"/><child link="wheel_left_link"/>
+    <parent link="base_link"/>
+    <child link="wheel_left_link"/>
     <origin xyz="0 0.1865 0.065" rpy="0 0 0"/>
     <axis   xyz="0 1 0"/>
   </joint>
 
-
   <link name="wheel_right_link">
-    <inertial><mass value="1e-6"/><origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertial>
+    <mass value="1e-6"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
     </inertial>
   </link>
+  
   <joint name="wheel_right_joint" type="continuous">
-    <parent link="base_link"/><child link="wheel_right_link"/>
+    <parent link="base_link"/>
+    <child link="wheel_right_link"/>
     <origin xyz="0 -0.1865 0.065" rpy="0 0 0"/>
     <axis   xyz="0 1 0"/>
   </joint>
@@ -98,63 +93,8 @@
                    xyz="0 0 0"/>
 
   <joint name="big_box_joint" type="fixed">
-    <parent link="big_box_link"/><child link="base_link"/>
-    <origin xyz="-0.265 0.093 -0.133" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="big_box_link"/>
+    <origin xyz="0.265 -0.093 0.133" rpy="0 0 0"/>
   </joint>
-
-  <link name="lidar_link">
-    <inertial><mass value="1e-6"/><origin xyz="0 0 0" rpy="0 0 0"/>
-      <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
-    </inertial>
-  </link>
-  <joint name="lidar_joint" type="fixed">
-    <parent link="lidar_link"/><child link="big_box_link"/>
-    <origin xyz="0.111 -0.092 -0.118" rpy="0 0 0"/>
-  </joint>
-
-<!--   
-  <xacro:macro name="box_inertia" params="b_mass b_length b_width b_height">
-    <inertial>
-      <mass value="${b_mass}"/>
-      <inertia ixx="${(b_mass/12.0) * (b_width*b_width + b_height*b_height)}"
-               ixy="0" ixz="0"
-               iyy="${(b_mass/12.0) * (b_length*b_length + b_height*b_height)}"
-               iyz="0"
-               izz="${(b_mass/12.0) * (b_length*b_length + b_width*b_width)}"/>
-    </inertial>
-  </xacro:macro>
-
-
-  <xacro:macro name="xsens_link_geometry">
-    <geometry>
-      <box size="0.001 0.001 0.001"/>
-    </geometry>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </xacro:macro>
-
-
-  <link name="imu_link">
-    <visual>
-      <xacro:xsens_link_geometry/>
-      <material name="grey">
-        <color rgba="0.5 0.5 0.5 1"/>
-      </material>
-    </visual>
-    <collision>
-      <xacro:xsens_link_geometry/>
-    </collision>
-    <xacro:box_inertia
-      b_mass="0.1"
-      b_length="0.1"
-      b_width="0.1"
-      b_height="0.1"/>
-  </link>
-
-
-  <joint name="xsens_joint" type="fixed">
-    <parent link="laser_link"/>
-    <child link="imu_link"/>
-    <origin xyz="-0.154,  0.0, -0.251" rpy="0 0 0"/>
-  </joint> -->
-
 </robot>
