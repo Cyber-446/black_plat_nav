@@ -1,10 +1,10 @@
 /**:
   ros__parameters:
 
-    use_sim_time: false
+    use_sim_time: true
     # TF
-    publishOdomToLidarTF: true 
-    publishOdomToBaseTF: false
+    publishOdomToLidarTF: false 
+    publishOdomToBaseTF: true
 
     # Topics
     pointCloudTopic: "/velodyne_points"                   # Point cloud data
