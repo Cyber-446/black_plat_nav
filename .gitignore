@@ -12,4 +12,6 @@ rtabmap_nomap.png
 src/imu_calib/data/
 src/.vscode
 maps/
+chosen_packages/
+output_csv/
 

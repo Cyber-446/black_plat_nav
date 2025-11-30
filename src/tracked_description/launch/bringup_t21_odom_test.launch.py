@@ -29,7 +29,6 @@ def generate_launch_description() -> LaunchDescription:
     yaml_file = PathJoinSubstitution([PKG, "config", "controllers.yaml"])
     cm_ns = "/controller_manager"
 
-    # Добавление Xsens launch
     xsens_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
@@ -40,7 +39,6 @@ def generate_launch_description() -> LaunchDescription:
         ])
     )
 
-    # Добавление odometry fusion node
     odometry_fus_config = PathJoinSubstitution([
         PKG, 'config', 'odometry_fus.yaml'
     ])
@@ -53,7 +51,6 @@ def generate_launch_description() -> LaunchDescription:
     )
 
     nodes = [
-        # публикуем описания робота
         Node(
             package="robot_state_publisher",
             executable="robot_state_publisher",
@@ -61,7 +58,6 @@ def generate_launch_description() -> LaunchDescription:
             output="screen"
         ),
 
-        # запускаем ros2_control
         Node(
             package="controller_manager",
             executable="ros2_control_node",
@@ -69,7 +65,6 @@ def generate_launch_description() -> LaunchDescription:
             output="screen"
         ),
 
-        # бродкастер состояний
         Node(
             package="controller_manager",
             executable="spawner",
@@ -82,7 +77,6 @@ def generate_launch_description() -> LaunchDescription:
             output="screen"
         ),
 
-        # контроллер дифференциального привода
         Node(
             package="controller_manager",
             executable="spawner",
@@ -95,7 +89,6 @@ def generate_launch_description() -> LaunchDescription:
             output="screen"
         ),
 
-        # контроллер флиппера
         Node(
             package="controller_manager",
             executable="spawner",
@@ -108,7 +101,6 @@ def generate_launch_description() -> LaunchDescription:
             output="screen"
         ),
 
-        # RViz
         Node(
             package="rviz2",
             executable="rviz2",
@@ -118,8 +110,7 @@ def generate_launch_description() -> LaunchDescription:
             output="screen"
         ),
 
-        # Добавленные ноды
-        #xsens_launch,
+        xsens_launch,
         #odometry_fus_node,
     ]
 
