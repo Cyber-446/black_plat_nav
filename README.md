@@ -19,7 +19,8 @@
 #  [Описание каталогов ](#оглавление)
 
 ```bash
-t21_ws/src/tracked_description
+t21_ws/src
+/tracked_description
 ├── CMakeLists.txt                # скрипт ament_cmake
 ├── package.xml                   # зависимости
 ├── mesh/                         # STL‑модели
@@ -33,6 +34,17 @@ t21_ws/src/tracked_description
 │   └── rviz.rviz                 # конфигурационный RViz2
 └── src/
     └── dummy.cpp                 # заглушка‑нода
+/LIO_SAM
+├── CMakeLists.txt                # скрипт ament_cmake
+├── package.xml                   # зависимости
+├── launch/
+│   ├── rviz.launch.py            # быстрый запуск визуализации
+│   └── run.launch.py             # запуск программного модуля локализации
+├── config/
+|   ├── params.yaml               # список параметров
+|   ├── robot.urdf.xacro          # urdf описание робота для запуска примера
+│   └── rviz2.rviz                # конфигурационный RViz2
+
 ```
 
 ---
@@ -83,9 +95,8 @@ source install/setup.bash
 # [Запуск модели в RViz2](#оглавление)
 
 ```bash
-ros2 launch tracked_description display.launch.py
+ros2 launch tracked_description display.launch.py 
 ```
-
 В RViz2 вы увидите:
 
 1. base_link — основное гусеничное шасси (серое);
@@ -99,7 +110,7 @@ ros2 launch tracked_description display.launch.py
 ```bash
 ros2 launch tracked_description bringup_t21.launch.py
 ```
-
+Для запуска симуляция необходимо дописать use_sim_time:=True
 Для управления с джойстика запускаем в новом терминале:
 ```bash
 ros2 launch t21_teleop joy_full_teleop.launch.py
@@ -116,4 +127,9 @@ ros2 launch t21_teleop joy_full_teleop.launch.py
 Для работы с пакетом без робота, необходимо запустить эхо-сервер:
 ```bash
 ros2 run tracked_description dummy
+```
+# [Модуль локализации lio_sam](#оглавление)
+Для запуска модуля локализации необходимо после запуска системы управления выполнить в терминале:
+```bash
+ros2 launch lio_sam run.launch.py
 ```
