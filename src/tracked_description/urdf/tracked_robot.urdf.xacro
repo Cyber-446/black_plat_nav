@@ -38,16 +38,16 @@
                    xyz="0 0 0"/>
 
   <!-- ──────────────── FLIPPER / GEOMETRY ──────────────── -->
-  <xacro:add_link  name="flipperlink"
+  <xacro:add_link  name="geom_link"
                    mesh="fliper.stl"
                    scale="${scale_small}"
                    color="${color_grey}"
                    rpy="0 0 0"
                    xyz="0 0 0"/>
 
-  <joint name="flipper_joint" type="revolute">
+  <joint name="geom_joint" type="revolute">
     <parent link="base_link"/>
-    <child  link="flipper_link"/>
+    <child  link="geom_link"/>
     <origin xyz="0.22513 0.1925 0.07335" rpy="-1.57 4.71239 0"/>
     <axis   xyz="0 0 1"/>
     <limit lower="0.174533" upper="5.93412" effort="1000" velocity="1"/>
