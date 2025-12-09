@@ -8,8 +8,8 @@ from launch.substitutions import ThisLaunchFileDir
 def generate_launch_description():
     pkg_name = 't21_cartographer'
     
-    use_sim_time = LaunchConfiguration('use_sim_time', default='true')
-    resolution = LaunchConfiguration('resolution', default='0.02')
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+    resolution = LaunchConfiguration('resolution', default='0.05')
     publish_period_sec = LaunchConfiguration('publish_period_sec', default='1.5')
 
     # Get the package share directory
@@ -34,7 +34,7 @@ def generate_launch_description():
                    '-configuration_basename', configuration_basename],
         remappings=[
                 ( '/points2', '/velodyne_points'),
-                ('/imu', 'imu/data_raw')],
+                ('/imu', 'imu/data')],
         )
 
     cartographer_occupancy_grid_node = Node(

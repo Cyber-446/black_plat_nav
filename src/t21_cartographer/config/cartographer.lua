@@ -22,7 +22,7 @@ options = {
   tracking_frame = "base_link",
   published_frame = "base_link",
   odom_frame = "odom",
-  provide_odom_frame = false,
+  provide_odom_frame = true,
   publish_frame_projected_to_2d = false,
   use_odometry = false,
   use_nav_sat = false,
@@ -31,8 +31,8 @@ options = {
   num_multi_echo_laser_scans = 0,
   num_subdivisions_per_laser_scan = 1,
   num_point_clouds = 1,
-  lookup_transform_timeout_sec = 0.2,
-  submap_publish_period_sec = 0.3,
+  lookup_transform_timeout_sec = 0.5,
+  submap_publish_period_sec = 0.5,
   pose_publish_period_sec = 5e-3,
   trajectory_publish_period_sec = 30e-3,
   rangefinder_sampling_ratio = 1.,
@@ -42,7 +42,7 @@ options = {
   landmarks_sampling_ratio = 1.,
 }
 -- Original defaults
-TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 1
+TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 2
 
 MAP_BUILDER.use_trajectory_builder_3d = true
 MAP_BUILDER.num_background_threads = 4
@@ -57,12 +57,12 @@ POSE_GRAPH.constraint_builder.global_localization_min_score = 0.66
 -- Modifications
 TRAJECTORY_BUILDER_3D.ceres_scan_matcher.translation_weight = 5. 
 
-TRAJECTORY_BUILDER_3D.use_online_correlative_scan_matching = true
+TRAJECTORY_BUILDER_3D.use_online_correlative_scan_matching = false
 TRAJECTORY_BUILDER_3D.imu_gravity_time_constant = .1
 
 -- No point of trying to SLAM over the points on your cart.
 TRAJECTORY_BUILDER_3D.min_range = 1.0
-TRAJECTORY_BUILDER_3D.max_range = 50
+TRAJECTORY_BUILDER_3D.max_range = 20.0
 
 -- These were just my first guess: use more points for SLAMing and adapt a bit for the ranges that are bigger for cars.
 TRAJECTORY_BUILDER_3D.high_resolution_adaptive_voxel_filter.max_length = 5.
