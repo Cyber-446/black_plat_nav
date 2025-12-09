@@ -23,13 +23,13 @@ def generate_launch_description():
             ],
             parameters=[{
                 # # CRITICAL FIX: Override QoS to match RViz2 requirements
-                # 'qos_overrides./scan.publisher.reliability': 'reliable',  # Force RELIABLE
-                # 'qos_overrides./scan.publisher.durability': 'volatile',
-                # 'qos_overrides./scan.publisher.history': 'keep_last',
-                # 'qos_overrides./scan.publisher.depth': 10,
+                'qos_overrides./scan.publisher.reliability': 'reliable',  # Force RELIABLE
+                'qos_overrides./scan.publisher.durability': 'volatile',
+                'qos_overrides./scan.publisher.history': 'keep_last',
+                'qos_overrides./scan.publisher.depth': 10,
                 'use_sim_time': LaunchConfiguration('sim'),  # Explicitly set
-                'allow_undeclared_parameters': False,
-                #'target_frame': 'laserscan',
+                'allow_undeclared_parameters': True,
+                #'target_frame': 'velodyne',
                 #'transform_tolerance': 0.01,
                 'min_height': -0.1,  # Lowered to detect ground obstacles
                 'max_height': 2.0,
