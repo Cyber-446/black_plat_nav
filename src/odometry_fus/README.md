@@ -37,12 +37,19 @@ src/odometry_fus/
 В ноде odometry_fus можно настроить следующие параметры(также есть вариант реализации передачи данных параметров через yaml):
   
   odom_topic (string, default: /diff_drive_controller/odom) - топик колесной одометрии
+  
   imu_topic (string, default: /imu/data) - топик данных IMU
+  
   output_topic (string, default: /odom) - выходной топик сфьюженной одометрии
+  
   child_frame (string, default: base_link) - дочерний фрейм для TF
+  
   world_frame (string, default: odom) - родительский фрейм для TF
+  
   publish_tf (bool, default: true) - публиковать ли TF-трансформации
+  
   min_speed (double, default: 0.001) - минимальная скорость для учета движения
+  
   min_angular_speed (double, default: 0.025) - порог угловой скорости для определения поворота
   
 ---
@@ -53,7 +60,7 @@ src/odometry_fus/
 ```
 Запуск ноды odometry_fus с передачей параметров:
 ```
-ros2 run ваш_пакет odometry_fusion --ros-args \
+ros2 run odometry_fus odometry_fusion --ros-args \
   -p odom_topic:=/wheel_odom \
   -p imu_topic:=/imu_sensor/data \
   -p output_topic:=/fused_odom
@@ -62,7 +69,7 @@ ros2 run ваш_пакет odometry_fusion --ros-args \
 ```
 Запуск ноды motion_emulator для прямолинейного движения вперёд на 2 м и поворота на 45 градусов:
 ```
-  ros2 run ваш_пакет motion_emulator 2.0 45.0
+  ros2 run odometry_fus motion_emulator 2.0 45.0
 ```
 
 ---
