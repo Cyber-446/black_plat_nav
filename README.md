@@ -19,9 +19,9 @@
 
 [LIO-SAM](src/LIO-SAM/README.md) - пакет для запуска SLAM-алгоритма LIO-SAM.
 
-[odometry_fus]
+[odometry_fus] - пакет для получения комплесированной одометрии(ros2_control + IMU) и отправки управляющих команд для прямолинейного движения и поворотов на указанное расстоняние/угол.
 
-[ros2_control]
+[ros2_control] - пакет с hardware для реализации контроллера мобильной платформы с использованием ros2_control.
 
 [t21_cartographer](src/t21_cartographer/README.md) - пакет для запуска SLAM-алгоритма Cartographer.
 
