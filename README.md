@@ -15,6 +15,8 @@
 ---
 #  [Структура проекта](#оглавление)
 
+bash_scripts - директория для bash-скриптов (управления, установки пакетов и т.д.)
+
 [bluespace_ai_xsens_ros_mti_driver](src/bluespace_ai_xsens_ros_mti_driver/README.md) - пакет для запуска драйвера IMU XSENS.
 
 [LIO-SAM](src/LIO-SAM/README.md) - пакет для запуска SLAM-алгоритма LIO-SAM.
@@ -45,7 +47,8 @@ velodyne_simulator - сторонний пакет, содержащий опи�
 
 # [Зависимости](#оглавление)
 
-Будет дополнено
+Устанавливаются при сборке рабочего пространства. Отдельно перечислены при описании каждого из подпроектов. **Для [t21_rtabmap](src/t21_rtabmap/README.md) необходимо провести дополнительные установки - смотреть в описании.**
+
 ---
 
 # [Сборка рабочего пространства](#оглавление)
@@ -57,6 +60,10 @@ cd ~/t21_ws
 
 # клонируем пакет в src/
 git clone https://github.com/qarol46/black_plat.git
+
+# устанавливаем необходимые ros-пакеты 
+chmod +x bash_scripts/install_ros_pkgs.sh
+sudo bash bash_scripts/install_ros_pkgs.sh
 
 # сборка
 source /opt/ros/humble/setup.bash
