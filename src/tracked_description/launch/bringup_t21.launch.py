@@ -19,7 +19,7 @@ def generate_launch_description() -> LaunchDescription:
     )
     rviz_arg   = DeclareLaunchArgument(
         name = "rviz", 
-        default_value="True",
+        default_value="False",
         description="Запускать RViz (True/False)"
     )
     use_lidar_arg  = DeclareLaunchArgument(

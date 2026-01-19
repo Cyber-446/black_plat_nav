@@ -180,31 +180,35 @@ public:
 
     rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr subImu;
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr subOdometry;
+    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr subWheelOdom;  // НОВОЕ
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr pubImuOdometry;
 
     rclcpp::CallbackGroup::SharedPtr callbackGroupImu;
     rclcpp::CallbackGroup::SharedPtr callbackGroupOdom;
 
     bool systemInitialized = false;
+    bool wheelOdomInitialized = false;  // НОВОЕ
 
     gtsam::noiseModel::Diagonal::shared_ptr priorPoseNoise;
     gtsam::noiseModel::Diagonal::shared_ptr priorVelNoise;
     gtsam::noiseModel::Diagonal::shared_ptr priorBiasNoise;
     gtsam::noiseModel::Diagonal::shared_ptr correctionNoise;
     gtsam::noiseModel::Diagonal::shared_ptr correctionNoise2;
+    gtsam::noiseModel::Diagonal::shared_ptr wheelOdomNoise;  // НОВОЕ
     gtsam::Vector noiseModelBetweenBias;
-
 
     gtsam::PreintegratedImuMeasurements *imuIntegratorOpt_;
     gtsam::PreintegratedImuMeasurements *imuIntegratorImu_;
 
     std::deque<sensor_msgs::msg::Imu> imuQueOpt;
     std::deque<sensor_msgs::msg::Imu> imuQueImu;
+    std::deque<nav_msgs::msg::Odometry> wheelOdomQueue;  // НОВОЕ
 
     gtsam::Pose3 prevPose_;
     gtsam::Vector3 prevVel_;
     gtsam::NavState prevState_;
     gtsam::imuBias::ConstantBias prevBias_;
+    gtsam::Pose3 prevWheelPose_;  // НОВОЕ
 
     gtsam::NavState prevStateOdom;
     gtsam::imuBias::ConstantBias prevBiasOdom;
@@ -212,6 +216,7 @@ public:
     bool doneFirstOpt = false;
     double lastImuT_imu = -1;
     double lastImuT_opt = -1;
+    double lastWheelOdomT = -1;  // НОВОЕ
 
     gtsam::ISAM2 optimizer;
     gtsam::NonlinearFactorGraph graphFactors;
@@ -223,6 +228,7 @@ public:
 
     gtsam::Pose3 imu2Lidar = gtsam::Pose3(gtsam::Rot3(1, 0, 0, 0), gtsam::Point3(-extTrans.x(), -extTrans.y(), -extTrans.z()));
     gtsam::Pose3 lidar2Imu = gtsam::Pose3(gtsam::Rot3(1, 0, 0, 0), gtsam::Point3(extTrans.x(), extTrans.y(), extTrans.z()));
+    gtsam::Pose3 wheel2Base;  // НОВОЕ: преобразование колесной одометрии
 
     IMUPreintegration(const rclcpp::NodeOptions & options) :
             ParamServer("lio_sam_imu_preintegration", options)
@@ -245,24 +251,155 @@ public:
             "lio_sam/mapping/odometry_incremental", qos,
             std::bind(&IMUPreintegration::odometryHandler, this, std::placeholders::_1),
             odomOpt);
+        
+        // НОВОЕ: Инициализация колесной одометрии
+        if (wheelOdomEnableFlag) {
+            RCLCPP_INFO(get_logger(), "Wheel odometry ENABLED, subscribing to: %s", wheelTopic.c_str());
+            
+            subWheelOdom = create_subscription<nav_msgs::msg::Odometry>(
+                wheelTopic, qos,
+                std::bind(&IMUPreintegration::wheelOdomHandler, this, std::placeholders::_1),
+                odomOpt);
+            
+            // Инициализация преобразования колесной одометрии
+            wheel2Base = gtsam::Pose3(
+                gtsam::Rot3(extWheelRot),
+                gtsam::Point3(extWheelTrans.x(), extWheelTrans.y(), extWheelTrans.z())
+            );
+            
+            RCLCPP_INFO(get_logger(), "Wheel to base transform: t=[%.3f, %.3f, %.3f]", 
+                       extWheelTrans.x(), extWheelTrans.y(), extWheelTrans.z());
+        } else {
+            RCLCPP_INFO(get_logger(), "Wheel odometry DISABLED");
+        }
 
         pubImuOdometry = create_publisher<nav_msgs::msg::Odometry>(odomTopic+"_incremental", qos_imu);
 
         boost::shared_ptr<gtsam::PreintegrationParams> p = gtsam::PreintegrationParams::MakeSharedU(imuGravity);
-        p->accelerometerCovariance  = gtsam::Matrix33::Identity(3,3) * pow(imuAccNoise, 2); // acc white noise in continuous
-        p->gyroscopeCovariance      = gtsam::Matrix33::Identity(3,3) * pow(imuGyrNoise, 2); // gyro white noise in continuous
-        p->integrationCovariance    = gtsam::Matrix33::Identity(3,3) * pow(1e-4, 2); // error committed in integrating position from velocities
-        gtsam::imuBias::ConstantBias prior_imu_bias((gtsam::Vector(6) << 0, 0, 0, 0, 0, 0).finished());; // assume zero initial bias
+        p->accelerometerCovariance  = gtsam::Matrix33::Identity(3,3) * pow(imuAccNoise, 2);
+        p->gyroscopeCovariance      = gtsam::Matrix33::Identity(3,3) * pow(imuGyrNoise, 2);
+        p->integrationCovariance    = gtsam::Matrix33::Identity(3,3) * pow(1e-4, 2);
+        gtsam::imuBias::ConstantBias prior_imu_bias((gtsam::Vector(6) << 0, 0, 0, 0, 0, 0).finished());
 
-        priorPoseNoise  = gtsam::noiseModel::Diagonal::Sigmas((gtsam::Vector(6) << 1e-2, 1e-2, 1e-2, 1e-2, 1e-2, 1e-2).finished()); // rad,rad,rad,m, m, m
-        priorVelNoise   = gtsam::noiseModel::Isotropic::Sigma(3, 1e4); // m/s
-        priorBiasNoise  = gtsam::noiseModel::Isotropic::Sigma(6, 1e-3); // 1e-2 ~ 1e-3 seems to be good
-        correctionNoise = gtsam::noiseModel::Diagonal::Sigmas((gtsam::Vector(6) << 0.05, 0.05, 0.05, 0.1, 0.1, 0.1).finished()); // rad,rad,rad,m, m, m
-        correctionNoise2 = gtsam::noiseModel::Diagonal::Sigmas((gtsam::Vector(6) << 1, 1, 1, 1, 1, 1).finished()); // rad,rad,rad,m, m, m
+        priorPoseNoise  = gtsam::noiseModel::Diagonal::Sigmas((gtsam::Vector(6) << 1e-2, 1e-2, 1e-2, 1e-2, 1e-2, 1e-2).finished());
+        priorVelNoise   = gtsam::noiseModel::Isotropic::Sigma(3, 1e4);
+        priorBiasNoise  = gtsam::noiseModel::Isotropic::Sigma(6, 1e-3);
+        correctionNoise = gtsam::noiseModel::Diagonal::Sigmas((gtsam::Vector(6) << 0.05, 0.05, 0.05, 0.1, 0.1, 0.1).finished());
+        correctionNoise2 = gtsam::noiseModel::Diagonal::Sigmas((gtsam::Vector(6) << 1, 1, 1, 1, 1, 1).finished());
+        
+        // НОВОЕ: Шум колесной одометрии
+        if (wheelOdomEnableFlag) {
+            wheelOdomNoise = gtsam::noiseModel::Diagonal::Sigmas(
+                (gtsam::Vector(6) << 
+                    wheelOdomNoiseLinear[0], wheelOdomNoiseLinear[1], wheelOdomNoiseLinear[2],
+                    wheelOdomNoiseAngular[0], wheelOdomNoiseAngular[1], wheelOdomNoiseAngular[2]
+                ).finished() * wheelOdomFactorWeight
+            );
+            RCLCPP_INFO(get_logger(), "Wheel odometry noise: linear=[%.3f, %.3f, %.3f], angular=[%.3f, %.3f, %.3f]", 
+                       wheelOdomNoiseLinear[0], wheelOdomNoiseLinear[1], wheelOdomNoiseLinear[2],
+                       wheelOdomNoiseAngular[0], wheelOdomNoiseAngular[1], wheelOdomNoiseAngular[2]);
+        }
+        
         noiseModelBetweenBias = (gtsam::Vector(6) << imuAccBiasN, imuAccBiasN, imuAccBiasN, imuGyrBiasN, imuGyrBiasN, imuGyrBiasN).finished();
         
-        imuIntegratorImu_ = new gtsam::PreintegratedImuMeasurements(p, prior_imu_bias); // setting up the IMU integration for IMU message thread
-        imuIntegratorOpt_ = new gtsam::PreintegratedImuMeasurements(p, prior_imu_bias); // setting up the IMU integration for optimization        
+        imuIntegratorImu_ = new gtsam::PreintegratedImuMeasurements(p, prior_imu_bias);
+        imuIntegratorOpt_ = new gtsam::PreintegratedImuMeasurements(p, prior_imu_bias);
+    }
+
+    // НОВЫЙ метод: обработчик колесной одометрии
+    void wheelOdomHandler(const nav_msgs::msg::Odometry::SharedPtr odomMsg)
+    {
+        if (!wheelOdomEnableFlag) return;
+        
+        std::lock_guard<std::mutex> lock(mtx);
+        
+        // Проверка валидности данных
+        if (!isValidOdometry(*odomMsg)) {
+            RCLCPP_WARN_ONCE(get_logger(), "Invalid wheel odometry data received");
+            return;
+        }
+        
+        wheelOdomQueue.push_back(*odomMsg);
+        
+        // Ограничение размера очереди
+        while (wheelOdomQueue.size() > 200) {
+            wheelOdomQueue.pop_front();
+        }
+        
+        lastWheelOdomT = stamp2Sec(odomMsg->header.stamp);
+    }
+
+    // НОВЫЙ метод: проверка валидности одометрии
+    bool isValidOdometry(const nav_msgs::msg::Odometry& odom)
+    {
+        // Проверка NaN значений
+        if (std::isnan(odom.pose.pose.position.x) || 
+            std::isnan(odom.pose.pose.position.y) || 
+            std::isnan(odom.pose.pose.position.z)) {
+            return false;
+        }
+        
+        // Проверка кватерниона
+        double norm = sqrt(
+            odom.pose.pose.orientation.w * odom.pose.pose.orientation.w +
+            odom.pose.pose.orientation.x * odom.pose.pose.orientation.x +
+            odom.pose.pose.orientation.y * odom.pose.pose.orientation.y +
+            odom.pose.pose.orientation.z * odom.pose.pose.orientation.z
+        );
+        
+        return (fabs(norm - 1.0) < 0.01);
+    }
+
+    // НОВЫЙ метод: получение синхронизированной колесной одометрии
+    bool getSyncedWheelOdom(double timestamp, nav_msgs::msg::Odometry& wheelOdom)
+    {
+        std::lock_guard<std::mutex> lock(mtx);
+        
+        if (wheelOdomQueue.empty()) {
+            return false;
+        }
+        
+        // Поиск ближайшего по времени сообщения
+        double minDiff = std::numeric_limits<double>::max();
+        auto bestIt = wheelOdomQueue.end();
+        
+        for (auto it = wheelOdomQueue.begin(); it != wheelOdomQueue.end(); ++it) {
+            double diff = fabs(stamp2Sec(it->header.stamp) - timestamp);
+            if (diff < minDiff) {
+                minDiff = diff;
+                bestIt = it;
+            }
+        }
+        
+        // Проверка порога синхронизации
+        if (bestIt == wheelOdomQueue.end() || minDiff > wheelOdomTimeThreshold) {
+            if (minDiff > wheelOdomTimeThreshold) {
+                RCLCPP_DEBUG(get_logger(), "Wheel odometry sync diff too large: %.3f > %.3f", 
+                           minDiff, wheelOdomTimeThreshold);
+            }
+            return false;
+        }
+        
+        wheelOdom = *bestIt;
+        return true;
+    }
+
+    // НОВЫЙ метод: преобразование ROS Odometry в GTSAM Pose3
+    gtsam::Pose3 odomMsgToPose3(const nav_msgs::msg::Odometry& odom)
+    {
+        return gtsam::Pose3(
+            gtsam::Rot3::Quaternion(
+                odom.pose.pose.orientation.w,
+                odom.pose.pose.orientation.x,
+                odom.pose.pose.orientation.y,
+                odom.pose.pose.orientation.z
+            ),
+            gtsam::Point3(
+                odom.pose.pose.position.x,
+                odom.pose.pose.position.y,
+                odom.pose.pose.position.z
+            )
+        );
     }
 
     void resetOptimization()
@@ -284,6 +421,12 @@ public:
         lastImuT_imu = -1;
         doneFirstOpt = false;
         systemInitialized = false;
+        wheelOdomInitialized = false;
+        lastWheelOdomT = -1;
+        
+        // Очищаем очередь колесной одометрии
+        std::lock_guard<std::mutex> lock(mtx);
+        wheelOdomQueue.clear();
     }
 
     void odometryHandler(const nav_msgs::msg::Odometry::SharedPtr odomMsg)
@@ -306,7 +449,6 @@ public:
         bool degenerate = (int)odomMsg->pose.covariance[0] == 1 ? true : false;
         gtsam::Pose3 lidarPose = gtsam::Pose3(gtsam::Rot3::Quaternion(r_w, r_x, r_y, r_z), gtsam::Point3(p_x, p_y, p_z));
 
-
         // 0. initialize system
         if (systemInitialized == false)
         {
@@ -323,22 +465,42 @@ public:
                 else
                     break;
             }
+            
             // initial pose
             prevPose_ = lidarPose.compose(lidar2Imu);
             gtsam::PriorFactor<gtsam::Pose3> priorPose(X(0), prevPose_, priorPoseNoise);
             graphFactors.add(priorPose);
+            
             // initial velocity
             prevVel_ = gtsam::Vector3(0, 0, 0);
             gtsam::PriorFactor<gtsam::Vector3> priorVel(V(0), prevVel_, priorVelNoise);
             graphFactors.add(priorVel);
+            
             // initial bias
             prevBias_ = gtsam::imuBias::ConstantBias();
             gtsam::PriorFactor<gtsam::imuBias::ConstantBias> priorBias(B(0), prevBias_, priorBiasNoise);
             graphFactors.add(priorBias);
+            
+            // НОВОЕ: инициализация колесной одометрии
+            if (wheelOdomEnableFlag) {
+                nav_msgs::msg::Odometry wheelOdom;
+                if (getSyncedWheelOdom(currentCorrectionTime, wheelOdom)) {
+                    // Преобразуем в систему координат IMU
+                    gtsam::Pose3 wheelPoseWorld = odomMsgToPose3(wheelOdom);
+                    prevWheelPose_ = wheelPoseWorld.compose(wheel2Base);
+                    wheelOdomInitialized = true;
+                    RCLCPP_INFO(get_logger(), "Wheel odometry initialized at time: %.3f", currentCorrectionTime);
+                } else {
+                    RCLCPP_WARN(get_logger(), "Failed to initialize wheel odometry at time: %.3f", currentCorrectionTime);
+                    wheelOdomInitialized = false;
+                }
+            }
+            
             // add values
             graphValues.insert(X(0), prevPose_);
             graphValues.insert(V(0), prevVel_);
             graphValues.insert(B(0), prevBias_);
+            
             // optimize once
             optimizer.update(graphFactors, graphValues);
             graphFactors.resize(0);
@@ -352,7 +514,6 @@ public:
             return;
         }
 
-
         // reset graph for speed
         if (key == 100)
         {
@@ -360,21 +521,32 @@ public:
             gtsam::noiseModel::Gaussian::shared_ptr updatedPoseNoise = gtsam::noiseModel::Gaussian::Covariance(optimizer.marginalCovariance(X(key-1)));
             gtsam::noiseModel::Gaussian::shared_ptr updatedVelNoise  = gtsam::noiseModel::Gaussian::Covariance(optimizer.marginalCovariance(V(key-1)));
             gtsam::noiseModel::Gaussian::shared_ptr updatedBiasNoise = gtsam::noiseModel::Gaussian::Covariance(optimizer.marginalCovariance(B(key-1)));
+            
             // reset graph
             resetOptimization();
+            
             // add pose
             gtsam::PriorFactor<gtsam::Pose3> priorPose(X(0), prevPose_, updatedPoseNoise);
             graphFactors.add(priorPose);
+            
             // add velocity
             gtsam::PriorFactor<gtsam::Vector3> priorVel(V(0), prevVel_, updatedVelNoise);
             graphFactors.add(priorVel);
+            
             // add bias
             gtsam::PriorFactor<gtsam::imuBias::ConstantBias> priorBias(B(0), prevBias_, updatedBiasNoise);
             graphFactors.add(priorBias);
+            
+            // НОВОЕ: сохраняем состояние колесной одометрии
+            if (wheelOdomEnableFlag && wheelOdomInitialized) {
+                // Можно добавить prior на позу колесной одометрии, если нужно
+            }
+            
             // add values
             graphValues.insert(X(0), prevPose_);
             graphValues.insert(V(0), prevVel_);
             graphValues.insert(B(0), prevBias_);
+            
             // optimize once
             optimizer.update(graphFactors, graphValues);
             graphFactors.resize(0);
@@ -382,7 +554,6 @@ public:
 
             key = 1;
         }
-
 
         // 1. integrate imu data and optimize
         while (!imuQueOpt.empty())
@@ -403,35 +574,82 @@ public:
             else
                 break;
         }
+        
         // add imu factor to graph
         const gtsam::PreintegratedImuMeasurements& preint_imu = dynamic_cast<const gtsam::PreintegratedImuMeasurements&>(*imuIntegratorOpt_);
         gtsam::ImuFactor imu_factor(X(key - 1), V(key - 1), X(key), V(key), B(key - 1), preint_imu);
         graphFactors.add(imu_factor);
+        
         // add imu bias between factor
         graphFactors.add(gtsam::BetweenFactor<gtsam::imuBias::ConstantBias>(B(key - 1), B(key), gtsam::imuBias::ConstantBias(),
                          gtsam::noiseModel::Diagonal::Sigmas(sqrt(imuIntegratorOpt_->deltaTij()) * noiseModelBetweenBias)));
+        
         // add pose factor
         gtsam::Pose3 curPose = lidarPose.compose(lidar2Imu);
         gtsam::PriorFactor<gtsam::Pose3> pose_factor(X(key), curPose, degenerate ? correctionNoise2 : correctionNoise);
         graphFactors.add(pose_factor);
+        
+        // НОВОЕ: добавление фактора колесной одометрии
+        if (wheelOdomEnableFlag && wheelOdomInitialized) {
+            nav_msgs::msg::Odometry wheelOdom;
+            if (getSyncedWheelOdom(currentCorrectionTime, wheelOdom)) {
+                gtsam::Pose3 currentWheelPoseWorld = odomMsgToPose3(wheelOdom);
+                gtsam::Pose3 currentWheelPose = currentWheelPoseWorld.compose(wheel2Base);
+                
+                // Вычисление относительного движения по колесной одометрии
+                gtsam::Pose3 wheelDelta = prevWheelPose_.between(currentWheelPose);
+                
+                // Добавление фактора только если есть значительное движение
+                double translationNorm = wheelDelta.translation().norm();
+                double rotationNorm = wheelDelta.rotation().rpy().norm();
+                
+                if (translationNorm > 0.001 || rotationNorm > 0.001) {
+                    if (wheelOdomEnableFlag && wheelOdomInitialized && wheelOdomNoise) {
+                        graphFactors.add(gtsam::BetweenFactor<gtsam::Pose3>(
+                            X(key - 1), X(key), wheelDelta, wheelOdomNoise
+                        ));
+                    }
+                    
+                    // Отладочная информация
+                    static int wheelFactorCount = 0;
+                    if (++wheelFactorCount % 100 == 0) {
+                        RCLCPP_DEBUG(get_logger(), "Wheel factor #%d: dt=%.3f, dx=%.3f, dθ=%.3f", 
+                                   wheelFactorCount, currentCorrectionTime - lastWheelOdomT,
+                                   translationNorm, rotationNorm);
+                    }
+                } else {
+                    RCLCPP_DEBUG(get_logger(), "Wheel motion too small, skipping factor");
+                }
+                
+                prevWheelPose_ = currentWheelPose;
+                lastWheelOdomT = stamp2Sec(wheelOdom.header.stamp);
+            } else {
+                RCLCPP_DEBUG(get_logger(), "No synced wheel odometry at time: %.3f", currentCorrectionTime);
+            }
+        }
+        
         // insert predicted values
         gtsam::NavState propState_ = imuIntegratorOpt_->predict(prevState_, prevBias_);
         graphValues.insert(X(key), propState_.pose());
         graphValues.insert(V(key), propState_.v());
         graphValues.insert(B(key), prevBias_);
+        
         // optimize
         optimizer.update(graphFactors, graphValues);
         optimizer.update();
         graphFactors.resize(0);
         graphValues.clear();
+        
         // Overwrite the beginning of the preintegration for the next step.
         gtsam::Values result = optimizer.calculateEstimate();
         prevPose_  = result.at<gtsam::Pose3>(X(key));
         prevVel_   = result.at<gtsam::Vector3>(V(key));
         prevState_ = gtsam::NavState(prevPose_, prevVel_);
         prevBias_  = result.at<gtsam::imuBias::ConstantBias>(B(key));
+        
         // Reset the optimization preintegration object.
         imuIntegratorOpt_->resetIntegrationAndSetBias(prevBias_);
+        
         // check optimization
         if (failureDetection(prevVel_, prevBias_))
         {
@@ -439,10 +657,10 @@ public:
             return;
         }
 
-
         // 2. after optiization, re-propagate imu odometry preintegration
         prevStateOdom = prevState_;
         prevBiasOdom  = prevBias_;
+        
         // first pop imu message older than current correction data
         double lastImuQT = -1;
         while (!imuQueImu.empty() && stamp2Sec(imuQueImu.front().header.stamp) < currentCorrectionTime - delta_t)
@@ -450,11 +668,13 @@ public:
             lastImuQT = stamp2Sec(imuQueImu.front().header.stamp);
             imuQueImu.pop_front();
         }
+        
         // repropogate
         if (!imuQueImu.empty())
         {
             // reset bias use the newly optimized bias
             imuIntegratorImu_->resetIntegrationAndSetBias(prevBiasOdom);
+            
             // integrate imu message from the beginning of this optimization
             for (int i = 0; i < (int)imuQueImu.size(); ++i)
             {

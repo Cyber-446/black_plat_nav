@@ -1,7 +1,7 @@
 /**:
   ros__parameters:
 
-    use_sim_time: false
+    use_sim_time: true
     # TF
     publishOdomToLidarTF: false 
     publishOdomToBaseTF: true
@@ -98,3 +98,28 @@
     globalMapVisualizationSearchRadius: 50.0    # meters, global map visualization radius
     globalMapVisualizationPoseDensity: 10.0       # meters, global map visualization keyframe density
     globalMapVisualizationLeafSize: 1.0           # meters, global map visualization cloud density
+
+    #######################################################################
+    # WHEEL ODOMETRY SETTINGS - НОВЫЕ ПАРАМЕТРЫ
+    #######################################################################
+    
+    # Wheel Odometry Enable/Disable
+    wheelOdomEnableFlag: false                    # включить колесную одометрию
+    
+    # Wheel Odometry Topic
+    wheelTopic: "/diff_drive_controller/odom"   # топик колесной одометрии из ros2_control
+    
+    # Time Synchronization
+    wheelOdomTimeThreshold: 0.1                  # максимальная разница времени для синхронизации (сек)
+    
+    # Extrinsic Calibration (wheel odometry frame to base_link)
+    # По умолчанию: совпадает с base_link
+    extrinsicWheelTranslation: [0.0, 0.0, 0.0]   # смещение x, y, z в метрах
+    extrinsicWheelRotation: [1.0, 0.0, 0.0, 0.0] # кватернион (w, x, y, z)
+    
+    # Noise Model (настроить под вашу систему)
+    wheelOdomNoiseLinear: [0.1, 0.1, 0.1]       # шум по x, y, z (м)
+    wheelOdomNoiseAngular: [0.05, 0.05, 0.05]   # шум по roll, pitch, yaw (рад)
+    
+    # Factor Weight (регулировка влияния)
+    wheelOdomFactorWeight: 0.2                   # вес фактора колесной одометрии

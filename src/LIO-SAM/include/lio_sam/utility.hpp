@@ -18,6 +18,11 @@
 
 #include <opencv2/opencv.hpp>
 
+//#include <gtsam/nonlinear/NonlinearFactor.h>
+//#include <gtsam/geometry/Pose3.h>
+//#include <gtsam/slam/BetweenFactor.h>
+//#include <gtsam/inference/Key.h>
+
 #include <pcl/kdtree/kdtree_flann.h>  // pcl include kdtree_flann throws error if PCL_NO_PRECOMPILE
                                       // is defined before
 #define PCL_NO_PRECOMPILE
@@ -155,6 +160,20 @@ public:
     // TF
     bool publishOdomToLidarTF;
     bool publishOdomToBaseTF;
+
+    // Wheel Odometry Parameters
+    bool wheelOdomEnableFlag;
+    std::string wheelTopic;
+    double wheelOdomTimeThreshold;
+    std::vector<double> extrinsicWheelTranslation;
+    std::vector<double> extrinsicWheelRotation;
+    std::vector<double> wheelOdomNoiseLinear;
+    std::vector<double> wheelOdomNoiseAngular;
+    double wheelOdomFactorWeight;
+    
+    // Wheel odometry transformation
+    Eigen::Vector3d extWheelTrans;
+    Eigen::Quaterniond extWheelRot;
 
     ParamServer(std::string node_name, const rclcpp::NodeOptions & options) : Node(node_name, options)
     {
@@ -317,6 +336,49 @@ public:
         declare_parameter("publishOdomToBaseTF", true);
         get_parameter("publishOdomToBaseTF", publishOdomToBaseTF);
 
+        // Wheel Odometry Parameters
+        declare_parameter("wheelOdomEnableFlag", false);
+        get_parameter("wheelOdomEnableFlag", wheelOdomEnableFlag);
+        
+        declare_parameter("wheelTopic", "/diff_drive_controller/odom");
+        get_parameter("wheelTopic", wheelTopic);
+        
+        declare_parameter("wheelOdomTimeThreshold", 0.1);
+        get_parameter("wheelOdomTimeThreshold", wheelOdomTimeThreshold);
+        
+        std::vector<double> defaultWheelTrans = {0.0, 0.0, 0.0};
+        declare_parameter("extrinsicWheelTranslation", defaultWheelTrans);
+        get_parameter("extrinsicWheelTranslation", extrinsicWheelTranslation);
+        
+        std::vector<double> defaultWheelRot = {1.0, 0.0, 0.0, 0.0};
+        declare_parameter("extrinsicWheelRotation", defaultWheelRot);
+        get_parameter("extrinsicWheelRotation", extrinsicWheelRotation);
+        
+        std::vector<double> defaultWheelNoiseLinear = {0.1, 0.1, 0.1};
+        declare_parameter("wheelOdomNoiseLinear", defaultWheelNoiseLinear);
+        get_parameter("wheelOdomNoiseLinear", wheelOdomNoiseLinear);
+        
+        std::vector<double> defaultWheelNoiseAngular = {0.05, 0.05, 0.05};
+        declare_parameter("wheelOdomNoiseAngular", defaultWheelNoiseAngular);
+        get_parameter("wheelOdomNoiseAngular", wheelOdomNoiseAngular);
+        
+        declare_parameter("wheelOdomFactorWeight", 1.0);
+        get_parameter("wheelOdomFactorWeight", wheelOdomFactorWeight);
+        
+        // Initialize wheel odometry transformation
+        extWheelTrans = Eigen::Vector3d(
+            extrinsicWheelTranslation[0],
+            extrinsicWheelTranslation[1],
+            extrinsicWheelTranslation[2]
+        );
+        
+        extWheelRot = Eigen::Quaterniond(
+            extrinsicWheelRotation[0],  // w
+            extrinsicWheelRotation[1],  // x
+            extrinsicWheelRotation[2],  // y
+            extrinsicWheelRotation[3]   // z
+        );
+
         usleep(100);
     }
 
@@ -472,4 +534,79 @@ auto qos_lidar = rclcpp::QoS(
     ),
     qos_profile_lidar);
 
-#endif
+/*#ifndef WHEEL_ODOMETRY_FACTOR_HPP
+#define WHEEL_ODOMETRY_FACTOR_HPP */
+
+/**
+ * Factor for wheel odometry measurements between two poses
+ */
+/*class WheelOdometryFactor : public gtsam::NoiseModelFactor2<gtsam::Pose3, gtsam::Pose3> {
+private:
+    gtsam::Pose3 measured_;
+
+public:
+    // Конструктор
+    WheelOdometryFactor(gtsam::Key key1, 
+                       gtsam::Key key2,
+                       const gtsam::Pose3& measured,
+                       const gtsam::SharedNoiseModel& model)
+        : gtsam::NoiseModelFactor2<gtsam::Pose3, gtsam::Pose3>(model, key1, key2),
+          measured_(measured) {}
+
+    // Деструктор
+    virtual ~WheelOdometryFactor() = default;
+
+    // Вычисление ошибки
+    gtsam::Vector evaluateError(const gtsam::Pose3& pose1,
+                               const gtsam::Pose3& pose2,
+                               boost::optional<gtsam::Matrix&> H1 = boost::none,
+                               boost::optional<gtsam::Matrix&> H2 = boost::none) const override {
+        
+        // Предсказанное преобразование между позами
+        gtsam::Pose3 predicted = pose1.between(pose2);
+        
+        // Ошибка между измеренным и предсказанным
+        gtsam::Pose3 errorPose = measured_.between(predicted);
+        
+        // Преобразование ошибки в вектор
+        gtsam::Vector6 error = gtsam::Pose3::Logmap(errorPose);
+        
+        // Простые якобианы (можно улучшить при необходимости)
+        if (H1) {
+            *H1 = -gtsam::Matrix66::Identity();
+        }
+        if (H2) {
+            *H2 = gtsam::Matrix66::Identity();
+        }
+        
+        return error;
+    }
+
+    // Клонирование фактора
+    virtual gtsam::NonlinearFactor::shared_ptr clone() const override {
+        return boost::static_pointer_cast<gtsam::NonlinearFactor>(
+            gtsam::NonlinearFactor::shared_ptr(new WheelOdometryFactor(*this)));
+    }
+
+    // Вывод информации
+    virtual void print(const std::string& s = "", 
+                       const gtsam::KeyFormatter& keyFormatter = gtsam::DefaultKeyFormatter) const override {
+        std::cout << s << "WheelOdometryFactor("
+                  << keyFormatter(key1()) << "," << keyFormatter(key2()) << ")" << std::endl;
+        measured_.print("  Measured: ");
+    }
+
+private:
+    // Для сериализации
+    friend class boost::serialization::access;
+    template<class ARCHIVE>
+    void serialize(ARCHIVE & ar, const unsigned int version) {
+        ar & boost::serialization::make_nvp("NoiseModelFactor2",
+            boost::serialization::base_object<gtsam::NoiseModelFactor2<gtsam::Pose3, gtsam::Pose3>>(*this));
+        ar & BOOST_SERIALIZATION_NVP(measured_);
+    }
+};
+
+#endif */
+
+#endif // _UTILITY_LIDAR_ODOMETRY_H_
