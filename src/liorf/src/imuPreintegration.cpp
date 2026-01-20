@@ -1,4 +1,4 @@
-#include "utility.hpp"
+#include "utility.h"
 
 #include <gtsam/geometry/Rot3.h>
 #include <gtsam/geometry/Pose3.h>
@@ -28,59 +28,62 @@ public:
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr subImuOdometry;
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr subLaserOdometry;
 
-    rclcpp::CallbackGroup::SharedPtr callbackGroupImuOdometry;
-    rclcpp::CallbackGroup::SharedPtr callbackGroupLaserOdometry;
-
     rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr pubImuOdometry;
     rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr pubImuPath;
 
-    Eigen::Isometry3d lidarOdomAffine;
-    Eigen::Isometry3d imuOdomAffineFront;
-    Eigen::Isometry3d imuOdomAffineBack;
+    Eigen::Affine3f lidarOdomAffine;
+    Eigen::Affine3f imuOdomAffineFront;
+    Eigen::Affine3f imuOdomAffineBack;
 
     std::shared_ptr<tf2_ros::Buffer> tfBuffer;
-    std::shared_ptr<tf2_ros::TransformBroadcaster> tfBroadcaster;
     std::shared_ptr<tf2_ros::TransformListener> tfListener;
+    std::shared_ptr<tf2_ros::TransformBroadcaster> tfMap2Odom;
+    std::shared_ptr<tf2_ros::TransformBroadcaster> tfOdom2BaseLink;
     tf2::Stamped<tf2::Transform> lidar2Baselink;
 
     double lidarOdomTime = -1;
-    deque<nav_msgs::msg::Odometry> imuOdomQueue;
+    std::deque<nav_msgs::msg::Odometry> imuOdomQueue;
 
-    TransformFusion(const rclcpp::NodeOptions & options) : ParamServer("lio_sam_transformFusion", options)
+    TransformFusion(const rclcpp::NodeOptions & options) : ParamServer("liorf_transformFusion", options)
     {
         tfBuffer = std::make_shared<tf2_ros::Buffer>(get_clock());
         tfListener = std::make_shared<tf2_ros::TransformListener>(*tfBuffer);
 
-        callbackGroupImuOdometry = create_callback_group(
-            rclcpp::CallbackGroupType::MutuallyExclusive);
-        callbackGroupLaserOdometry = create_callback_group(
-            rclcpp::CallbackGroupType::MutuallyExclusive);
+        tfMap2Odom = std::make_unique<tf2_ros::TransformBroadcaster>(this);
+        tfOdom2BaseLink = std::make_unique<tf2_ros::TransformBroadcaster>(this);
 
-        auto imuOdomOpt = rclcpp::SubscriptionOptions();
-        imuOdomOpt.callback_group = callbackGroupImuOdometry;
-        auto laserOdomOpt = rclcpp::SubscriptionOptions();
-        laserOdomOpt.callback_group = callbackGroupLaserOdometry;
+        if(lidarFrame != baselinkFrame)
+        {
+            try
+            {
+                tf2::fromMsg(tfBuffer->lookupTransform(
+                    lidarFrame, baselinkFrame, rclcpp::Time(0)), lidar2Baselink);
+            }
+            catch (const tf2::TransformException& ex)
+            {
+                RCLCPP_ERROR(get_logger(), "%s", ex.what());
+            }
+        }
 
-        subLaserOdometry = create_subscription<nav_msgs::msg::Odometry>(
-            "lio_sam/mapping/odometry", qos,
-            std::bind(&TransformFusion::lidarOdometryHandler, this, std::placeholders::_1),
-            laserOdomOpt);
-        subImuOdometry = create_subscription<nav_msgs::msg::Odometry>(
-            odomTopic+"_incremental", qos_imu,
-            std::bind(&TransformFusion::imuOdometryHandler, this, std::placeholders::_1),
-            imuOdomOpt);
+        subLaserOdometry = create_subscription<nav_msgs::msg::Odometry>("liorf/mapping/odometry", QosPolicy(history_policy, reliability_policy), 
+                    std::bind(&TransformFusion::lidarOdometryHandler, this, std::placeholders::_1));
 
-        pubImuOdometry = create_publisher<nav_msgs::msg::Odometry>(odomTopic, qos_imu);
-        pubImuPath = create_publisher<nav_msgs::msg::Path>("lio_sam/imu/path", qos);
+        subImuOdometry = create_subscription<nav_msgs::msg::Odometry>(odomTopic+"_incremental", QosPolicy(history_policy, reliability_policy),
+                    std::bind(&TransformFusion::imuOdometryHandler, this, std::placeholders::_1));
 
-        tfBroadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(this);
+        pubImuOdometry = create_publisher<nav_msgs::msg::Odometry>(odomTopic, QosPolicy(history_policy, reliability_policy));
+        pubImuPath = create_publisher<nav_msgs::msg::Path>("liorf/imu/path", QosPolicy(history_policy, reliability_policy));
     }
 
-    Eigen::Isometry3d odom2affine(nav_msgs::msg::Odometry odom)
+    Eigen::Affine3f odom2affine(const nav_msgs::msg::Odometry& odom)
     {
-        tf2::Transform t;
-        tf2::fromMsg(odom.pose.pose, t);
-        return tf2::transformToEigen(tf2::toMsg(t));
+        double x, y, z, roll, pitch, yaw;
+        x = odom.pose.pose.position.x;
+        y = odom.pose.pose.position.y;
+        z = odom.pose.pose.position.z;
+        tf2::Quaternion orientation(odom.pose.pose.orientation.x, odom.pose.pose.orientation.y, odom.pose.pose.orientation.z, odom.pose.pose.orientation.w);
+        tf2::Matrix3x3(orientation).getRPY(roll, pitch, yaw);
+        return pcl::getTransformation(x, y, z, roll, pitch, yaw);
     }
 
     void lidarOdometryHandler(const nav_msgs::msg::Odometry::SharedPtr odomMsg)
@@ -89,11 +92,16 @@ public:
 
         lidarOdomAffine = odom2affine(*odomMsg);
 
-        lidarOdomTime = stamp2Sec(odomMsg->header.stamp);
+        lidarOdomTime = ROS_TIME(odomMsg->header.stamp);
     }
 
     void imuOdometryHandler(const nav_msgs::msg::Odometry::SharedPtr odomMsg)
     {
+        // static tf
+        tf2::Quaternion quat_tf;
+        rclcpp::Time t(static_cast<uint32_t>(lidarOdomTime * 1e9));
+        tf2::TimePoint time_point = tf2_ros::fromRclcpp(t);
+
         std::lock_guard<std::mutex> lock(mtx);
 
         imuOdomQueue.push_back(*odomMsg);
@@ -103,55 +111,61 @@ public:
             return;
         while (!imuOdomQueue.empty())
         {
-            if (stamp2Sec(imuOdomQueue.front().header.stamp) <= lidarOdomTime)
+            if (ROS_TIME(imuOdomQueue.front().header.stamp) <= lidarOdomTime)
                 imuOdomQueue.pop_front();
             else
                 break;
         }
-        Eigen::Isometry3d imuOdomAffineFront = odom2affine(imuOdomQueue.front());
-        Eigen::Isometry3d imuOdomAffineBack = odom2affine(imuOdomQueue.back());
-        Eigen::Isometry3d imuOdomAffineIncre = imuOdomAffineFront.inverse() * imuOdomAffineBack;
-        Eigen::Isometry3d imuOdomAffineLast = lidarOdomAffine * imuOdomAffineIncre;
-        auto t = tf2::eigenToTransform(imuOdomAffineLast);
-        tf2::Stamped<tf2::Transform> tCur;
-        tf2::convert(t, tCur);
-
+        if (imuOdomQueue.empty())
+            return;
+            
+        Eigen::Affine3f imuOdomAffineFront = odom2affine(imuOdomQueue.front());
+        Eigen::Affine3f imuOdomAffineBack = odom2affine(imuOdomQueue.back());
+        Eigen::Affine3f imuOdomAffineIncre = imuOdomAffineFront.inverse() * imuOdomAffineBack;
+        Eigen::Affine3f imuOdomAffineLast = lidarOdomAffine * imuOdomAffineIncre;
+        float x, y, z, roll, pitch, yaw;
+        pcl::getTranslationAndEulerAngles(imuOdomAffineLast, x, y, z, roll, pitch, yaw);
+        
         // publish latest odometry
         nav_msgs::msg::Odometry laserOdometry = imuOdomQueue.back();
-        laserOdometry.pose.pose.position.x = t.transform.translation.x;
-        laserOdometry.pose.pose.position.y = t.transform.translation.y;
-        laserOdometry.pose.pose.position.z = t.transform.translation.z;
-        laserOdometry.pose.pose.orientation = t.transform.rotation;
+        laserOdometry.pose.pose.position.x = x;
+        laserOdometry.pose.pose.position.y = y;
+        laserOdometry.pose.pose.position.z = z;
+        quat_tf.setRPY(roll, pitch, yaw);
+        geometry_msgs::msg::Quaternion quat_msg;
+        tf2::convert(quat_tf, quat_msg);
+        laserOdometry.pose.pose.orientation = quat_msg;
         pubImuOdometry->publish(laserOdometry);
 
         // publish tf
+        tf2::Transform tCur(tf2::Quaternion(laserOdometry.pose.pose.orientation.x, laserOdometry.pose.pose.orientation.y, laserOdometry.pose.pose.orientation.z, laserOdometry.pose.pose.orientation.w), 
+                                tf2::Vector3(laserOdometry.pose.pose.position.x, laserOdometry.pose.pose.position.y, laserOdometry.pose.pose.position.z));
+        
         if(lidarFrame != baselinkFrame)
         {
             try
             {
                 tf2::fromMsg(tfBuffer->lookupTransform(
                     lidarFrame, baselinkFrame, rclcpp::Time(0)), lidar2Baselink);
+                tCur = tCur * lidar2Baselink;
             }
-            catch (tf2::TransformException ex)
+            catch (const tf2::TransformException& ex)  // Исправлено: ловим по ссылке
             {
-                RCLCPP_ERROR(get_logger(), "%s", ex.what());
+                // RCLCPP_ERROR(get_logger(), "%s", ex.what()); // Закомментировано по вашему требованию
             }
-            tf2::Stamped<tf2::Transform> tb(
-                tCur * lidar2Baselink, tf2_ros::fromMsg(odomMsg->header.stamp), odometryFrame);
-            tCur = tb;
         }
-        if (publishOdomToBaseTF)
-        {
-            geometry_msgs::msg::TransformStamped ts;
-            tf2::convert(tCur, ts);
-            ts.child_frame_id = baselinkFrame;
-            tfBroadcaster->sendTransform(ts);
-        }
-
+        
+        // Используем существующий tfOdom2BaseLink вместо tfBroadcaster
+        tf2::Stamped<tf2::Transform> temp_odom_to_base(tCur, time_point, odometryFrame);
+        geometry_msgs::msg::TransformStamped trans_odom_to_base_link;
+        tf2::convert(temp_odom_to_base, trans_odom_to_base_link);
+        trans_odom_to_base_link.child_frame_id = baselinkFrame;
+        tfOdom2BaseLink->sendTransform(trans_odom_to_base_link);
+        
         // publish IMU path
         static nav_msgs::msg::Path imuPath;
         static double last_path_time = -1;
-        double imuTime = stamp2Sec(imuOdomQueue.back().header.stamp);
+        double imuTime = ROS_TIME(imuOdomQueue.back().header.stamp);
         if (imuTime - last_path_time > 0.1)
         {
             last_path_time = imuTime;
@@ -160,7 +174,7 @@ public:
             pose_stamped.header.frame_id = odometryFrame;
             pose_stamped.pose = laserOdometry.pose.pose;
             imuPath.poses.push_back(pose_stamped);
-            while(!imuPath.poses.empty() && stamp2Sec(imuPath.poses.front().header.stamp) < lidarOdomTime - 1.0)
+            while(!imuPath.poses.empty() && ROS_TIME(imuPath.poses.front().header.stamp) < lidarOdomTime - 1.0)
                 imuPath.poses.erase(imuPath.poses.begin());
             if (pubImuPath->get_subscription_count() != 0)
             {
@@ -180,10 +194,8 @@ public:
 
     rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr subImu;
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr subOdometry;
-    rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr pubImuOdometry;
 
-    rclcpp::CallbackGroup::SharedPtr callbackGroupImu;
-    rclcpp::CallbackGroup::SharedPtr callbackGroupOdom;
+    rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr pubImuOdometry;
 
     bool systemInitialized = false;
 
@@ -220,33 +232,22 @@ public:
     const double delta_t = 0;
 
     int key = 1;
-
+    
+    // T_bl: tramsform points from lidar frame to imu frame 
     gtsam::Pose3 imu2Lidar = gtsam::Pose3(gtsam::Rot3(1, 0, 0, 0), gtsam::Point3(-extTrans.x(), -extTrans.y(), -extTrans.z()));
+    // T_lb: tramsform points from imu frame to lidar frame
     gtsam::Pose3 lidar2Imu = gtsam::Pose3(gtsam::Rot3(1, 0, 0, 0), gtsam::Point3(extTrans.x(), extTrans.y(), extTrans.z()));
 
     IMUPreintegration(const rclcpp::NodeOptions & options) :
-            ParamServer("lio_sam_imu_preintegration", options)
+            ParamServer("liorf_imu_preintegration", options)
     {
-        callbackGroupImu = create_callback_group(
-            rclcpp::CallbackGroupType::MutuallyExclusive);
-        callbackGroupOdom = create_callback_group(
-            rclcpp::CallbackGroupType::MutuallyExclusive);
+        subImu = create_subscription<sensor_msgs::msg::Imu>(imuTopic, QosPolicy(history_policy, reliability_policy), 
+                    std::bind(&IMUPreintegration::imuHandler, this, std::placeholders::_1));
 
-        auto imuOpt = rclcpp::SubscriptionOptions();
-        imuOpt.callback_group = callbackGroupImu;
-        auto odomOpt = rclcpp::SubscriptionOptions();
-        odomOpt.callback_group = callbackGroupOdom;
+        subOdometry = create_subscription<nav_msgs::msg::Odometry>("liorf/mapping/odometry_incremental", QosPolicy(history_policy, reliability_policy),
+                    std::bind(&IMUPreintegration::odometryHandler, this, std::placeholders::_1));
 
-        subImu = create_subscription<sensor_msgs::msg::Imu>(
-            imuTopic, qos_imu,
-            std::bind(&IMUPreintegration::imuHandler, this, std::placeholders::_1),
-            imuOpt);
-        subOdometry = create_subscription<nav_msgs::msg::Odometry>(
-            "lio_sam/mapping/odometry_incremental", qos,
-            std::bind(&IMUPreintegration::odometryHandler, this, std::placeholders::_1),
-            odomOpt);
-
-        pubImuOdometry = create_publisher<nav_msgs::msg::Odometry>(odomTopic+"_incremental", qos_imu);
+        pubImuOdometry = create_publisher<nav_msgs::msg::Odometry>(odomTopic+"_incremental", QosPolicy(history_policy, reliability_policy));
 
         boost::shared_ptr<gtsam::PreintegrationParams> p = gtsam::PreintegrationParams::MakeSharedU(imuGravity);
         p->accelerometerCovariance  = gtsam::Matrix33::Identity(3,3) * pow(imuAccNoise, 2); // acc white noise in continuous
@@ -263,6 +264,12 @@ public:
         
         imuIntegratorImu_ = new gtsam::PreintegratedImuMeasurements(p, prior_imu_bias); // setting up the IMU integration for IMU message thread
         imuIntegratorOpt_ = new gtsam::PreintegratedImuMeasurements(p, prior_imu_bias); // setting up the IMU integration for optimization        
+    }
+
+    ~IMUPreintegration()
+    {
+        delete imuIntegratorImu_;
+        delete imuIntegratorOpt_;
     }
 
     void resetOptimization()
@@ -290,7 +297,7 @@ public:
     {
         std::lock_guard<std::mutex> lock(mtx);
 
-        double currentCorrectionTime = stamp2Sec(odomMsg->header.stamp);
+        double currentCorrectionTime = ROS_TIME(odomMsg->header.stamp);
 
         // make sure we have imu data to integrate
         if (imuQueOpt.empty())
@@ -315,9 +322,9 @@ public:
             // pop old IMU message
             while (!imuQueOpt.empty())
             {
-                if (stamp2Sec(imuQueOpt.front().header.stamp) < currentCorrectionTime - delta_t)
+                if (ROS_TIME((&imuQueOpt.front())->header.stamp) < currentCorrectionTime - delta_t)
                 {
-                    lastImuT_opt = stamp2Sec(imuQueOpt.front().header.stamp);
+                    lastImuT_opt = ROS_TIME((&imuQueOpt.front())->header.stamp);
                     imuQueOpt.pop_front();
                 }
                 else
@@ -389,10 +396,10 @@ public:
         {
             // pop and integrate imu data that is between two optimizations
             sensor_msgs::msg::Imu *thisImu = &imuQueOpt.front();
-            double imuTime = stamp2Sec(thisImu->header.stamp);
+            double imuTime = ROS_TIME(thisImu->header.stamp);
             if (imuTime < currentCorrectionTime - delta_t)
             {
-                double dt = (lastImuT_opt < 0) ? (1.0 / 500.0) : (imuTime - lastImuT_opt);
+                double dt = (lastImuT_opt < 0) ? (1.0 / imuRate) : (imuTime - lastImuT_opt);
                 imuIntegratorOpt_->integrateMeasurement(
                         gtsam::Vector3(thisImu->linear_acceleration.x, thisImu->linear_acceleration.y, thisImu->linear_acceleration.z),
                         gtsam::Vector3(thisImu->angular_velocity.x,    thisImu->angular_velocity.y,    thisImu->angular_velocity.z), dt);
@@ -445,9 +452,9 @@ public:
         prevBiasOdom  = prevBias_;
         // first pop imu message older than current correction data
         double lastImuQT = -1;
-        while (!imuQueImu.empty() && stamp2Sec(imuQueImu.front().header.stamp) < currentCorrectionTime - delta_t)
+        while (!imuQueImu.empty() && ROS_TIME((&imuQueImu.front())->header.stamp) < currentCorrectionTime - delta_t)
         {
-            lastImuQT = stamp2Sec(imuQueImu.front().header.stamp);
+            lastImuQT = ROS_TIME((&imuQueImu.front())->header.stamp);
             imuQueImu.pop_front();
         }
         // repropogate
@@ -459,8 +466,8 @@ public:
             for (int i = 0; i < (int)imuQueImu.size(); ++i)
             {
                 sensor_msgs::msg::Imu *thisImu = &imuQueImu[i];
-                double imuTime = stamp2Sec(thisImu->header.stamp);
-                double dt = (lastImuQT < 0) ? (1.0 / 500.0) :(imuTime - lastImuQT);
+                double imuTime = ROS_TIME(thisImu->header.stamp);
+                double dt = (lastImuQT < 0) ? (1.0 / imuRate) :(imuTime - lastImuQT);
 
                 imuIntegratorImu_->integrateMeasurement(gtsam::Vector3(thisImu->linear_acceleration.x, thisImu->linear_acceleration.y, thisImu->linear_acceleration.z),
                                                         gtsam::Vector3(thisImu->angular_velocity.x,    thisImu->angular_velocity.y,    thisImu->angular_velocity.z), dt);
@@ -504,8 +511,8 @@ public:
         if (doneFirstOpt == false)
             return;
 
-        double imuTime = stamp2Sec(thisImu.header.stamp);
-        double dt = (lastImuT_imu < 0) ? (1.0 / 500.0) : (imuTime - lastImuT_imu);
+        double imuTime = ROS_TIME((&thisImu)->header.stamp);
+        double dt = (lastImuT_imu < 0) ? (1.0 / imuRate) : (imuTime - lastImuT_imu);
         lastImuT_imu = imuTime;
 
         // integrate this single imu message
@@ -516,7 +523,7 @@ public:
         gtsam::NavState currentState = imuIntegratorImu_->predict(prevStateOdom, prevBiasOdom);
 
         // publish odometry
-        auto odometry = nav_msgs::msg::Odometry();
+        nav_msgs::msg::Odometry odometry;
         odometry.header.stamp = thisImu.header.stamp;
         odometry.header.frame_id = odometryFrame;
         odometry.child_frame_id = "odom_imu";
