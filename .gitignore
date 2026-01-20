@@ -28,3 +28,6 @@ general_record/
 *.csv
 *.png
 *.txt
+src/imu_calib/data
+src/imu_calib/imu_lidar_calibration.zip
+li_calib.zip
