@@ -6,28 +6,32 @@ import os
 import math
 
 def quaternion_to_euler_angle(x, y, z, w):
-    ysqr = y * y
-
+    """
+    Convert a quaternion into euler angles (roll, pitch, yaw)
+    roll is rotation around x in radians (counterclockwise)
+    pitch is rotation around y in radians (counterclockwise)
+    yaw is rotation around z in radians (counterclockwise)
+    """
     t0 = +2.0 * (w * x + y * z)
-    t1 = +1.0 - 2.0 * (x * x + ysqr)
-    X = math.degrees(math.atan2(t0, t1))
+    t1 = +1.0 - 2.0 * (x * x + y * y)
+    X = (math.atan2(t0, t1))
 
     t2 = +2.0 * (w * y - z * x)
     t2 = +1.0 if t2 > +1.0 else t2
     t2 = -1.0 if t2 < -1.0 else t2
-    Y = math.degrees(math.asin(t2))
+    Y = (math.asin(t2))
 
     t3 = +2.0 * (w * z + x * y)
-    t4 = +1.0 - 2.0 * (ysqr + z * z)
-    Z = math.degrees(math.atan2(t3, t4))
+    t4 = +1.0 - 2.0 * (y * y + z * z)
+    Z = (math.atan2(t3, t4))
 
     return X, Y, Z
+ 
 # ros2 bag play imu_data/imu_data_0.db3 --rate 100 --read-ahead-queue-size 10000
 
 class ImuRecorder(Node):
     def __init__(self):
         super().__init__('imu_recorder_node')
-        
         self.subscription = self.create_subscription(
             Imu,
             '/imu/data',
@@ -49,10 +53,10 @@ class ImuRecorder(Node):
         ]
 
         # Создаем директорию, если она не существует
-        dir_path = './imu_data'
+        dir_path = './imu_data_2'
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
-
+        
         # Открываем файл ОДИН раз при инициализации
         self.file_path = os.path.join(dir_path, 'imu_data.csv')
         self.f = open(self.file_path, mode='w', newline='')
