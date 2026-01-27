@@ -29,12 +29,12 @@ def generate_launch_description():
     arguments=['0', '0', '0', '1.570795', '0', '1.570795', 'map', 'camera_init'],
   )
 
-  # transform_camera = Node(
-  #   package='tf2_ros',
-  #   executable='static_transform_publisher',
-  #   name='base_link_to_camera',
-  #   arguments=['0', '0', '0', '-1.570795', '-1.570795', '0', 'camera', 'base_link'],
-  # )
+  transform_camera = Node(
+    package='tf2_ros',
+    executable='static_transform_publisher',
+    name='base_link_to_camera',
+    arguments=['0', '0', '0', '-1.570795', '-1.570795', '0', 'camera', 'base_link'],
+  )
 
   # transform_velodyne = Node(
   #   package='tf2_ros',
@@ -68,7 +68,7 @@ def generate_launch_description():
   # Add nodes
   ld.add_action(lego_loam_node)
   ld.add_action(transform_map)
-  #ld.add_action(transform_camera)
+  ld.add_action(transform_camera)
   #ld.add_action(transform_velodyne)
   ld.add_action(rviz_node)
 

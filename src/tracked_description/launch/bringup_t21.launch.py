@@ -168,7 +168,7 @@ def generate_launch_description() -> LaunchDescription:
                 arguments=[
                     "geom_position_controller",
                     "--controller-manager", cm_ns,
-                    "--controller-type", "forward_command_controller/ForwardCommandController",
+                    "--controller-type", "geom_position_controller/ForwardCommandController",
                     "--param-file", controller_parameters
                 ],
                 output="screen",
