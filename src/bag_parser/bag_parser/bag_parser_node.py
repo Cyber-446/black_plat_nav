@@ -18,7 +18,7 @@ class MultiOdomParserNode(Node):
         super().__init__('bag_parser_node')
         
         # Параметры ноды
-        self.declare_parameter('odom_topics', ['/odometry/imu', '/lio_sam/mapping/odometry', '/diff_drive_controller/odom'])
+        self.declare_parameter('odom_topics', ['/aft_mapped_to_init'])
         self.declare_parameter('output_directory', 'output_csv')
         self.declare_parameter('update_rate', 2.0)  # Hz
         self.declare_parameter('use_best_effort', True)  # Новый параметр для QoS
@@ -53,6 +53,7 @@ class MultiOdomParserNode(Node):
         self.data_buffers = defaultdict(lambda: {
             'x': None,
             'y': None, 
+            'z': None,  # Добавлена координата Z
             'yaw': None,
             'linear_x': None,
             'angular_z': None,
@@ -87,7 +88,8 @@ class MultiOdomParserNode(Node):
             # Создаем CSV файл и записываем заголовок
             csv_file = open(filepath, 'w', newline='')
             writer = csv.writer(csv_file)
-            writer.writerow(['timestamp', 'x', 'y', 'yaw', 'linear_x', 'angular_z', 'frame_id', 'child_frame_id'])
+            # Обновлен заголовок с добавлением координаты z
+            writer.writerow(['timestamp', 'x', 'y', 'z', 'yaw', 'linear_x', 'angular_z', 'frame_id', 'child_frame_id'])
             
             self.csv_files[topic] = csv_file
             self.csv_writers[topic] = writer
@@ -110,6 +112,7 @@ class MultiOdomParserNode(Node):
             # Извлекаем данные из Odometry сообщения
             x = msg.pose.pose.position.x
             y = msg.pose.pose.position.y
+            z = msg.pose.pose.position.z  # Добавлено извлечение координаты Z
             
             # Извлекаем yaw из кватерниона
             orientation = msg.pose.pose.orientation
@@ -121,10 +124,11 @@ class MultiOdomParserNode(Node):
             linear_x = msg.twist.twist.linear.x
             angular_z = msg.twist.twist.angular.z
             
-            # Обновляем буфер данных
+            # Обновляем буфер данных с добавлением координаты z
             self.data_buffers[topic].update({
                 'x': x,
                 'y': y,
+                'z': z,  # Добавлено сохранение координаты z
                 'yaw': yaw,
                 'linear_x': linear_x,
                 'angular_z': angular_z,
@@ -149,11 +153,12 @@ class MultiOdomParserNode(Node):
                 try:
                     timestamp = current_time.nanoseconds / 1e9
                     
-                    # Подготавливаем строку для записи
+                    # Подготавливаем строку для записи с добавлением координаты z
                     row = [
                         timestamp,
                         buffer['x'] if buffer['x'] is not None else '-',
-                        buffer['y'] if buffer['y'] is not None else '-', 
+                        buffer['y'] if buffer['y'] is not None else '-',
+                        buffer['z'] if buffer['z'] is not None else '-',  # Добавлена координата z
                         buffer['yaw'] if buffer['yaw'] is not None else '-',
                         buffer['linear_x'] if buffer['linear_x'] is not None else '-',
                         buffer['angular_z'] if buffer['angular_z'] is not None else '-',
