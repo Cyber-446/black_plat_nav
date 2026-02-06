@@ -81,11 +81,16 @@ controller_server:
   ros__parameters:
     controller_frequency: 20.0
     min_theta_velocity_threshold: 0.3
+    goal_checker:
+      plugin: "nav2_controller::SimpleGoalChecker"
+      xy_goal_tolerance: 0.2
+      yaw_goal_tolerance: 0.2
+      stateful: True
     FollowPath:
       plugin: "nav2_mppi_controller::MPPIController"
-      time_steps: 56
+      time_steps: 50
       model_dt: 0.05
-      batch_size: 2000
+      batch_size: 2500
       vx_std: 0.2
       vy_std: 0.0
       wz_std: 0.4
@@ -99,8 +104,8 @@ controller_server:
       ay_max: 0.0
       az_max: 1.0
       iteration_count: 1
-      temperature: 0.3
-      gamma: 0.015
+      temperature: 0.2
+      gamma: 0.02
       motion_model: "DiffDrive"
       visualize: true
       publish_optimal_trajectory: true
@@ -126,31 +131,31 @@ controller_server:
       GoalAngleCritic:
         enabled: true
         cost_power: 2
-        cost_weight: 3.0
+        cost_weight: 5.0
         threshold_to_consider: 0.2
       PreferForwardCritic:
         enabled: true
         cost_power: 1
         cost_weight: 5.0
         threshold_to_consider: 1.0
-      ObstaclesCritic:
-         enabled: false
-         cost_power: 2
-         cost_weight: 50.0
-         repulsion_weight: 50.0
-         critical_weight: 2000.0
-         consider_footprint: true
-         collision_cost: 100000.0
-         collision_margin_distance: 0.5
-         near_goal_distance: 0.5
-         inflation_radius: 0.5 # (only in Humble)
-         cost_scaling_factor: 0.1 # (only in Humble)
+      # ObstaclesCritic:
+      #    enabled: true
+      #    cost_power: 3
+      #    repulsion_weight: 100.0
+      #    critical_weight: 2000.0
+      #    consider_footprint: false
+      #    collision_cost: 100000.0
+      #    collision_margin_distance: 0.5
+      #    near_goal_distance: 0.5
+      #    inflation_radius: 1.5 # (only in Humble)
+      #    cost_scaling_factor: 3.0 # (only in Humble)
+      #    inflation_layer_name: 'inflation_layer'
       CostCritic:
         enabled: true
         cost_power: 3
         cost_weight: 30.0
-        near_collision_cost: 20
-        critical_cost: 10.0
+        near_collision_cost: 10
+        critical_cost: 50.0
         consider_footprint: true
         collision_cost: 100.0
         near_goal_distance: 0.1
@@ -159,7 +164,7 @@ controller_server:
         enabled: true
         cost_power: 1
         cost_weight: 10.0
-        max_path_occupancy_ratio: 0.1
+        max_path_occupancy_ratio: 0.05
         trajectory_point_step: 4
         threshold_to_consider: 0.5
         offset_from_furthest: 20
@@ -172,8 +177,8 @@ controller_server:
         threshold_to_consider: 1.5
       PathAngleCritic:
         enabled: true
-        cost_power: 2
-        cost_weight: 4.0
+        cost_power: 1
+        cost_weight: 2.0
         offset_from_furthest: 10
         threshold_to_consider: 0.5
         max_angle_to_furthest: 0.2
@@ -200,36 +205,53 @@ local_costmap:
       rolling_window: true
       width: 5
       height: 5
-      resolution: 0.01
+      resolution: 0.1
       use_maximum: true
       trinary_costmap: false
       lethal_cost_threshold: 200
-      footprint: "[[0.5,0.25],[0.5,-0.25],[-0.4,-0.25],[-0.4,0.25]]"
+      footprint: "[[0.3,0.25],[0.3,-0.25],[-0.3,-0.25],[-0.3,0.25]]"
       robot_radius: 0.0
-      plugins: ["obstacle_layer", "inflation_layer"]
+      plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"] #, "rgbd_obstacle_layer"]
       obstacle_layer:
-          plugin: "nav2_costmap_2d::ObstacleLayer"
-          enabled: true
-          observation_sources: pointcloud
-          footprint_clearing_enabled: false
-          combination_method: 1
-          pointcloud:
-            topic: /velodyne_points
-            qos: "sensor_data"  # BEST_EFFORT + VOLATILE
-            obstacle_max_range: 5.0
-            obstacle_min_range: 0.6
-            raytrace_max_range: 0.6
-            raytrace_min_range: 0.0
-            max_obstacle_height: 0.5
-            min_obstacle_height: 0.1
-            clearing: True
-            marking: True
-            data_type: "PointCloud2"
-            inf_is_valid: false
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true  # Ensure enabled
+        footprint_clearing_enabled: false
+        observation_sources: scan
+        combination_method: 1
+        scan:
+          topic: /scan_velodyne
+          data_type: "LaserScan"
+          marking: true
+          clearing: true
+      voxel_layer:
+        plugin: "nav2_costmap_2d::VoxelLayer"
+        enabled: True
+        footprint_clearing_enabled: false
+        publish_voxel_map: True
+        origin_z: -0.1
+        z_resolution: 0.05
+        z_voxels: 16
+        max_obstacle_height: 0.5
+        unknown_threshold: 5
+        mark_threshold: 1
+        observation_sources: pointcloud
+        combination_method: 1
+        pointcloud:  # no frame set, uses frame from message
+          topic: /velodyne_points
+          qos: "sensor_data"  # BEST_EFFORT + VOLATILE
+          max_obstacle_height: 0.5
+          min_obstacle_height: -0.1
+          obstacle_max_range: 5.0
+          obstacle_min_range: 0.6
+          raytrace_max_range: 3.0
+          raytrace_min_range: 0.0
+          clearing: True
+          marking: True
+          data_type: "PointCloud2"
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True
-        inflation_radius: 0.2
+        inflation_radius: 0.3
         cost_scaling_factor: 3.0
         inflate_unknown: False
         inflate_around_unknown: False     
@@ -244,12 +266,13 @@ global_costmap:
         global_frame: map
         map_topic: /map
         robot_base_frame: base_link
-        rolling_window: false
+        rolling_window: true
         width: 50
         height: 50
         resolution: 0.05
         #TODO adapt base on altering lenght of chassis
         footprint: "[[0.4,0.3],[0.4,-0.30],[-0.4,-0.30],[-0.4,0.30]]"
+        robot_radius: 0.0
         track_unknown_space: true
         map_vis_z: 0.0
         plugins: ["static_layer", "obstacle_layer", "voxel_layer", "global_inflation_layer"]
@@ -257,25 +280,25 @@ global_costmap:
           plugin: "nav2_costmap_2d::ObstacleLayer"
           enabled: true
           observation_sources: pointcloud
-          footprint_clearing_enabled: false
+          footprint_clearing_enabled: True
           max_obstacle_height: 5.0
           combination_method: 1
-          pointcloud:
+          pintcloud:
             topic: /velodyne_points
             qos: "sensor_data"  # BEST_EFFORT + VOLATILE
-            obstacle_max_range: 50.0
-            obstacle_min_range: 0.6
-            raytrace_max_range: 30.0
+            obstacle_max_range: 5.0
+            obstacle_min_range: 0.9
+            raytrace_max_range: 3.0
             raytrace_min_range: 0.0
             max_obstacle_height: 0.5
             min_obstacle_height: 0.1
             clearing: True
             marking: True
             data_type: "PointCloud2"
-            inf_is_valid: false
+            inf_is_valid: False
         voxel_layer:
           plugin: "nav2_costmap_2d::VoxelLayer"
-          enabled: false
+          enabled: true
           footprint_clearing_enabled: False
           publish_voxel_map: True
           origin_z: -0.1
@@ -301,14 +324,13 @@ global_costmap:
         static_layer:
           plugin: "nav2_costmap_2d::StaticLayer"
           map_subscribe_transient_local: True
-          enabled: false
+          enabled: True
           subscribe_to_updates: True
           transform_tolerance: 0.5
-          map_topic: /map
         global_inflation_layer:
           plugin: "nav2_costmap_2d::InflationLayer"
           enabled: True
-          inflation_radius: 0.3
+          inflation_radius: 0.5
           cost_scaling_factor: 3.0
           inflate_unknown: false
           inflate_around_unknown: false
