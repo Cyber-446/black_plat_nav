@@ -157,6 +157,60 @@
     <origin xyz="0.165 0.0 0.104" rpy="0 0 0"/>
   </joint>
 
+  <link
+    name="camera_base_link">
+    <inertial>
+      <origin
+        xyz="0.00236723430443658 0.00284830369666845 1.86648075149107E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.0798291622805554" />
+      <inertia
+        ixx="0.000122650398243472"
+        ixy="-5.35688945763538E-07"
+        ixz="4.40692500921343E-08"
+        iyy="2.06507530748284E-05"
+        iyz="-5.04471506920737E-08"
+        izz="0.000119910604769246" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find t21_sim)/meshes/camera_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find t21_sim)/meshes/camera_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.148648549421411 -0.00168373549133136 0.0396301545012917"
+      rpy="0 0 0" />
+    <parent
+      link="big_box_link" />
+    <child
+      link="camera_base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
   <!-- Gazebo extensions -->
   <gazebo reference="base_link">
     <mu1>0.2</mu1>
