@@ -1,7 +1,7 @@
 /**:
   ros__parameters:
 
-    use_sim_time: true
+    use_sim_time: false
     # TF
     publishOdomToLidarTF: false 
     publishOdomToBaseTF: true
@@ -38,16 +38,17 @@
     lidarMaxRange: 25.0                        # default: 1000.0, maximum lidar range to be used
 
     # IMU Settings
-    # imuAccNoise: 0.009939570888238808e-03
-    # imuGyrNoise: 0.005636343949698187e-03
-    # imuAccBiasN: 0.04356659353532566e-03
-    # imuGyrBiasN: 0.05640318696367613e-03
+    imuAccNoise: 0.009939570888238808
+    imuGyrNoise: 0.005636343949698187
+    imuAccBiasN: 0.04356659353532566
+    imuGyrBiasN: 0.05640318696367613
 
     #imuGravity: 9.80511
-    #imuRPYWeight: 0.01
+    imuRPYWeight: 0.01
 
+    # 0.165 0.0 0.139  0.0036 -2.29E-05 0.095
     #extrinsicTrans:  [ 0.154,  -0.001, 0.218]
-    extrinsicTrans:  [ -0.154,  0.0, -0.251]
+    extrinsicTrans:  [ -0.1686,  0.0, -0.269]
     #extrinsicTrans:  [ 0.0,  0.0, 0.0]
     extrinsicRot:    [1.0,  0.0,  0.0,
                        0.0,  1.0,  0.0,
@@ -64,11 +65,11 @@
 
     # voxel filter paprams
     odometrySurfLeafSize: 0.2                     # default: 0.4 - outdoor, 0.2 - indoor
-    mappingCornerLeafSize: 0.1                    # default: 0.2 - outdoor, 0.1 - indoor
-    mappingSurfLeafSize: 0.2                      # default: 0.4 - outdoor, 0.2 - indoor
+    mappingCornerLeafSize: 0.05                    # default: 0.2 - outdoor, 0.1 - indoor
+    mappingSurfLeafSize: 0.1                      # default: 0.4 - outdoor, 0.2 - indoor
 
     # robot motion constraint (in case you are using a 2D robot)
-    z_tollerance: 1000.0                          # meters
+    z_tollerance: 0.5                          # meters
     rotation_tollerance: 1000.0                   # radians
 
     # CPU Params
@@ -86,7 +87,7 @@
     loopClosureEnableFlag: true
     loopClosureFrequency: 1.0                     # Hz, regulate loop closure constraint add frequency
     surroundingKeyframeSize: 50                   # submap size (when loop closure enabled)
-    historyKeyframeSearchRadius: 15.0             # meters, key frame that is within n meters from
+    historyKeyframeSearchRadius: 5.0             # meters, key frame that is within n meters from
     # current pose will be considerd for loop closure
     historyKeyframeSearchTimeDiff: 30.0           # seconds, key frame that is n seconds older will be
     # considered for loop closure
